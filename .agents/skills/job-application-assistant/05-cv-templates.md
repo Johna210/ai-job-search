@@ -4,8 +4,6 @@ framework_version: 1.3.0
 
 # CV Templates and Tailoring Guide
 
-<!-- SETUP: Profile statements and section ordering are personalized by running /setup -->
-
 ## Template: LaTeX moderncv (Banking Style)
 
 All CVs use the moderncv LaTeX package with the "banking" style and "blue" color scheme.
@@ -116,11 +114,14 @@ When the role sits outside your home domain, **lead with the domain-transfer arg
 **Create 2-3 profile statement templates for your main role types:**
 
 <!-- SETUP: These are populated based on your background -->
-**For [YOUR_PRIMARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_1]
+**For AI/ML Engineer roles:**
+> Software Engineer specializing in applied AI with production experience building agentic RAG systems, LLM integrations, and ML pipelines. Built Adisu Serategna, a bilingual agentic RAG platform spanning Go, Python, Next.js, and Flutter, with multi-LLM orchestration (Gemini + Cohere) and bilingual embeddings in pgVector. A2SV alumnus with 900+ algorithmic problems solved. Brings hands-on experience from AI/ML internships and production backend development to deliver AI-powered applications end-to-end.
 
-**For [YOUR_SECONDARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_2]
+**For Backend Engineer roles:**
+> Backend Engineer with production experience building scalable systems in Go and TypeScript. Built and maintained microservices for a multi-tenant enterprise eProcurement platform deployed across 3 countries (Ethiopia, Malawi, Sierra Leone) with database-per-tenant isolation. Integrated Google Gemini API for AI-powered features in production. Experienced with NestJS, Gin, PostgreSQL, MongoDB, Redis, and Docker. Comfortable owning features end-to-end in small, fast-moving teams.
+
+**For Full-Stack Developer roles:**
+> Full-Stack Developer with production experience across the entire stack: Go (Gin), TypeScript (NestJS, Next.js), Python (FastAPI), and Flutter. Built complete products from database to UI, including a bilingual agentic RAG platform (capstone), e-commerce platforms, and enterprise eProcurement systems. Strong backend foundation with AI/ML integration experience. Thrives in small teams shipping complex features with real user impact.
 
 Statements labeled *[Used for: <company>_<role>]* were extracted from archived application drafts by `/setup` Path A. They are **phrasing references, never fact sources**: when drafting from one, every factual claim still comes from `01-candidate-profile.md` - a past tailored draft does not vouch for its own accuracy.
 

@@ -1,8 +1,7 @@
-%% Example CV - [YOUR_NAME]
+%% CV - Yohannes Solomon Legesse
 %% Comprehensive overview of all competencies, experience, and achievements.
 %% Use as a master reference when tailoring role-specific CVs.
 %%
-%% SETUP: Run /setup to populate this with your actual information.
 %% Compile with: lualatex main_example.tex
 %% (pdflatex often fails on modern MiKTeX with fontawesome5 font-expansion errors.)
 
@@ -24,18 +23,18 @@
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
+    pdftitle={Yohannes Solomon Legesse - CV},
     pdfpagemode=FullScreen,
 }
 \usepackage[scale=0.80]{geometry}
 \usepackage{import}
 
 % personal data
-\name{[First]}{[Last]}
-\address{[Your Address, City, Country]}{}{}
-\phone[mobile]{[+XX XXXXXXXXXX]}
-\email{[your.email@example.com]}
-\extrainfo{\href{[https://linkedin.com/in/your-profile]}{LinkedIn}, \href{[https://github.com/your-username]}{GitHub}}
+\name{Yohannes}{Solomon Legesse}
+\address{Addis Ababa, Ethiopia}{}{}
+\phone[mobile]{+251911359492}
+\email{solomonjohna21@gmail.com}
+\extrainfo{\href{https://www.linkedin.com/in/yohannes-solomon-dev/}{LinkedIn}, \href{https://github.com/Johna210}{GitHub}}
 
 \begin{document}
 
@@ -46,7 +45,7 @@
 % ============================================================
 
 \vspace{6pt}
-\small{[Write a 3-5 line profile statement tailored to the role you're applying for. Focus on what makes you uniquely qualified. Example: "Data scientist with a PhD in [field] and X years of industry experience. Combines deep domain expertise in [domain] with strong applied machine learning and Python development skills. Experienced in developing end-to-end ML pipelines, from data ingestion to stakeholder-facing dashboards."]}
+\small{Software Engineer specializing in applied AI and backend systems with production experience across Go, TypeScript, and Python. Built agentic RAG platforms, multi-tenant enterprise systems, and AI-powered tools deployed across multiple countries. A2SV alumnus with 900+ algorithmic problems solved. Seeking roles where complex technical challenges meet real user impact.}
 
 % ============================================================
 %     CORE COMPETENCIES
@@ -56,15 +55,15 @@
 \vspace{1pt}
 \begin{itemize}
 
-\item \textbf{[Skill Category 1]}: [Specific skills, frameworks, tools. Be concrete.]
+\item \textbf{AI \& Machine Learning}: Agentic RAG, LLM APIs (Google Gemini, Cohere), TensorFlow, scikit-learn, NLP, Prompt Engineering, pgVector
 
-\item \textbf{[Skill Category 2]}: [Specific skills, frameworks, tools.]
+\item \textbf{Backend Systems}: Go (Gin), TypeScript (NestJS), Python (FastAPI, Flask), REST APIs, gRPC, Microservices, System Design
 
-\item \textbf{[Skill Category 3]}: [Specific skills, frameworks, tools.]
+\item \textbf{Databases \& Infrastructure}: PostgreSQL, MongoDB, MySQL, Redis, Docker, AWS
 
-\item \textbf{[Skill Category 4]}: [Domain expertise, methods, approaches.]
+\item \textbf{Full-Stack Development}: Next.js, Flutter (Riverpod), Domain-Driven Design, JWT Authentication
 
-\item \textbf{[Skill Category 5]}: [Tools, platforms, software.]
+\item \textbf{Software Engineering}: Agile/Scrum, PR Reviews, Architecture Decisions, Test Coverage (60-85\%)
 
 \end{itemize}
 
@@ -76,32 +75,38 @@
 \vspace{3pt}
 \begin{itemize}
 
-% --- Most Recent Role ---
-\item{\cventry{[YYYY--Present]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\item{\cventry{06/2025--04/2026}{Backend Developer (Part-time)}{Perago Information Systems}{Addis Ababa, Ethiopia}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1 - be specific, use numbers where possible]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
-    \item [Achievement or responsibility 4]
+    \item Co-developed a multi-tenant enterprise eProcurement platform deployed across Ethiopia, Malawi, and Sierra Leone with database-per-tenant isolation
+    \item Built and maintained backend microservices using NestJS and TypeScript supporting government procurement workflows at national scale
+    \item Designed RESTful APIs handling multi-tenant query safety across isolated database tenants
+    \item Worked in a backend team of 3--5 engineers, shipping in 2-week sprint cadence; reviewed peer PRs and contributed to architecture decisions
 \end{itemize}}}
 
 \vspace{3pt}
 
-% --- Previous Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\item{\cventry{01/2025--04/2025}{AI/ML Intern}{iCog Labs}{Addis Ababa, Ethiopia}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
+    \item Developed NLP models using Python, TensorFlow, and scikit-learn
+    \item Built data preprocessing pipelines and implemented feature engineering
+    \item Evaluated model performance and documented results for the research team
 \end{itemize}}}
 
 \vspace{3pt}
 
-% --- Earlier Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\item{\cventry{11/2023--06/2024}{Software Engineer}{Eskalate}{Addis Ababa, Ethiopia}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
+    \item Built and maintained a production Go (Gin) backend monolith with MongoDB persistence and Redis caching
+    \item Integrated Google Gemini API to ship an internal document summarization tool used by engineering and operations teams
+    \item Reduced manual document review time through AI-powered automation
+\end{itemize}}}
+
+\vspace{3pt}
+
+\item{\cventry{01/2025--04/2025}{Fullstack Developer Intern}{Perago Information Systems}{Addis Ababa, Ethiopia}{}{\vspace{1pt}
+\begin{itemize}
+    \item Built full-stack features using Next.js and NestJS for eProcurement services
+    \item Collaborated across frontend and backend teams to deliver integrated features
 \end{itemize}}}
 
 \end{itemize}
@@ -114,14 +119,40 @@
 \vspace{1pt}
 \begin{itemize}
 
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-Thesis: ``[Thesis Title].'' [Brief description of research focus.]
+\item{\cventry{05/2021--07/2026}{Bachelor of Science in Software Engineering (AI Stream)}{Addis Ababa University (AAiT/CTBE)}{Addis Ababa, Ethiopia}{}{\vspace{1pt}
+Topics: Software Engineering, Artificial Intelligence, Machine Learning
 }}
 
 \vspace{3pt}
 
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-[Brief description or key topics.]
+\item{\cventry{11/2023--11/2024}{A2SV Technical Training Program}{Africa to Silicon Valley (Google-backed)}{Remote}{}{\vspace{1pt}
+Completed 1,000+ hours of intensive Data Structures \& Algorithms training. Solved 900+ problems on LeetCode and Codeforces. Selected for elite program with 70\% placement rate at top tech companies.
+}}
+
+\end{itemize}
+
+% ============================================================
+%     PROJECTS
+% ============================================================
+
+\section{Selected Projects}
+\vspace{1pt}
+\begin{itemize}
+
+\item{\cventry{Capstone}{Adisu Serategna -- Bilingual Agentic RAG Platform}{}{}{}{\vspace{1pt}
+Go modular monolith (Gin, clean architecture) with Python FastAPI agentic service (ReAct loops, multi-LLM orchestration with Gemini + Cohere), bilingual embeddings in pgVector across 500+ document knowledge base. Next.js admin dashboard, Flutter mobile app. \href{https://github.com/Johna210/Final-Year-Project-G22}{GitHub}
+}}
+
+\vspace{3pt}
+
+\item{\cventry{}{Weather Forecast ML Model}{}{}{}{\vspace{1pt}
+ML model achieving 99\% prediction accuracy on 10-year historical weather dataset. Optimized training pipeline by 20\%. \href{https://github.com/Johna210/AI-Group-Project}{GitHub}
+}}
+
+\vspace{3pt}
+
+\item{\cventry{}{CinemaMate -- Cinema Scheduling App}{}{}{}{\vspace{1pt}
+NestJS backend with Domain-Driven Design, JWT authentication, 85\% test coverage. \href{https://github.com/Johna210/CinemaMate_backend}{GitHub}
 }}
 
 \end{itemize}
@@ -133,27 +164,17 @@ Thesis: ``[Thesis Title].'' [Brief description of research focus.]
 \section{Languages}
 \vspace{1pt}
 \begin{itemize}
-\item [Language 1] (native), [Language 2] (fluent), [Language 3] (intermediate).
+\item Amharic (native), English (fluent).
 \end{itemize}
 
 % ============================================================
-%     PUBLICATIONS (optional)
-% ============================================================
-
-\section{Publications}
-\vspace{1pt}
-\begin{itemize}
-\item [Author(s)] ([Year]). [Title]. [Journal/Conference]. \href{[DOI_URL]}{DOI link}
-\end{itemize}
-
-% ============================================================
-%     HONORS AND AWARDS (optional)
+%     HONORS AND AWARDS
 % ============================================================
 
 \section{Honors and Awards}
 \vspace{1pt}
 \begin{itemize}
-\item{\textbf{[Award Name]} -- [Event/Organization] ([Year]).}
+\item{\textbf{A2SV Acceptance} -- Africa to Silicon Valley (2023). Google-backed program with 70\% placement rate at top tech companies.}
 \end{itemize}
 
 % ============================================================

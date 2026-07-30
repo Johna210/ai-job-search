@@ -1,10 +1,10 @@
-# Job Application Assistant for [YOUR_NAME]
+# Job Application Assistant for Yohannes Solomon Legesse
 
 <!-- SETUP: This file is populated by running /setup -->
 <!-- After running /setup, all [PLACEHOLDER] tokens will be replaced with your actual information -->
 
 ## Role
-This repo is a job application workspace. Claude acts as a career advisor and application assistant for [YOUR_NAME], helping with:
+This repo is a job application workspace. Claude acts as a career advisor and application assistant for Yohannes Solomon Legesse, helping with:
 1. **Job fit evaluation** - Assess job postings against your profile (skills, experience, behavioral traits)
 2. **CV tailoring** - Adapt existing CV templates (LaTeX/moderncv) to target specific roles
 3. **Cover letter writing** - Draft targeted cover letters using existing templates (LaTeX)
@@ -16,72 +16,90 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 <!-- This section is auto-populated by /setup. You can also fill it in manually. -->
 
 ### Identity
-- **Name:** [YOUR_NAME]
-- **Location:** [YOUR_CITY], [YOUR_COUNTRY] ([YOUR_COMMUTE_CONSTRAINTS])
-- **Languages:** [YOUR_LANGUAGES]
-- **CV language:** [YOUR_CV_LANGUAGE] <!-- English unless your market expects otherwise; /setup asks -->
+- **Name:** Yohannes Solomon Legesse
+- **Location:** Addis Ababa, Ethiopia (remote preferred, in-person OK)
+- **Languages:** Amharic (native), English (fluent)
+- **CV language:** English
 
-- **Status:** [YOUR_EMPLOYMENT_STATUS]
-- **LinkedIn headline:** "[YOUR_LINKEDIN_HEADLINE]"
+- **Status:** Recent graduate (July 2026), actively seeking
+- **LinkedIn headline:** "Software Engineer / AI Engineer"
 
 ### Education
 <!-- List your degrees, most recent first -->
-- **[DEGREE_LEVEL] in [FIELD]** ([YEAR_START]-[YEAR_END]) - [INSTITUTION]
-  - Thesis: "[THESIS_TITLE]"
-  - Topics: [KEY_TOPICS]
+- **BSc in Software Engineering (AI Stream)** (2021-2026) - Addis Ababa University (AAiT/CTBE)
+  - Topics: Software Engineering, AI, Machine Learning
+- **A2SV Technical Training Program** (2023-2024) - Africa to Silicon Valley (Google-backed)
+  - 1,000+ hours of Data Structures & Algorithms, 900+ problems solved on LeetCode/Codeforces
 
 ### Professional Experience
 <!-- List your roles, most recent first -->
-- **[JOB_TITLE]** ([START_DATE] - [END_DATE]) - **[COMPANY]** ([LOCATION])
-  - [KEY_RESPONSIBILITY_1]
-  - [KEY_RESPONSIBILITY_2]
-  - [KEY_ACHIEVEMENT]
+- **Backend Developer (Part-time)** (06/2025 - 04/2026) - **Perago Information Systems** (Addis Ababa)
+  - Multi-tenant eProcurement platform across Ethiopia, Malawi, Sierra Leone
+  - NestJS/TypeScript microservices, RESTful APIs, database-per-tenant isolation
+  - 3-5 engineer team, 2-week sprints, PR reviews, architecture decisions
+
+- **AI/ML Intern** (01/2025 - 04/2025) - **iCog Labs** (Addis Ababa)
+  - NLP models with Python, TensorFlow, scikit-learn
+  - Data preprocessing pipelines and feature engineering
+
+- **Software Engineer** (11/2023 - 06/2024) - **Eskalate** (Addis Ababa)
+  - Go (Gin) backend with MongoDB, Redis
+  - Google Gemini API integration for document summarization
+
+- **Fullstack Developer Intern** (01/2025 - 04/2025) - **Perago Information Systems** (Addis Ababa)
+  - Next.js + NestJS full-stack features for eProcurement
 
 ### Technical Skills
-- **Primary:** [YOUR_PRIMARY_SKILLS]
-- **Secondary:** [YOUR_SECONDARY_SKILLS]
-- **Domain:** [YOUR_DOMAIN_EXPERTISE]
-- **Software:** [YOUR_TOOLS_AND_SOFTWARE]
+- **Primary:** Python, Go, TypeScript, Backend Systems, REST APIs, PostgreSQL, MongoDB, Redis
+- **Secondary:** Next.js, Flutter, Docker, AWS, gRPC, ASP.NET Core
+- **Domain:** Agentic RAG, LLM APIs (Gemini, Cohere), NLP, TensorFlow, scikit-learn
+- **Software:** NestJS, Gin, Flask, FastAPI, Express.js, pgVector, RabbitMQ, Git
 
 ### Certifications
 <!-- List relevant certifications with dates -->
-- **[CERTIFICATION_NAME]** - [HOURS]h - completed [DATE]
+- A2SV Technical Training Program - completed 2024
 
 ### Publications
 <!-- List peer-reviewed publications, if any -->
-- [AUTHOR_LIST] ([YEAR]). [TITLE]. [JOURNAL].
+- None yet
 
 ### Awards
 <!-- List relevant awards, hackathons, competitions -->
-- [AWARD_NAME] - [EVENT] ([YEAR])
+- A2SV acceptance (2023) - Google-backed program with 70% placement rate at top tech companies
 
 ### Behavioral Profile
 <!-- Your behavioral assessment results (PI, DISC, Myers-Briggs, or self-assessment) -->
-- **[TRAIT_1]** - [DESCRIPTION]
-- **[TRAIT_2]** - [DESCRIPTION]
-- **Strengths:** [YOUR_STRENGTHS]
-- **Growth areas:** [YOUR_GROWTH_AREAS]
-- **Thrives in:** [YOUR_IDEAL_ENVIRONMENT]
+- **Builder-Learner** - Hands-on engineer who thrives on solving complex problems with real user impact
+- **Cross-functional** - Moves comfortably between AI/ML, backend, and full-stack work
+- **Self-directed** - Pursued A2SV program alongside work, continuously learning new technologies
+- **Strengths:** Complex problem-solving, shipping complete products, cross-domain versatility
+- **Growth areas:** Early career stage, breadth vs. deep specialization
+- **Thrives in:** Small teams, learning environments, complex projects with user impact
 
 ### What Excites You
 <!-- What motivates you professionally -->
-- [PASSION_1]
-- [PASSION_2]
+- Complex projects with real impact on users
+- Building new features end-to-end
+- Integrating AI/ML into production systems
+- Working with modern technologies in a learning culture
 
 ### Target Sectors
 <!-- Industries and companies you're targeting -->
-- [SECTOR_1]: [EXAMPLE_COMPANIES]
-- [SECTOR_2]: [EXAMPLE_COMPANIES]
+- AI/ML companies: Remote-first AI startups, LLM/RAG companies
+- Tech companies: Backend/full-stack roles at product companies
+- Enterprise: SaaS platforms, fintech, healthtech
 
 ### Deal-breakers
 <!-- Hard constraints on job search -->
-- [DEALBREAKER_1]
-- [DEALBREAKER_2]
+- Maintenance-only work with no new development
+- Toxic work environments
+- Heavy bureaucracy and unnecessary process overhead
+- Underpaid and overworked conditions
 
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)
 - `cover_letters/` - LaTeX cover letters (custom cover.cls template)
-- `.claude/skills/` - AI skill definitions for the application workflow
+- `.opencode/skills/` - AI skill definitions for the application workflow
 - `.agents/skills/` - Job search CLI tools
 
 ## Workflow for New Job Applications
@@ -91,7 +109,7 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 4. **Verify both documents** (see Verification Checklist below)
 5. Prepare interview talking points based on the role requirements and your strengths
 
-**Important:** When mentioning agentic coding or AI tooling in CVs/cover letters, explicitly reference **Claude Code** by name.
+**Important:** When mentioning agentic coding or AI tooling in CVs/cover letters, explicitly reference **OpenCode** by name.
 
 ## Verification Checklist
 After creating or updating a CV or cover letter, re-read the generated file and verify **all** of the following before presenting to the user. Report the results as a pass/fail checklist.
@@ -117,7 +135,7 @@ After creating or updating a CV or cover letter, re-read the generated file and 
 ### Quality
 - [ ] No LaTeX syntax errors (balanced braces, correct commands)
 - [ ] No spelling or grammar errors
-- [ ] Agentic coding / AI tooling references mention **Claude Code** by name
+- [ ] Agentic coding / AI tooling references mention **OpenCode** by name
 - [ ] Cover letter is addressed to the correct person (or "Dear Hiring Manager" if unknown)
 - [ ] Cover letter fits approximately one page
 - [ ] CV section headings (`\section{...}`) and the References boilerplate line match the CV's language, not left as the English template defaults (see `05-cv-templates.md`)

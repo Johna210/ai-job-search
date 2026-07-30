@@ -45,7 +45,7 @@ ALLOWED_PERMISSIONS = {
 REQUIRED_IGNORE_RULES = [
     "salary_data.json",
     # Depth-independent: the job-scraper skill resolves `job_scraper/` relative
-    # to its own directory, so the state file lands under .claude/skills/... and
+    # to its own directory, so the state file lands under .opencode/skills/... and
     # a repo-rooted rule silently fails to match it.
     "**/job_scraper/seen_jobs.json",
     "cv/main_*.*",
