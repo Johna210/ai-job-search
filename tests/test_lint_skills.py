@@ -41,7 +41,7 @@ class LinterRepoFixture(unittest.TestCase):
         command.parent.mkdir(parents=True)
         command.write_text("# /setup - Test setup command\n", encoding="utf-8")
 
-        skill = self.root / ".claude" / "skills" / "example" / "SKILL.md"
+        skill = self.root / ".opencode" / "skills" / "example" / "SKILL.md"
         skill.parent.mkdir(parents=True)
         skill.write_text(
             "---\nname: example\ndescription: Example skill\n---\n",

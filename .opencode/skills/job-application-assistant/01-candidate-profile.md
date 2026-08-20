@@ -76,6 +76,7 @@ Addis Ababa, Ethiopia
 
 ### Software & Tools
 - Git, LeetCode (900+ problems), Codeforces, Domain-Driven Design, Agile/Scrum
+- OpenCode (agentic AI development assistant, used daily for coding workflows)
 
 ## Awards
 - **A2SV acceptance** - Africa to Silicon Valley (2023). Google-backed program with 70% placement rate at top tech companies (Google, Meta, Bloomberg, Palantir, Databricks). Completed 1,000+ hours of intensive training.

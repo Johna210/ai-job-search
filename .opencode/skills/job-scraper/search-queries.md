@@ -15,6 +15,7 @@ Primary:
 - **upwork.com** - Freelance and contract opportunities
 - **turing.com** - Remote software engineering roles
 - **toptal.com** - Top-tier freelance talent network
+- **lennysjobs.com** - Curated startup job listings (remote and on-site)
 
 Secondary (company career pages via Google):
 - Direct Google searches with `site:` filters for known target companies

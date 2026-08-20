@@ -155,6 +155,19 @@ Postings are treated as untrusted input (the workflow follows no instructions em
 ```
 ai-job-search/
 ├── CLAUDE.md                          # Main candidate profile + workflow rules
+├── .opencode/
+│   └── skills/
+│       ├── job-application-assistant/  # Core application skill
+│       │   ├── SKILL.md               # Skill definition
+│       │   ├── 01-candidate-profile.md # Your education, experience, skills
+│       │   ├── 02-behavioral-profile.md# PI/DISC/personality assessment
+│       │   ├── 03-writing-style.md    # Tone, structure, do's and don'ts
+│       │   ├── 04-job-evaluation.md   # Scoring framework for job fit
+│       │   ├── 05-cv-templates.md     # LaTeX CV structure + tailoring rules
+│       │   ├── 06-cover-letter-templates.md # LaTeX cover letter templates
+│       │   └── 07-interview-prep.md   # STAR examples + interview framework
+│       ├── job-scraper/               # Job search orchestration
+│       └── upskill/                   # /upskill skill gap analysis and learning plan
 ├── .claude/
 │   ├── commands/
 │   │   ├── apply.md                   # /apply workflow (drafter-reviewer)
@@ -169,18 +182,6 @@ ai-job-search/
 │   │   ├── html-report.md             # /html-report generate application tracker dashboard
 │   │   ├── notion-sync.md             # /notion-sync one-way pipeline view in a Notion database
 │   │   └── reset.md                   # /reset wipe profile data or documents folder
-│   ├── skills/
-│   │   ├── job-application-assistant/  # Core application skill
-│   │   │   ├── SKILL.md               # Skill definition
-│   │   │   ├── 01-candidate-profile.md # Your education, experience, skills
-│   │   │   ├── 02-behavioral-profile.md# PI/DISC/personality assessment
-│   │   │   ├── 03-writing-style.md    # Tone, structure, do's and don'ts
-│   │   │   ├── 04-job-evaluation.md   # Scoring framework for job fit
-│   │   │   ├── 05-cv-templates.md     # LaTeX CV structure + tailoring rules
-│   │   │   ├── 06-cover-letter-templates.md # LaTeX cover letter templates
-│   │   │   └── 07-interview-prep.md   # STAR examples + interview framework
-│   │   ├── job-scraper/               # Job search orchestration
-│   │   └── upskill/                   # /upskill skill gap analysis and learning plan
 │   └── settings.json                  # Claude Code permissions (shared, scoped)
 ├── .agents/skills/                    # Job portal CLI tools
 │   ├── jobbank-search/                # Akademikernes Jobbank (Denmark)
