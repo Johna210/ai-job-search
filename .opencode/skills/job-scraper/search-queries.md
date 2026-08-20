@@ -16,9 +16,53 @@ Primary:
 - **turing.com** - Remote software engineering roles
 - **toptal.com** - Top-tier freelance talent network
 - **lennysjobs.com** - Curated startup job listings (remote and on-site)
+- **adzuna.co.uk** - Worldwide job search aggregator with Remote / Work From Home filters
+- **andela.com** - Global remote tech talent platform (remote-first roles, strong track record for Africa-based developers)
+- **crossover.com** - Remote technology job marketplace (roles across engineering, product, and operations)
 
 Secondary (company career pages via Google):
 - Direct Google searches with `site:` filters for known target companies
+
+#### Europe — visa sponsors (fresher-friendly, backend/AI stack)
+
+Sourced from the "100 European Tech Companies — Visa Sponsorship" sheet. Sponsorship claims must be re-verified per posting before applying (EU Blue Card / Irish Critical Skills / UK Skilled Worker paths).
+
+```
+site:deliveryhero.com "Backend" OR "Software Engineer" OR "Go" 
+site:contentful.com "Software Engineer" OR "Backend"
+site:getyourguide.com "Software Engineer" OR "Backend"
+site:sumup.com "Backend" OR "Software Engineer"
+site:monzo.com "Software Engineer" OR "Backend" OR "Go"
+site:deliveroo.com "Software Engineer" OR "Backend"
+site:wise.com "Backend" OR "Software Engineer"
+site:trustpilot.com "Software Engineer" OR "Backend"
+site:wolt.com "Backend" OR "Software Engineer"
+site:glovoapp.com "Backend" OR "Software Engineer"
+site:ovhcloud.com "Backend" OR "Go" OR "Software Engineer"
+site:blablacar.com "Backend" OR "Software Engineer"
+site:unbabel.com "Machine Learning" OR "NLP" OR "Backend"
+site:feedzai.com "Machine Learning" OR "Backend"
+site:celonis.com "Data Engineer" OR "Backend" OR "Software Engineer"
+site:zalando.com "Backend" OR "Software Engineer" OR "Python"
+site:personio.com "Backend" OR "Software Engineer" OR "TypeScript"
+```
+
+#### Remote-first target companies
+
+Verified remote-first orgs (from the 100%-remote and Remotive lists) with ongoing remote openings.
+
+```
+site:about.gitlab.com "Remote" OR "Backend" OR "Engineer"
+site:automattic.com "Engineer" OR "Backend"
+site:buffer.com "Engineer" OR "Backend"
+site:doist.com "Engineer" OR "Backend"
+site:duckduckgo.com "Engineer" OR "Backend"
+site:kinsta.com "Engineer" OR "Backend"
+site:testgorilla.com "Engineer" OR "Backend"
+site:octopus.com "Engineer" OR "Backend"
+site:huntress.com "Software Engineer" OR "Backend"
+site:socket.dev "Engineer" OR "Backend"
+```
 
 ## Query Categories
 
