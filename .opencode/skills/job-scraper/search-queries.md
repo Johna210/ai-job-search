@@ -25,44 +25,15 @@ Secondary (company career pages via Google):
 
 #### Europe — visa sponsors (fresher-friendly, backend/AI stack)
 
-Sourced from the "100 European Tech Companies — Visa Sponsorship" sheet. Sponsorship claims must be re-verified per posting before applying (EU Blue Card / Irish Critical Skills / UK Skilled Worker paths).
+Most of this group is covered by the `europe-visa-sponsors-search` CLI skill (16 companies via Greenhouse, Lever, Ashby, and SmartRecruiters APIs). The `site:` lines below are only for companies whose careers site has no public API. Sponsorship claims must be re-verified per posting before applying.
 
 ```
-site:deliveryhero.com "Backend" OR "Software Engineer" OR "Go" 
-site:contentful.com "Software Engineer" OR "Backend"
-site:getyourguide.com "Software Engineer" OR "Backend"
-site:sumup.com "Backend" OR "Software Engineer"
-site:monzo.com "Software Engineer" OR "Backend" OR "Go"
-site:deliveroo.com "Software Engineer" OR "Backend"
-site:wise.com "Backend" OR "Software Engineer"
-site:trustpilot.com "Software Engineer" OR "Backend"
-site:wolt.com "Backend" OR "Software Engineer"
-site:glovoapp.com "Backend" OR "Software Engineer"
-site:ovhcloud.com "Backend" OR "Go" OR "Software Engineer"
-site:blablacar.com "Backend" OR "Software Engineer"
-site:unbabel.com "Machine Learning" OR "NLP" OR "Backend"
-site:feedzai.com "Machine Learning" OR "Backend"
-site:celonis.com "Data Engineer" OR "Backend" OR "Software Engineer"
-site:zalando.com "Backend" OR "Software Engineer" OR "Python"
 site:personio.com "Backend" OR "Software Engineer" OR "TypeScript"
 ```
 
 #### Remote-first target companies
 
-Verified remote-first orgs (from the 100%-remote and Remotive lists) with ongoing remote openings.
-
-```
-site:about.gitlab.com "Remote" OR "Backend" OR "Engineer"
-site:automattic.com "Engineer" OR "Backend"
-site:buffer.com "Engineer" OR "Backend"
-site:doist.com "Engineer" OR "Backend"
-site:duckduckgo.com "Engineer" OR "Backend"
-site:kinsta.com "Engineer" OR "Backend"
-site:testgorilla.com "Engineer" OR "Backend"
-site:octopus.com "Engineer" OR "Backend"
-site:huntress.com "Software Engineer" OR "Backend"
-site:socket.dev "Engineer" OR "Backend"
-```
+Fully covered by the `remote-first-targets-search` CLI skill (GitLab, Automattic, Buffer, Doist, DuckDuckGo, Kinsta, TestGorilla, Octopus Deploy, Huntress, Socket). No `site:` fallback lines needed.
 
 ## Query Categories
 
@@ -119,7 +90,7 @@ When evaluating results, verify the job location is within reasonable commute di
 - **Africa-wide remote** (acceptable)
 - **Global remote** (ideal)
 - **Other cities in Ethiopia** (borderline - commute not feasible, remote only)
-- **On-site outside Ethiopia** (too far - requires relocation)
+- **On-site outside Ethiopia** (acceptable ONLY with documented visa sponsorship - e.g. EU Blue Card, Dutch HSM, UK Skilled Worker; re-verify sponsorship per posting before applying)
 
 ## Date Filter
 

@@ -17,7 +17,7 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 
 ### Identity
 - **Name:** Yohannes Solomon Legesse
-- **Location:** Addis Ababa, Ethiopia (remote preferred, in-person OK)
+- **Location:** Addis Ababa, Ethiopia (remote preferred; on-site abroad OK when the employer provides visa sponsorship)
 - **Languages:** Amharic (native), English (fluent)
 - **CV language:** English
 

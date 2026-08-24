@@ -1,0 +1,20 @@
+{
+  "name": "remote-first-targets-cli",
+  "version": "1.0.0",
+  "description": "CLI for searching live job listings at remote-first companies, via each company's public careers API (Greenhouse, Lever, Ashby, SmartRecruiters). No authentication, zero runtime dependencies.",
+  "type": "module",
+  "main": "src/cli.ts",
+  "bin": {
+    "remote-first-targets-search": "src/cli.ts"
+  },
+  "scripts": {
+    "start": "bun run src/cli.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/bun": "1.3.14"
+  }
+}
