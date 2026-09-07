@@ -23,6 +23,7 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 
 - **Status:** Recent graduate (July 2026), actively seeking
 - **LinkedIn headline:** "Software Engineer / AI Engineer"
+- **Professional full-stack experience:** 3+ years across freelance engagements and employed roles, including TypeScript, Next.js, and NestJS full-stack development
 
 ### Education
 <!-- List your degrees, most recent first -->
@@ -49,11 +50,18 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 - **Fullstack Developer Intern** (01/2025 - 04/2025) - **Perago Information Systems** (Addis Ababa)
   - Next.js + NestJS full-stack features for eProcurement
 
+### Independent Project Links
+- **Adisu Serategna:** `https://github.com/Johna210/Final-Year-Project-G22`
+- **Weather Forecast ML Model:** `https://github.com/Johna210/AI-Group-Project`
+- **CinemaMate:** `https://github.com/Johna210/CinemaMate_backend`
+- **ProStore:** `https://github.com/Johna210/nextjs-ecommerce`
+- **EshopMicroservices:** `https://github.com/Johna210/EshopMicroservices`
+
 ### Technical Skills
 - **Primary:** Python, Go, TypeScript, Backend Systems, REST APIs, PostgreSQL, MongoDB, Redis
 - **Secondary:** Next.js, Flutter, Docker, AWS, gRPC, ASP.NET Core
 - **Domain:** Agentic RAG, LLM APIs (Gemini, Cohere), NLP, TensorFlow, scikit-learn
-- **Software:** NestJS, Gin, Flask, FastAPI, Express.js, pgVector, RabbitMQ, Git
+- **Software:** NestJS, Gin, Flask, FastAPI, Express.js, pgVector, RabbitMQ, Git, OpenCode, Codex, Claude Code
 
 ### Certifications
 <!-- List relevant certifications with dates -->

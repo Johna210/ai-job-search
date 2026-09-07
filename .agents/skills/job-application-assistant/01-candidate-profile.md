@@ -52,10 +52,10 @@ Addis Ababa, Ethiopia
 ## Independent Projects
 
 - **Adisu Serategna** (Capstone): Bilingual (Amharic + English) agentic RAG platform for Ethiopian entrepreneurs. Go modular monolith (Gin, clean architecture), Python FastAPI agentic service (ReAct loop, multi-LLM with Gemini + Cohere), Next.js admin dashboard, Flutter mobile app. PostgreSQL, pgVector, RabbitMQ, SeaweedFS. Defended and public on GitHub.
-- **Weather Forecast ML Model**: ML model achieving 99% prediction accuracy on 10-year historical weather dataset. Optimized training pipeline by 20%.
-- **CinemaMate**: Cinema scheduling app with NestJS, TypeScript, Domain-Driven Design, JWT auth, 85% test coverage.
-- **ProStore**: Full-stack e-commerce platform with Next.js, PostgreSQL, Stripe/PayPal integration.
-- **EshopMicroservices**: Microservices e-commerce backend in ASP.NET Core with API gateway, database-per-service, Redis caching.
+- **Weather Forecast ML Model**: ML model achieving 99% prediction accuracy on 10-year historical weather dataset. Optimized training pipeline by 20%. GitHub: `https://github.com/Johna210/AI-Group-Project`
+- **CinemaMate**: Cinema scheduling app with NestJS, TypeScript, Domain-Driven Design, JWT auth, 85% test coverage. GitHub: `https://github.com/Johna210/CinemaMate_backend`
+- **ProStore**: Full-stack e-commerce platform with Next.js, PostgreSQL, Stripe/PayPal integration. GitHub: `https://github.com/Johna210/nextjs-ecommerce`
+- **EshopMicroservices**: Microservices e-commerce backend in ASP.NET Core with API gateway, database-per-service, Redis caching. GitHub: `https://github.com/Johna210/EshopMicroservices`
 
 ## Technical Skills
 
@@ -76,6 +76,7 @@ Addis Ababa, Ethiopia
 
 ### Software & Tools
 - Git, LeetCode (900+ problems), Codeforces, Domain-Driven Design, Agile/Scrum
+- OpenCode (agentic AI development assistant, used daily for coding workflows), Codex, Claude Code
 
 ## Awards
 - **A2SV acceptance** - Africa to Silicon Valley (2023). Google-backed program with 70% placement rate at top tech companies (Google, Meta, Bloomberg, Palantir, Databricks). Completed 1,000+ hours of intensive training.
