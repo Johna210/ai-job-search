@@ -30,6 +30,8 @@ Addis Ababa, Ethiopia
 - Co-developed a multi-tenant enterprise eProcurement platform deployed across Ethiopia, Malawi, and Sierra Leone
 - Built and maintained backend microservices using NestJS and TypeScript supporting government procurement workflows
 - Designed RESTful APIs handling national-scale procurement data with database-per-tenant isolation and multi-tenant query safety
+- Improved slow service-to-service communication with gRPC, resulting in faster response times for users
+- Investigated PostgreSQL operations taking more than 5-10 seconds with `EXPLAIN` and optimized the affected queries
 - Worked in a backend team of 3-5 engineers, shipping in 2-week sprint cadence; reviewed peer PRs and contributed to architecture decisions
 
 ### AI/ML Intern - iCog Labs (01/2025 - 04/2025)
@@ -70,7 +72,7 @@ Addis Ababa, Ethiopia
 ### Backend & Infrastructure
 - **Frameworks:** NestJS, Gin, Flask, FastAPI, ASP.NET Core, Express.js
 - **Databases:** PostgreSQL, pgVector, MongoDB, MySQL, Redis
-- **Infrastructure:** Docker, AWS, REST APIs, gRPC, Microservices, System Design
+- **Infrastructure:** Docker, AWS, GCP, Linux, GitHub Actions, CI/CD, REST APIs, gRPC, Microservices, System Design
 
 ### AI/ML
 - Agentic RAG, LLM APIs (Gemini, Cohere), TensorFlow, scikit-learn, NLP, Prompt Engineering
@@ -78,6 +80,8 @@ Addis Ababa, Ethiopia
 ### Software & Tools
 - Git, LeetCode (900+ problems), Codeforces, Domain-Driven Design, Agile/Scrum
 - OpenCode (agentic AI development assistant, used daily for coding workflows), Codex, Claude Code
+- Docker images for local development and production deployments; GitHub Actions pipelines for formatting, linting, tests, and security audits
+- Used OpenCode with Matt Pocock's `grill-me`, `to-spec`, and `to-tickets` workflows in capstone development to refine issues, write specs, create GitHub issues, and implement changes with stepwise verification
 
 ## Awards
 - **A2SV acceptance** - Africa to Silicon Valley (2023). Google-backed program with 70% placement rate at top tech companies (Google, Meta, Bloomberg, Palantir, Databricks). Completed 1,000+ hours of intensive training.

@@ -37,6 +37,7 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 - **Backend Developer (Part-time)** (06/2025 - 04/2026) - **Perago Information Systems** (Addis Ababa)
   - Multi-tenant eProcurement platform across Ethiopia, Malawi, Sierra Leone
   - NestJS/TypeScript microservices, RESTful APIs, database-per-tenant isolation
+  - Improved slow service-to-service communication with gRPC and optimized PostgreSQL operations using `EXPLAIN`, improving user response times
   - 3-5 engineer team, 2-week sprints, PR reviews, architecture decisions
 
 - **AI/ML Intern** (01/2025 - 04/2025) - **iCog Labs** (Addis Ababa)
@@ -59,9 +60,9 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 
 ### Technical Skills
 - **Primary:** Python, Go, TypeScript, Backend Systems, REST APIs, PostgreSQL, MongoDB, Redis
-- **Secondary:** Next.js, Flutter, Docker, AWS, gRPC, ASP.NET Core
+- **Secondary:** Next.js, Flutter, Docker, AWS, GCP, Linux, GitHub Actions, CI/CD, gRPC, ASP.NET Core
 - **Domain:** Agentic RAG, LLM APIs (Gemini, Cohere), NLP, TensorFlow, scikit-learn
-- **Software:** NestJS, Gin, Flask, FastAPI, Express.js, pgVector, RabbitMQ, Git, OpenCode, Codex, Claude Code
+- **Software:** NestJS, Gin, Flask, FastAPI, Express.js, pgVector, RabbitMQ, Git, OpenCode, Codex, Claude Code, Matt Pocock's `grill-me`, `to-spec`, and `to-tickets` workflows
 
 ### Certifications
 <!-- List relevant certifications with dates -->
