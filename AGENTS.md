@@ -38,6 +38,7 @@ When executing commands in OpenCode, use these tool names:
 | Write a file | `write` |
 | Edit a file | `edit` |
 | Run shell command | `bash` |
+| Research CLI | `agy -p "..."` |
 | Find files by pattern | `glob` |
 | Search file contents | `grep` |
 | Fetch a URL | `webfetch` |

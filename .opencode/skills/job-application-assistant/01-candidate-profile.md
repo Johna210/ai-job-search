@@ -54,10 +54,10 @@ Addis Ababa, Ethiopia
 
 ## Independent Projects
 
-- **Adisu Serategna** (Capstone): Bilingual (Amharic + English) agentic RAG platform for Ethiopian entrepreneurs. Go modular monolith (Gin, clean architecture), Python FastAPI agentic service (ReAct loop, multi-LLM with Gemini + Cohere), Next.js admin dashboard, Flutter mobile app. PostgreSQL, pgVector, RabbitMQ, SeaweedFS. Defended and public on GitHub.
+- **Adisu Serategna** (Capstone): Bilingual (Amharic + English) agentic RAG platform for Ethiopian entrepreneurs with i18n support across the Go backend, Next.js web admin dashboard, and Flutter mobile app. Go modular monolith (Gin, clean architecture), Python FastAPI agentic service (ReAct loop, multi-LLM with Gemini + Cohere), PostgreSQL, pgVector, RabbitMQ, SeaweedFS. Defended and public on GitHub.
 - **Weather Forecast ML Model**: ML model achieving 99% prediction accuracy on 10-year historical weather dataset. Optimized training pipeline by 20%. GitHub: `https://github.com/Johna210/AI-Group-Project`
 - **CinemaMate**: Cinema scheduling app with NestJS, TypeScript, Domain-Driven Design, JWT auth, 85% test coverage. GitHub: `https://github.com/Johna210/CinemaMate_backend`
-- **ProStore**: Full-stack e-commerce platform with Next.js, PostgreSQL, Stripe/PayPal integration. GitHub: `https://github.com/Johna210/nextjs-ecommerce`
+- **ProStore**: Full-stack e-commerce platform with Next.js, PostgreSQL, Prisma ORM, Stripe/PayPal integration. GitHub: `https://github.com/Johna210/nextjs-ecommerce`
 - **EshopMicroservices**: Microservices e-commerce backend in ASP.NET Core with API gateway, database-per-service, Redis caching. GitHub: `https://github.com/Johna210/EshopMicroservices`
 
 ## Technical Skills
@@ -72,7 +72,8 @@ Addis Ababa, Ethiopia
 ### Backend & Infrastructure
 - **Frameworks:** NestJS, Gin, Flask, FastAPI, ASP.NET Core, Express.js
 - **Databases:** PostgreSQL, pgVector, MongoDB, MySQL, Redis
-- **Infrastructure:** Docker, AWS, GCP, Linux, GitHub Actions, CI/CD, REST APIs, gRPC, Microservices, System Design
+- **Infrastructure:** Docker, Docker Compose, AWS, GCP, Linux, GitHub Actions, CI/CD, REST APIs, gRPC, Microservices, System Design, Kubernetes (currently learning)
+- **Backend patterns & security:** Prisma ORM; implemented role-based access control (RBAC), IAM, authentication, and authorization modules across several projects; streaming responses in AI-related projects
 
 ### AI/ML
 - Agentic RAG, LLM APIs (Gemini, Cohere), TensorFlow, scikit-learn, NLP, Prompt Engineering
