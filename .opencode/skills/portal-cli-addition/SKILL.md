@@ -5,7 +5,7 @@ description: >
   alone. Use when adding a job portal, company career page, ATS board, job source,
   or new scraper. Trigger phrases: add a job site, add a portal, build a job CLI,
   support this careers page, scrape this job board, new job source.
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash(bun *), WebFetch, WebSearch
+allowed-tools: Read, Write, Edit, Glob, Grep, Task, Bash(bun *), WebFetch, WebSearch
 ---
 
 # Portal CLI addition
@@ -35,7 +35,18 @@ low. Never bypass authentication or an access challenge.
 
 ## 2. Investigate before editing
 
-Use `WebFetch` or a bounded `curl` request to answer these questions:
+Always delegate the initial investigation to an OpenCode `task` subagent before
+editing source files. Use `subagent_type: "general"` and give it a read-only
+research brief. The brief must name every source being checked, require primary
+official pages or APIs, request exact endpoint and field evidence, and ask for a
+compact matrix that marks unknowns instead of guessing. The subagent must not
+modify the repository.
+
+Do not use `agy` for this portal investigation. The main agent owns the decision,
+so independently verify the subagent's important claims with `WebFetch` or a
+bounded `curl` request before adding a board or enabling a skill.
+
+The investigation must answer these questions:
 
 1. What search endpoint and query parameter return postings?
 2. How do location, recency, pagination, and result limits work?

@@ -15,7 +15,7 @@ allowed-tools: Bash(bun run .agents/skills/smartrecruiters-search/cli/src/cli.ts
 
 # SmartRecruiters search
 
-Search Delivery Hero and Kinsta's public SmartRecruiters job boards directly.
+Search Delivery Hero, Kinsta, and Glovo's public SmartRecruiters postings directly.
 
 ## Personal use
 
@@ -68,3 +68,6 @@ results from other boards; partial failures are reported on stderr.
   and `--location` before increasing `--limit`.
 - Kinsta's probed public response contained an old posting, so recency filtering
   is important for that board.
+- Glovo postings are filtered from Delivery Hero's company-wide feed by the
+  `Brands: Glovo` custom field. Glovo results include `?board=glovo` in their
+  public URL so the URL can be passed back to `detail` without losing the brand.

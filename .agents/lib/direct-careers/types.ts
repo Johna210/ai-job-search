@@ -9,6 +9,8 @@ export interface Board {
   readonly company: string
   readonly urlId: string
   readonly urlHosts?: readonly string[]
+  readonly apiId?: string
+  readonly requiredBrand?: string
 }
 
 export interface SearchOptions {

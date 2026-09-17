@@ -18,4 +18,5 @@ returns HTTP 401, so detail looks up the selected ID in the board response.
 
 ## Configured boards
 
-`buffer` and `testgorilla` were checked with live requests before registration.
+`buffer`, `testgorilla`, `duckduckgo`, and `andela` were checked with live requests
+before registration. The DuckDuckGo API board slug is `duck-duck-go`.

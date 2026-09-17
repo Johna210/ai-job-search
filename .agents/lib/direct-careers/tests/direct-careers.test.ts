@@ -89,9 +89,52 @@ test("normalizes SmartRecruiters locations and detail sections", () => {
   expect(job?.employmentType).toBe("Full-time")
 })
 
+test("keeps SmartRecruiters brand boards distinct", () => {
+  const job = parseSmartRecruiters(
+    {
+      id: "glovo-id",
+      name: "Backend Engineer",
+      location: { city: "Nairobi", country: "Kenya", remote: true },
+      postingUrl: "https://jobs.smartrecruiters.com/DeliveryHero/glovo-id",
+      customField: [{ fieldLabel: "Brands", valueLabel: "Glovo" }],
+    },
+    {
+      id: "glovo",
+      company: "Glovo",
+      urlId: "DeliveryHero",
+      apiId: "deliveryhero",
+      requiredBrand: "Glovo",
+    },
+  )
+
+  expect(job?.id).toBe("glovo:glovo-id")
+  expect(job?.company).toBe("Glovo")
+  expect(job?.url).toContain("board=glovo")
+})
+
+test("rejects a SmartRecruiters posting from the wrong brand board", () => {
+  const job = parseSmartRecruiters(
+    {
+      id: "other-brand-id",
+      name: "Backend Engineer",
+      customField: [{ fieldLabel: "Brands", valueLabel: "PedidosYa" }],
+    },
+    {
+      id: "glovo",
+      company: "Glovo",
+      urlId: "DeliveryHero",
+      apiId: "deliveryhero",
+      requiredBrand: "Glovo",
+    },
+  )
+
+  expect(job).toBe(null)
+})
+
 test("formats array locations without empty comma segments", () => {
   expect(locationText({ name: "Buenos Aires, , Argentina" })).toBe("Buenos Aires, Argentina")
   expect(boardFor("smartrecruiters", "deliveryhero")?.urlId).toBe("DeliveryHero")
+  expect(boardFor("smartrecruiters", "glovo")?.apiId).toBe("deliveryhero")
 })
 
 test("rejects missing option values before making a request", () => {

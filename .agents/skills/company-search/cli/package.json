@@ -1,0 +1,21 @@
+{
+  "name": "company-search-cli",
+  "version": "1.0.0",
+  "description": "CLI for searching configured public company career pages.",
+  "type": "module",
+  "main": "src/cli.ts",
+  "bin": {
+    "company-search": "src/cli.ts"
+  },
+  "scripts": {
+    "start": "bun run src/cli.ts",
+    "test": "bun test --timeout 30000 tests",
+    "test:live": "bun run tests/live-smoke.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/bun": "1.3.14"
+  }
+}

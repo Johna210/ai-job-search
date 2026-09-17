@@ -19,15 +19,25 @@ export const BOARD_CONFIG = {
     { id: "gitlab", company: "GitLab", urlId: "gitlab" },
     { id: "huntress", company: "Huntress", urlId: "huntress" },
     { id: "socket", company: "Socket", urlId: "socket" },
+    { id: "octopusdeploy", company: "Octopus Deploy", urlId: "octopusdeploy" },
   ],
   ashby: [
     { id: "buffer", company: "Buffer", urlId: "buffer" },
     { id: "testgorilla", company: "TestGorilla", urlId: "testgorilla" },
+    { id: "duckduckgo", company: "DuckDuckGo", urlId: "duck-duck-go", apiId: "duck-duck-go" },
+    { id: "andela", company: "Andela", urlId: "andela" },
   ],
   lever: [{ id: "blablacar", company: "BlaBlaCar", urlId: "blablacar" }],
   smartrecruiters: [
     { id: "deliveryhero", company: "Delivery Hero", urlId: "DeliveryHero" },
     { id: "kinsta", company: "Kinsta", urlId: "Kinsta" },
+    {
+      id: "glovo",
+      company: "Glovo",
+      urlId: "DeliveryHero",
+      apiId: "deliveryhero",
+      requiredBrand: "Glovo",
+    },
   ],
 } satisfies Record<Source, readonly Board[]>
 

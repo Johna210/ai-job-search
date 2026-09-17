@@ -74,10 +74,19 @@ export async function detailJob(source: Source, input: string): Promise<JobDetai
 
   if (source === "smartrecruiters") {
     const payload = await fetchJson(
-      `https://api.smartrecruiters.com/v1/companies/${reference.board.id}/postings/${encodeURIComponent(reference.id)}`,
+      `https://api.smartrecruiters.com/v1/companies/${reference.board.apiId ?? reference.board.id}/postings/${encodeURIComponent(reference.id)}`,
     )
     const job = parseSmartRecruiters(payload, reference.board)
     if (!job) throw new Error("The SmartRecruiters detail response did not contain a valid job")
+    return job
+  }
+
+  if (source === "lever") {
+    const payload = await fetchJson(
+      `https://api.lever.co/v0/postings/${reference.board.id}/${encodeURIComponent(reference.id)}`,
+    )
+    const job = parseLever(payload, reference.board)
+    if (!job) throw new Error("The Lever detail response did not contain a valid job")
     return job
   }
 
@@ -195,6 +204,7 @@ export function parseLever(payload: unknown, board: Board): JobDetail | null {
 
 export function parseSmartRecruiters(payload: unknown, board: Board): JobDetail | null {
   if (!isObject(payload)) return null
+  if (board.requiredBrand && !matchesSmartBoard(payload, board)) return null
 
   const id = textValue(payload.id)
   const title = textValue(payload.name) ?? textValue(payload.title)
@@ -211,15 +221,17 @@ export function parseSmartRecruiters(payload: unknown, board: Board): JobDetail 
     (hybrid === true ? "hybrid" : explicitRemote === true ? "remote" : explicitRemote === false ? "onsite" : null)
   const date = parsedDate(firstPresent(payload.releasedDate, payload.updatedAt, payload.createdAt)).text
   const deadline = parsedDate(firstPresent(payload.expirationDate, payload.deadline)).text
-  const url =
+  const url = smartPostingUrl(
     textValue(payload.postingUrl) ??
-    textValue(payload.jobUrl) ??
-    `https://jobs.smartrecruiters.com/${board.urlId}/${encodeURIComponent(id)}`
+      textValue(payload.jobUrl) ??
+      `https://jobs.smartrecruiters.com/${board.urlId}/${encodeURIComponent(id)}`,
+    board,
+  )
 
   return {
     id: `${board.id}:${id}`,
     title,
-    company: textValue(objectValue(payload, "company")?.name) ?? board.company,
+    company: board.company,
     location,
     date,
     url,
@@ -263,7 +275,7 @@ function smartDescription(payload: JsonObject): string | null {
 
 async function fetchBoardJobs(source: Source, board: Board, query: string | undefined): Promise<JobDetail[]> {
   if (source !== "smartrecruiters") {
-    const payload = await fetchJson(boardEndpoint(source, board, query))
+    const payload = await fetchJson(boardEndpoint(source, board, query), source === "lever" ? 60000 : undefined)
     if (payload === null) throw new Error(`${board.company} board returned 404`)
     const recordKey = source === "lever" ? "" : "jobs"
     if (!hasRecordCollection(payload, recordKey)) throw new Error(`${board.company} returned an invalid posting list`)
@@ -283,10 +295,10 @@ async function fetchSmartRecruiters(board: Board, query: string | undefined): Pr
   let offset = 0
 
   while (true) {
-    const url = new URL(`https://api.smartrecruiters.com/v1/companies/${board.id}/postings`)
+    const url = new URL(`https://api.smartrecruiters.com/v1/companies/${board.apiId ?? board.id}/postings`)
     url.searchParams.set("limit", String(pageSize))
     url.searchParams.set("offset", String(offset))
-    if (query) url.searchParams.set("q", query)
+    if (query && !board.requiredBrand) url.searchParams.set("q", query)
 
     const payload = await fetchJson(url.toString())
     if (payload === null) throw new Error(`${board.company} board returned 404`)
@@ -295,8 +307,9 @@ async function fetchSmartRecruiters(board: Board, query: string | undefined): Pr
     const firstId = textValue(records[0]?.id)
     if (firstId && seenFirstIds.has(firstId)) throw new Error("SmartRecruiters pagination did not advance")
     if (firstId) seenFirstIds.add(firstId)
-    const parsedJobs = records.map((record) => parseSmartRecruiters(record, board)).filter((job): job is JobDetail => job !== null)
-    if (records.length > 0 && parsedJobs.length === 0) throw new Error(`${board.company} returned invalid posting records`)
+    const boardRecords = records.filter((record) => matchesSmartBoard(record, board))
+    const parsedJobs = boardRecords.map((record) => parseSmartRecruiters(record, board)).filter((job): job is JobDetail => job !== null)
+    if (boardRecords.length > 0 && parsedJobs.length === 0) throw new Error(`${board.company} returned invalid posting records`)
     jobs.push(...parsedJobs)
 
     const total = numberValue(isObject(payload) ? payload.totalFound : null)
@@ -312,15 +325,33 @@ function boardEndpoint(source: Source, board: Board, query: string | undefined):
     return `https://boards-api.greenhouse.io/v1/boards/${board.id}/jobs?content=true`
   }
   if (source === "ashby") {
-    return `https://api.ashbyhq.com/posting-api/job-board/${board.id}`
+    return `https://api.ashbyhq.com/posting-api/job-board/${board.apiId ?? board.id}`
   }
   if (source === "lever") {
     return `https://api.lever.co/v0/postings/${board.id}?mode=json`
   }
 
-  const url = new URL(`https://api.smartrecruiters.com/v1/companies/${board.id}/postings`)
+  const url = new URL(`https://api.smartrecruiters.com/v1/companies/${board.apiId ?? board.id}/postings`)
   url.searchParams.set("limit", "100")
-  if (query) url.searchParams.set("q", query)
+  if (query && !board.requiredBrand) url.searchParams.set("q", query)
+  return url.toString()
+}
+
+function matchesSmartBoard(record: JsonObject, board: Board): boolean {
+  if (!board.requiredBrand) return true
+  const customFields = arrayValue(record, "customField")
+  return customFields.some(
+    (field) =>
+      isObject(field) &&
+      textValue(field.fieldLabel)?.toLowerCase() === "brands" &&
+      textValue(field.valueLabel)?.toLowerCase() === board.requiredBrand?.toLowerCase(),
+  )
+}
+
+function smartPostingUrl(urlText: string, board: Board): string {
+  if (!board.requiredBrand) return urlText
+  const url = new URL(urlText)
+  url.searchParams.set("board", board.id)
   return url.toString()
 }
 
@@ -349,13 +380,29 @@ function numberValue(value: unknown): number | null {
 }
 
 function uniqueByUrl(jobs: readonly JobDetail[]): JobDetail[] {
-  const seen = new Set<string>()
-  return jobs.filter((job) => {
-    const key = job.url.toLowerCase()
-    if (seen.has(key)) return false
-    seen.add(key)
-    return true
-  })
+  const selected = new Map<string, JobDetail>()
+  for (const job of jobs) {
+    const key = canonicalJobUrl(job)
+    const existing = selected.get(key)
+    if (!existing || (isDedicatedSmartBoard(job) && !isDedicatedSmartBoard(existing))) {
+      selected.set(key, job)
+    }
+  }
+  return [...selected.values()]
+}
+
+function canonicalJobUrl(job: JobDetail): string {
+  try {
+    const url = new URL(job.url)
+    if (job.source === "smartrecruiters") url.searchParams.delete("board")
+    return url.toString().toLowerCase()
+  } catch {
+    return job.url.toLowerCase()
+  }
+}
+
+function isDedicatedSmartBoard(job: JobDetail): boolean {
+  return job.source === "smartrecruiters" && boardFor("smartrecruiters", job.board)?.requiredBrand !== undefined
 }
 
 function toCard(job: JobDetail): JobCard {
@@ -479,6 +526,11 @@ function referenceFromUrl(source: Source, input: string): JobReference {
   }
 
   if (source === "smartrecruiters") {
+    const hintedBoard = url.searchParams.get("board")
+    const hintedId = parts.at(-1)
+    const board = hintedBoard ? boardFor(source, hintedBoard) : null
+    if (board && hintedId) return { board, id: smartPostingId(hintedId) }
+
     const markerIndex = parts.indexOf("companies")
     if (markerIndex >= 0 && parts[markerIndex + 3]) {
       const board = boardFor(source, parts[markerIndex + 1])

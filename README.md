@@ -61,7 +61,7 @@ The framework encodes career guidance best practices, including structured evalu
 
 ## Prerequisites
 
-- [Claude Code](https://claude.com/claude-code) (CLI). Using a different agent tool (Codex, Antigravity, Gemini CLI)? Start at [`AGENTS.md`](AGENTS.md) - the portal search skills work there out of the box, and [community forks](https://github.com/MadsLorentzen/ai-job-search/discussions/78) adapt the full workflow.
+- [Claude Code](https://claude.com/claude-code) (CLI). Using a different agent tool (Codex or Antigravity/agy)? Start at [`AGENTS.md`](AGENTS.md) - the portal search skills work there out of the box, and [community forks](https://github.com/MadsLorentzen/ai-job-search/discussions/78) adapt the full workflow.
 - Python 3.10+
 - [Bun](https://bun.sh) (for job search CLI tools)
 - LaTeX distribution with `lualatex` and `xelatex`: [TeX Live](https://tug.org/texlive/), [MacTeX](https://tug.org/mactex/), [TinyTeX](https://yihui.org/tinytex/), or [MiKTeX](https://miktex.org/). The CV compiles with `lualatex` (pdflatex often fails on modern MiKTeX installs with `fontawesome5` font-expansion errors); the cover letter compiles with `xelatex` because `cover.cls` requires `fontspec`. If using a minimal TeX install such as TinyTeX or BasicTeX, install the extra packages listed in [SETUP.md](SETUP.md#minimal-tex-install-tinytexbasictex).
@@ -189,7 +189,13 @@ ai-job-search/
 │   ├── jobindex-search/               # Jobindex.dk (Denmark)
 │   ├── jobnet-search/                 # Jobnet.dk (Denmark, government portal)
 │   ├── linkedin-search/               # LinkedIn public job listings (country-agnostic)
-│   └── freehire-search/               # freehire.me tech job aggregator (multi-market, REST API)
+│   ├── freehire-search/               # freehire.me tech job aggregator (multi-market, REST API)
+│   ├── greenhouse-search/             # Public Greenhouse boards
+│   ├── ashby-search/                  # Public Ashby boards
+│   ├── lever-search/                  # Public Lever boards
+│   ├── smartrecruiters-search/        # Public SmartRecruiters boards
+│   ├── remote-search/                 # Remote job feeds across six boards
+│   └── company-search/                # Official Deliveroo, Zalando, OVHcloud, Automattic pages
 ├── cv/
 │   └── main_example.tex               # moderncv LaTeX template
 ├── cover_letters/
@@ -298,10 +304,13 @@ Give it your local job board's URL. The command investigates the portal (search-
 
 Maintaining a fork adapted to your market or language? Add it to the [Community forks & adaptations](https://github.com/MadsLorentzen/ai-job-search/discussions/78) thread so others can find it.
 
-For **country-agnostic** starting points outside Denmark, the repo ships two portal skills alongside the Danish demos:
+For **country-agnostic** starting points outside Denmark, the repo ships several portal skills alongside the Danish demos:
 
 - **`linkedin-search`** — built on LinkedIn's public, unauthenticated `jobs-guest` endpoints. Field-agnostic, **zero runtime dependencies** (runs with just `bun`), and takes the search location as an explicit flag, so it works for any market out of the box (`-l "Berlin, Germany"`, `-l "Mumbai, Maharashtra, India"`, `-l "Remote"`, …). Intended for **personal use only** — automated access is against LinkedIn's Terms of Service, so keep volume low. See `.agents/skills/linkedin-search/SKILL.md`.
 - **`freehire-search`** — queries the [freehire.me](https://freehire.me) aggregator's public REST API (JSON, no API key). Tech-focused (software, data, engineering, DevOps, remote), multi-market via facet flags (`--region`, `--country`, `--remote`), and **zero runtime dependencies**. Unlike the HTML-scraping Danish portals, results come back structured (skills, seniority, category). The backend is MIT-licensed and [self-hostable](https://github.com/strelov1/freehire) — point `FREEHIRE_API_URL` at your own instance if you prefer. See `.agents/skills/freehire-search/SKILL.md`.
+- **`remote-search`** — searches public Himalayas, We Work Remotely, Remote OK, Remotive, Working Nomads, and Jobicy feeds with one shared `search`/`detail` contract. See `.agents/skills/remote-search/SKILL.md`.
+- **`company-search`** — searches official Deliveroo, Zalando, OVHcloud, and Automattic career pages. See `.agents/skills/company-search/SKILL.md`.
+- **`greenhouse-search`**, **`ashby-search`**, **`lever-search`**, and **`smartrecruiters-search`** — search configured public ATS boards for the listed companies. See each skill's `SKILL.md` for its current board list.
 
 ### Extending the framework: portals, templates, criteria - and borrowing from other forks
 

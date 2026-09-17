@@ -11,26 +11,47 @@ export function writeWarning(message: string, code: string): void {
 }
 
 /** Fetch public JSON with bounded retries for temporary server responses. */
-export async function fetchJson(url: string): Promise<unknown> {
+export async function fetchJson(url: string, timeoutMs = 15000): Promise<unknown> {
+  return fetchPublic(url, "application/json", timeoutMs, (response) => response.json())
+}
+
+/** Fetch public text with the same bounded retry policy as JSON requests. */
+export async function fetchText(url: string, timeoutMs = 15000): Promise<string | null> {
+  return fetchPublic(url, "text/plain, text/html, application/rss+xml, application/xml", timeoutMs, (response) => response.text())
+}
+
+async function fetchPublic<T>(
+  url: string,
+  accept: string,
+  timeoutMs: number,
+  read: (response: Response) => Promise<T>,
+): Promise<T | null> {
   const maxRetries = 5
   let delay = 500
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
-    const response = await fetch(url, {
-      headers: {
-        Accept: "application/json",
-        "User-Agent": USER_AGENT,
-      },
-      redirect: "follow",
-      signal: AbortSignal.timeout(15000),
-    })
+    let response: Response
+    try {
+      response = await fetch(url, {
+        headers: {
+          Accept: accept,
+          "User-Agent": USER_AGENT,
+        },
+        redirect: "follow",
+        signal: AbortSignal.timeout(timeoutMs),
+      })
+    } catch (error) {
+      if (attempt === maxRetries || !isTimeoutError(error)) throw error
+      await waitBeforeRetry(delay)
+      delay = Math.min(delay * 2, 8000)
+      continue
+    }
 
     if (response.status === 429 || response.status >= 500) {
       if (attempt === maxRetries) {
         throw new Error(`Request failed: ${response.status} ${response.statusText}`)
       }
-      const jitter = Math.floor(Math.random() * 500)
-      await new Promise((resolve) => setTimeout(resolve, delay + jitter))
+      await waitBeforeRetry(delay)
       delay = Math.min(delay * 2, 8000)
       continue
     }
@@ -40,9 +61,23 @@ export async function fetchJson(url: string): Promise<unknown> {
       throw new Error(`Request failed: ${response.status} ${response.statusText}`)
     }
 
-    const body: unknown = await response.json()
-    return body
+    try {
+      return await read(response)
+    } catch (error) {
+      if (attempt === maxRetries || !isTimeoutError(error)) throw error
+      await waitBeforeRetry(delay)
+      delay = Math.min(delay * 2, 8000)
+    }
   }
 
   throw new Error("Request failed after max retries")
+}
+
+function isTimeoutError(error: unknown): boolean {
+  return error instanceof Error && /abort|timed out|timeout/i.test(error.message)
+}
+
+async function waitBeforeRetry(delay: number): Promise<void> {
+  const jitter = Math.floor(Math.random() * 500)
+  await new Promise((resolve) => setTimeout(resolve, delay + jitter))
 }

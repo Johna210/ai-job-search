@@ -33,7 +33,7 @@ Reviews here are empirical. Bug reports are reproduced on master before the fix 
 
 - State the failing case and how to reproduce it.
 - **Reproduce on the real path, not a constructed input.** A test that fails on master and passes on the fix is necessary but not sufficient: the failing input has to be one the workflow actually produces, not one the test hand-builds. Show the failure through the path the code really runs - the documented CLI invocation, real portal output, an actual data file - not a synthetic value fed straight to the function. A fix whose only demonstration is an input the real code path never receives gets declined even though its test is green.
-- Put CLI tests in `.agents/skills/<name>/cli/tests/` (bun test, network-free where possible); Python tool tests in `tests/`.
+- Put CLI tests in `.agents/skills/<name>-search/cli/tests/` (bun test, network-free where possible); Python tool tests in `tests/`.
 - Run what CI runs: `python3 tools/lint_skills.py`, `python3 tools/check_framework_version.py`, `bun run typecheck` in touched CLIs, and the relevant test suites.
 
 **Credit norm:** a change that incorporates your actual code gets a `Co-authored-by` trailer; a change written independently from your observation or report gets a named mention in the commit message and PR. Both happen unprompted.
@@ -50,7 +50,7 @@ One practical warning: when you open a PR from a fork, GitHub targets this upstr
 
 ## Porting to another AI runtime? Forks too
 
-Claude Code is the reference runtime: it is what the maintainer runs daily and what every methodology change is verified on. A parallel command tree for another runtime (Codex, Antigravity, Gemini CLI, ...) would ship untested on every change - CI cannot run those harnesses - and each accepted runtime makes the next one harder to refuse. It is the same arithmetic that keeps market-specific portals in forks.
+Claude Code is the reference runtime: it is what the maintainer runs daily and what every methodology change is verified on. A parallel command tree for another runtime (Codex or Antigravity/agy) would ship untested on every change - CI cannot run those harnesses - and each accepted runtime makes the next one harder to refuse. It is the same arithmetic that keeps market-specific portals in forks.
 
 What upstream maintains for other runtimes instead:
 

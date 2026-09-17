@@ -14,7 +14,7 @@ allowed-tools: Bash(bun run .agents/skills/ashby-search/cli/src/cli.ts *)
 
 # Ashby search
 
-Search Buffer and TestGorilla's public Ashby job boards directly.
+Search Buffer, TestGorilla, DuckDuckGo, and Andela's public Ashby job boards directly.
 
 ## Personal use
 

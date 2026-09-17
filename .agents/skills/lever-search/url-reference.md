@@ -7,7 +7,8 @@ applications or use an API key.
 
 | Operation | URL |
 |---|---|
-| Search and detail data | `https://api.lever.co/v0/postings/<slug>?mode=json` |
+| Search data | `https://api.lever.co/v0/postings/<slug>?mode=json` |
+| Detail data | `https://api.lever.co/v0/postings/<slug>/<posting_id>` |
 | Public posting URL | `https://jobs.lever.co/<slug>/<posting_id>` |
 
 The response is an array. The parser reads `id`, `text`, `categories.location`,

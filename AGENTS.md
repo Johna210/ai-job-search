@@ -1,5 +1,5 @@
 ---
-framework_version: 1.0.0
+framework_version: 1.0.1
 ---
 
 # Agent Guidelines: AI Job Search
@@ -8,7 +8,7 @@ This workspace is structured to manage job search activities, scraper tools, CVs
 
 ## Thin-Pointer Design (Single Source of Truth)
 
-To prevent duplication and configuration drift across different AI agent frameworks (OpenCode, Claude Code, Google Antigravity, Codex, Cursor, Gemini CLI, etc.), this workspace uses a unified thin-pointer design. All agent runtimes should load the canonical specifications and candidate profiles from the files and directories below:
+To prevent duplication and configuration drift across different AI agent frameworks (OpenCode, Claude Code, Antigravity/agy, Codex, Cursor, etc.), this workspace uses a unified thin-pointer design. All agent runtimes should load the canonical specifications and candidate profiles from the files and directories below:
 
 1. **Personal Candidate Profile:**
    - The candidate profile, contact details, education, and target preferences are defined in [CLAUDE.md](CLAUDE.md) and the individual profile methodology files under [.opencode/skills/job-application-assistant/](.opencode/skills/job-application-assistant/) (specifically `01-*.md` etc.).

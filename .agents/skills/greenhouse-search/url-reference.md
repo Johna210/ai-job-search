@@ -20,8 +20,8 @@ the result URL still works with `detail`.
 ## Configured boards
 
 `contentful`, `getyourguide`, `sumup`, `monzo`, `wise`, `trustpilot`, `wolt`,
-`feedzai`, `celonis`, `gitlab`, `huntress`, and `socket` were checked with live
-requests before registration.
+`feedzai`, `celonis`, `gitlab`, `huntress`, `socket`, and `octopusdeploy` were
+checked with live requests before registration.
 
 The API does not expose a consistent workplace-type field in these responses.
 The CLI infers remote work from location and description text when possible.

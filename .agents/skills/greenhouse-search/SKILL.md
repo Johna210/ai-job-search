@@ -16,7 +16,7 @@ allowed-tools: Bash(bun run .agents/skills/greenhouse-search/cli/src/cli.ts *)
 
 Search configured companies' public Greenhouse job boards directly. The current
 boards cover Contentful, GetYourGuide, SumUp, Monzo, Wise, Trustpilot, Wolt,
-Feedzai, Celonis, GitLab, Huntress, and Socket.
+Feedzai, Celonis, GitLab, Huntress, Socket, and Octopus Deploy.
 
 ## Personal use
 

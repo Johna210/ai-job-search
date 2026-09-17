@@ -29,12 +29,12 @@ class HtmlReportCommandFileTests(unittest.TestCase):
         self.assertTrue(COMMAND_FILE.exists(), f"{COMMAND_FILE} not found")
 
     def test_command_file_starts_with_correct_header(self):
-        """lint_skills.py rejects command files that don't start with '# /<name>'."""
+        """The command title follows optional frontmatter."""
         text = COMMAND_FILE.read_text(encoding="utf-8")
-        first_line = text.lstrip().splitlines()[0]
+        first_line = command_title(text)
         self.assertTrue(
             first_line.startswith("# /html-report"),
-            f"Command file must start with '# /html-report', got: {first_line!r}",
+            f"Command file must contain a '# /html-report' title, got: {first_line!r}",
         )
 
     def test_command_file_is_non_empty(self):
@@ -73,6 +73,17 @@ class HtmlReportLintIntegrationTests(unittest.TestCase):
             f"lint_skills.py failed:\n{result.stdout}{result.stderr}",
         )
         self.assertIn("OK", result.stdout)
+
+
+def command_title(text: str) -> str:
+    lines = text.lstrip().splitlines()
+    if lines and lines[0].strip() == "---":
+        try:
+            end = next(index for index, line in enumerate(lines[1:], start=1) if line.strip() == "---")
+        except StopIteration:
+            return ""
+        lines = lines[end + 1 :]
+    return next((line for line in lines if line.strip()), "")
 
 
 if __name__ == "__main__":
