@@ -1,4 +1,4 @@
-"""Guards for the /notion-sync command spec.
+"""Guards for the notion-sync skill.
 
 The command is a markdown spec (the spec IS the implementation), so these
 tests pin the invariants that would break silently: the title format that
@@ -18,17 +18,17 @@ except ImportError:
     _HAVE_YAML = False
 
 REPO = Path(__file__).resolve().parent.parent
-COMMAND = REPO / ".claude" / "commands" / "notion-sync.md"
+COMMAND = REPO / ".agents" / "skills" / "notion-sync" / "SKILL.md"
 GITIGNORE = REPO / ".gitignore"
 
 
-class NotionSyncCommandSpec(unittest.TestCase):
-    def test_command_file_exists_with_lint_compliant_header(self):
-        self.assertTrue(COMMAND.is_file(), "command spec missing")
+class NotionSyncSkillSpec(unittest.TestCase):
+    def test_skill_file_exists_with_lint_compliant_header(self):
+        self.assertTrue(COMMAND.is_file(), "skill spec missing")
         first_line = command_title(COMMAND.read_text(encoding="utf-8"))
         self.assertTrue(
             first_line.startswith("# /notion-sync"),
-            f"command must contain a '# /notion-sync' title, got: {first_line!r}",
+            f"skill must contain a '# /notion-sync' title, got: {first_line!r}",
         )
 
     def test_command_file_is_substantive(self):

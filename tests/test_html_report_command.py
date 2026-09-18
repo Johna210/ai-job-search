@@ -1,4 +1,4 @@
-"""Tests for the /html-report command and its gitignore rule.
+"""Tests for the html-report skill and its gitignore rule.
 
 Mirrors the pattern in test_security_guards.py: one class that verifies
 properties of the real repo, testing the things CI would catch if the
@@ -17,29 +17,29 @@ except ImportError:
     _HAVE_YAML = False
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-COMMAND_FILE = REPO_ROOT / ".claude" / "commands" / "html-report.md"
+COMMAND_FILE = REPO_ROOT / ".agents" / "skills" / "html-report" / "SKILL.md"
 LINT_SCRIPT = REPO_ROOT / "tools" / "lint_skills.py"
 GITIGNORE = REPO_ROOT / ".gitignore"
 
 
-class HtmlReportCommandFileTests(unittest.TestCase):
-    """Structural checks on the command file itself."""
+class HtmlReportSkillFileTests(unittest.TestCase):
+    """Structural checks on the skill file itself."""
 
-    def test_command_file_exists(self):
+    def test_skill_file_exists(self):
         self.assertTrue(COMMAND_FILE.exists(), f"{COMMAND_FILE} not found")
 
-    def test_command_file_starts_with_correct_header(self):
-        """The command title follows optional frontmatter."""
+    def test_skill_file_starts_with_correct_header(self):
+        """The skill title follows frontmatter."""
         text = COMMAND_FILE.read_text(encoding="utf-8")
         first_line = command_title(text)
         self.assertTrue(
             first_line.startswith("# /html-report"),
-            f"Command file must contain a '# /html-report' title, got: {first_line!r}",
+            f"Skill file must contain a '# /html-report' title, got: {first_line!r}",
         )
 
-    def test_command_file_is_non_empty(self):
+    def test_skill_file_is_non_empty(self):
         text = COMMAND_FILE.read_text(encoding="utf-8").strip()
-        self.assertGreater(len(text), 100, "Command file appears suspiciously short")
+        self.assertGreater(len(text), 100, "Skill file appears suspiciously short")
 
 
 class HtmlReportGitignoreTests(unittest.TestCase):

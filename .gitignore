@@ -44,9 +44,6 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Memory files (Claude Code user-specific)
-.claude/projects/
-
 # Skills lock (auto-generated)
 skills-lock.json
 

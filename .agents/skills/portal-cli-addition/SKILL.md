@@ -78,7 +78,7 @@ and add a parser test or fixture for any new response shape. Keep the source's
 discoverable skill under `.agents/skills/<name>-search/`.
 
 For a different API or HTML site, create a source-owned CLI. Keep endpoint and
-markup parsing in that CLI, not in `.agents/skills/job-scraper/`. Shared code is
+markup parsing in that CLI, not in `.agents/skills/scrape/`. Shared code is
 fine when the protocol is genuinely shared; duplicate company-specific scrapers
 are not.
 

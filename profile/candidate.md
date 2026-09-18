@@ -77,7 +77,7 @@ Addis Ababa, Ethiopia
 
 ### Software & Tools
 - Git, LeetCode (900+ problems), Codeforces, Domain-Driven Design, Agile/Scrum
-- OpenCode (agentic AI development assistant, used daily for coding workflows), Codex, Claude Code
+- OpenCode (agentic AI development assistant, used daily for coding workflows), Codex
 - Docker images for local development and production deployments; GitHub Actions pipelines for formatting, linting, tests, and security audits
 - Used OpenCode with Matt Pocock's `grill-me`, `to-spec`, and `to-tickets` workflows in capstone development to refine issues, write specs, create GitHub issues, and implement changes with stepwise verification
 
