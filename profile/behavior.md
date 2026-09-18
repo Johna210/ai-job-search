@@ -1,7 +1,3 @@
----
-framework_version: 1.0.0
----
-
 # Behavioral Profile
 
 ## Overview

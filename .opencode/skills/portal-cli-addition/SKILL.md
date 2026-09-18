@@ -146,7 +146,7 @@ after the live gates below pass. Its body documents the source, flags, examples,
 output shape, access limits, and known response quirks.
 
 If the source is intentionally fallback-only, do not create a fake enabled CLI.
-Keep the source query in `.agents/skills/job-scraper/search-queries.md` and state
+Keep the source query in `profile/search.md` and state
 the blocker in the research notes or task result.
 
 ## 6. Pass the live gates

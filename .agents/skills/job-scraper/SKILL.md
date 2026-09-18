@@ -40,11 +40,11 @@ Optional arguments:
 
 1. Read `job_scraper/seen_jobs.json` (create if missing - start with `{"seen": {}}`)
 2. Read `job_search_tracker.csv` to extract already-applied companies+roles
-3. Read `search-queries.md` (this directory) for the search strategy
+3. Read `profile/search.md` from the repository root for the search strategy
 
 ### Step 1: Search
 
-Read `search-queries.md` (this directory) for the search strategy. By default, run the top 3 priority query categories. If the user said "broad", run all categories. If the user specified a focus area (e.g. "data science"), prioritize queries from that category.
+Read `profile/search.md` for the search strategy. By default, run the top 3 priority query categories. If the user said "broad", run all categories. If the user specified a focus area (e.g. "data science"), prioritize queries from that category.
 
 **Use the installed CLI tools as the primary search mechanism.** Fall back to `WebSearch` only for portals that do not have a CLI skill, or if `bun` is unavailable on the system.
 
@@ -65,7 +65,7 @@ Discover all installed portal CLI skills by reading every `SKILL.md` found under
 For each **enabled** portal skill:
 
 1. Read its `SKILL.md` to find the correct `bun run …` invocation and supported flags.
-2. Translate the query terms from `search-queries.md` into that portal's flag format (e.g. `--key`, `--search-string`, `--query`, filter codes — whatever the portal's SKILL.md specifies).
+2. Translate the query terms from `profile/search.md` into that portal's flag format (e.g. `--key`, `--search-string`, `--query`, filter codes — whatever the portal's SKILL.md specifies).
 3. Scope to the last 14 days using the portal's supported recency flag (`--jobage`, `--since <YYYY-MM-DD>`, `--order PublicationDate`, etc. — as documented per portal).
 4. Cap results to ~20 per call using the portal's limit flag.
 5. Use `--format json` for machine-readable output.
@@ -77,11 +77,11 @@ If a CLI tool exits with a non-zero code, log the error message and continue —
 #### 1c. WebSearch fallback
 
 Use `WebSearch` for:
-- Portals listed in `search-queries.md` that do **not** have a corresponding directory under `.agents/skills/*-search/`
+- Portals listed in `profile/search.md` that do **not** have a corresponding directory under `.agents/skills/*-search/`
 - Any portal whose CLI fails at runtime
 - When bun is unavailable (Step 1a failed)
 
-Use the site-specific query strings from `search-queries.md` directly as WebSearch queries for these portals.
+Use the site-specific query strings from `profile/search.md` directly as WebSearch queries for these portals.
 
 ### Step 2: Fetch & Parse
 

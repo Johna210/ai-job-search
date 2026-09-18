@@ -123,7 +123,7 @@ When the role sits outside your home domain, **lead with the domain-transfer arg
 **For Full-Stack Developer roles:**
 > Full-Stack Developer with production experience across the entire stack: Go (Gin), TypeScript (NestJS, Next.js), Python (FastAPI), and Flutter. Built complete products from database to UI, including a bilingual agentic RAG platform (capstone), e-commerce platforms, and enterprise eProcurement systems. Strong backend foundation with AI/ML integration experience. Thrives in small teams shipping complex features with real user impact.
 
-Statements labeled *[Used for: <company>_<role>]* were extracted from archived application drafts by `/setup` Path A. They are **phrasing references, never fact sources**: when drafting from one, every factual claim still comes from `01-candidate-profile.md` - a past tailored draft does not vouch for its own accuracy.
+Statements labeled *[Used for: <company>_<role>]* were extracted from archived application drafts by `/setup` Path A. They are **phrasing references, never fact sources**: when drafting from one, every factual claim still comes from `profile/candidate.md` - a past tailored draft does not vouch for its own accuracy.
 
 ### Core Competencies / Skills Section (Best Practice)
 Reorder and emphasize based on the role. Use bold category labels.

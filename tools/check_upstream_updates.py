@@ -21,8 +21,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 FRAMEWORK_FILES = [
-    ".opencode/skills/job-application-assistant/01-candidate-profile.md",
-    ".opencode/skills/job-application-assistant/02-behavioral-profile.md",
+    "profile/candidate.md",
+    "profile/behavior.md",
     ".opencode/skills/job-application-assistant/03-writing-style.md",
     ".opencode/skills/job-application-assistant/04-job-evaluation.md",
     ".opencode/skills/job-application-assistant/05-cv-templates.md",

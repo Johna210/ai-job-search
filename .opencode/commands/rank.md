@@ -31,7 +31,7 @@ Follow these steps **in order**.
 4. If no candidates remain, say so ("Nothing new to rank - run /scrape to find fresh postings") and stop.
 5. Read the scoring framework and profile **once**:
    - `.opencode/skills/job-application-assistant/04-job-evaluation.md`
-   - `.opencode/skills/job-application-assistant/01-candidate-profile.md`
+   - `profile/candidate.md`
 
 State how many jobs will be ranked before proceeding.
 

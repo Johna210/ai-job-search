@@ -90,8 +90,8 @@ Reference letters from former managers, supervisors, or collaborators.
 
 **What `/setup` extracts:**
 - Referee name, title, and organization
-- Specific quotes and assessments (added to the references section of `01-candidate-profile.md`)
-- Competency language used by referees (adds behavioral signal to `02-behavioral-profile.md`)
+- Specific quotes and assessments (added to the references section of `profile/candidate.md`)
+- Competency language used by referees (adds behavioral signal to `profile/behavior.md`)
 
 **Naming:** Use the referee's name, e.g. `reference_ole_frandsen.pdf`.
 

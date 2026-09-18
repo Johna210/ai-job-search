@@ -49,8 +49,8 @@ When the user provides a job posting (URL or text), follow this workflow:
 
 | File | Purpose |
 |------|---------|
-| `01-candidate-profile.md` | Education, experience, skills, publications, awards |
-| `02-behavioral-profile.md` | Behavioral assessment, strengths, ideal environments |
+| `profile/candidate.md` | Education, experience, skills, publications, awards |
+| `profile/behavior.md` | Behavioral assessment, strengths, ideal environments |
 | `03-writing-style.md` | Tone, structure, do's and don'ts |
 | `04-job-evaluation.md` | Scoring framework for job fit |
 | `05-cv-templates.md` | LaTeX CV structure and tailoring rules |

@@ -159,8 +159,8 @@ ai-job-search/
 │   └── skills/
 │       ├── job-application-assistant/  # Core application skill
 │       │   ├── SKILL.md               # Skill definition
-│       │   ├── 01-candidate-profile.md # Your education, experience, skills
-│       │   ├── 02-behavioral-profile.md# PI/DISC/personality assessment
+│       │   ├── profile/candidate.md # Your education, experience, skills
+│       │   ├── profile/behavior.md# PI/DISC/personality assessment
 │       │   ├── 03-writing-style.md    # Tone, structure, do's and don'ts
 │       │   ├── 04-job-evaluation.md   # Scoring framework for job fit
 │       │   ├── 05-cv-templates.md     # LaTeX CV structure + tailoring rules
@@ -257,12 +257,12 @@ If you prefer editing files directly instead of using `/setup`:
 | File | What to change |
 |------|---------------|
 | `CLAUDE.md` | Your full profile (name, education, experience, skills, goals) |
-| `01-candidate-profile.md` | Structured version of your CV data |
-| `02-behavioral-profile.md` | Your behavioral assessment or self-assessment |
+| `profile/candidate.md` | Structured version of your CV data |
+| `profile/behavior.md` | Your behavioral assessment or self-assessment |
 | `04-job-evaluation.md` | Skill match areas, career goals, motivation filters |
 | `05-cv-templates.md` | Profile statement templates for different role types |
 | `07-interview-prep.md` | Your STAR examples from actual experience |
-| `search-queries.md` | Job search queries for your skills and location |
+| `profile/search.md` | Job search queries for your skills and location |
 
 ### Updating your search queries
 

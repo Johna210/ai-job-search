@@ -82,8 +82,8 @@ If every subfolder is empty, stop and tell the user to populate the folder. Poin
 
 Read these in parallel before extracting anything. You must know what is already there to make the merge intelligent.
 
-- `.opencode/skills/job-application-assistant/01-candidate-profile.md`
-- `.opencode/skills/job-application-assistant/02-behavioral-profile.md`
+- `profile/candidate.md`
+- `profile/behavior.md`
 - `.opencode/skills/job-application-assistant/03-writing-style.md`
 - `.opencode/skills/job-application-assistant/04-job-evaluation.md`
 - `.opencode/skills/job-application-assistant/05-cv-templates.md`
@@ -142,16 +142,16 @@ If no inconsistencies, state "No cross-reference issues found." and continue.
 
 For each skill file, compare extracted document content against the current file content from Step A2. Build two buckets.
 
-**Additive changes:** entirely new content not in the skill file in any form. Examples: a certification not in `01-candidate-profile.md`, a new endorsement skill, a referee not yet listed, a new behavioral quote from a reference letter, a new award.
+**Additive changes:** entirely new content not in the skill file in any form. Examples: a certification not in `profile/candidate.md`, a new endorsement skill, a referee not yet listed, a new behavioral quote from a reference letter, a new award.
 
 **Conflicting changes:** content that touches something already in a skill file but disagrees. Examples: a different date range for an existing job, a different job title for the same role, a different graduation date than what is recorded.
 
 **Inference rules** (apply when populating from inferred sources):
 
-- **`02-behavioral-profile.md`:** Source is LinkedIn About + recommendation letters. Extract recurring themes, adjectives, phrases about how the candidate works. Add only to "Strongest Behavioral Traits", "How [Candidate] Works Best", or "Management Style Preferences" sections. Do not overwrite existing scored assessments. Always label inferred additions: *[Inferred from LinkedIn About / Reference letter - review before relying on this]*
+- **`profile/behavior.md`:** Source is LinkedIn About + recommendation letters. Extract recurring themes, adjectives, phrases about how the candidate works. Add only to "Strongest Behavioral Traits", "How [Candidate] Works Best", or "Management Style Preferences" sections. Do not overwrite existing scored assessments. Always label inferred additions: *[Inferred from LinkedIn About / Reference letter - review before relying on this]*
 - **`03-writing-style.md`:** Source is `cover_letter.tex` files. Extract recurring patterns. Add as observations under "## Patterns Observed in Past Applications". Do not modify existing rules. Only add if 2+ cover letters show a genuine pattern.
 - **`04-job-evaluation.md`:** Source is `job_posting.md` + `outcome.md` pairs. If an application reached interview or offer: note role type and sector as a confirmed strong-fit signal. If 2+ applications repeat a no-response or rejection pattern: note it. Add findings under "## Calibration from Past Applications". Do not modify the existing scoring framework.
-- **`05-cv-templates.md`:** Source is `cv_draft.tex` files. Extract any profile statement that does not already appear in templates. Label with: *[Used for: <company>_<role>]*. **Ground before extracting:** archived drafts are tailored outputs, not source documents - verify every factual claim in an extracted statement (titles, employers, metrics, technologies) against `01-candidate-profile.md` and drop or correct any claim the profile does not support, keeping only the framing. A tailored draft that drifted must never become a template future applications start from.
+- **`05-cv-templates.md`:** Source is `cv_draft.tex` files. Extract any profile statement that does not already appear in templates. Label with: *[Used for: <company>_<role>]*. **Ground before extracting:** archived drafts are tailored outputs, not source documents - verify every factual claim in an extracted statement (titles, employers, metrics, technologies) against `profile/candidate.md` and drop or correct any claim the profile does not support, keeping only the framing. A tailored draft that drifted must never become a template future applications start from.
 - **`06-cover-letter-templates.md`:** Source is `cover_letter.tex` files. Extract opening patterns, bullet structures, closing formulations. Add only what is structurally distinct from existing templates.
 - **`07-interview-prep.md`:** Source is CV bullets, LinkedIn descriptions, reference letter quotes. Identify achievements not yet covered by an existing STAR example. Do NOT draft full STAR examples. Add stubs under "## STAR Candidates (Complete Manually)":
 
@@ -176,12 +176,12 @@ Present the full change set before writing anything.
 ```
 ## Proposed Additive Changes
 
-### 01-candidate-profile.md
+### profile/candidate.md
 - [ ] New certification: [title], [issuer], [date] - extracted from LinkedIn
 - [ ] New reference: [name, title, company]
   Quote: "[relevant quote]"
 
-### 02-behavioral-profile.md
+### profile/behavior.md
 - [ ] New behavioral observation [labeled as inference]: "[phrase]"
 
 [and so on per file]
@@ -199,7 +199,7 @@ Wait for the response. Apply only the confirmed items.
 ```
 ## Conflict 1 of [N]: Job title - [COMPANY]
 
-**Current in 01-candidate-profile.md:**
+**Current in profile/candidate.md:**
 [TITLE_A] - [COMPANY] ([START]-[END])
 
 **Proposed (from LinkedIn export):**
@@ -226,7 +226,7 @@ Documents cover skills, experience, education, references, and behavioral signal
 - Commute or location constraints (if not visible from CV)
 - Job search configuration (use the questions from Path C Section 9 below)
 
-Then proceed to Step 3 to populate the non-skill files (`CLAUDE.md`, `cv/main_example.tex`, `.opencode/skills/job-scraper/search-queries.md`). Step 3 will detect that the seven skill files are already populated and skip those substeps.
+Then proceed to Step 3 to populate the non-skill files (`CLAUDE.md`, `cv/main_example.tex`, `profile/search.md`). Step 3 will detect that the seven skill files are already populated and skip those substeps.
 
 ---
 
@@ -336,10 +336,10 @@ Once data collection is complete, generate or finish populating the following fi
 ### 1. Update `CLAUDE.md`
 Replace all `[PLACEHOLDER]` tokens with the user's actual information. Keep the structure, workflow, and verification checklist intact.
 
-### 2. Populate `01-candidate-profile.md` *(Path B and C; skip if Path A populated it)*
+### 2. Populate `profile/candidate.md` *(Path B and C; skip if Path A populated it)*
 Write the full candidate profile with structured sections: Identity, Education, Professional Experience, Independent Projects, Technical Skills, Publications, Awards, References.
 
-### 3. Populate `02-behavioral-profile.md` *(Path B and C; skip if Path A populated it)*
+### 3. Populate `profile/behavior.md` *(Path B and C; skip if Path A populated it)*
 Write the behavioral profile based on assessment results or synthesized answers.
 
 ### 4. Update `04-job-evaluation.md` *(Path B and C; skip if Path A populated it)*
@@ -359,7 +359,7 @@ Create STAR examples from their actual experience (at least 3-4 examples). Path 
 ### 7. Update `cv/main_example.tex`
 Replace placeholder personal data with their actual name, contact info, and add their education and most recent experience entries.
 
-### 8. Generate `.opencode/skills/job-scraper/search-queries.md`
+### 8. Generate `profile/search.md`
 Replace all placeholder tokens in the search queries file with the user's actual information from Section 9 (or the equivalent follow-up questions in Path A's Step A7):
 - Replace `[YOUR_PRIMARY_ROLE_TYPE]`, `[YOUR_PRIMARY_JOB_TITLE]`, etc. with actual role titles
 - Replace `[YOUR_KEY_SKILL]`, `[YOUR_DOMAIN_KEYWORD_1]`, etc. with actual skills and domain terms
@@ -380,13 +380,13 @@ Present a summary:
 > **Setup complete!** Here's what was generated:
 >
 > - `CLAUDE.md` - Your full candidate profile
-> - `.opencode/skills/job-application-assistant/01-candidate-profile.md` - Structured profile
-> - `.opencode/skills/job-application-assistant/02-behavioral-profile.md` - Behavioral assessment
+> - `profile/candidate.md` - Structured profile
+> - `profile/behavior.md` - Behavioral assessment
 > - `.opencode/skills/job-application-assistant/04-job-evaluation.md` - Personalized evaluation framework
 > - `.opencode/skills/job-application-assistant/05-cv-templates.md` - CV templates with your profile statements
 > - `.opencode/skills/job-application-assistant/07-interview-prep.md` - STAR examples from your experience
 > - `cv/main_example.tex` - Your LaTeX CV template
-> - `.opencode/skills/job-scraper/search-queries.md` - Job search queries for `/scrape`
+> - `profile/search.md` - Job search queries for `/scrape`
 >
 > **Try it out:**
 > - Run `/scrape` to search for matching jobs right now

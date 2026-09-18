@@ -42,8 +42,8 @@ Before doing anything, show the user precisely what will be wiped.
 
 Read the current state of these files and report whether each has content or is already empty:
 
-- `.opencode/skills/job-application-assistant/01-candidate-profile.md`
-- `.opencode/skills/job-application-assistant/02-behavioral-profile.md`
+- `profile/candidate.md`
+- `profile/behavior.md`
 - `.opencode/skills/job-application-assistant/05-cv-templates.md` *(profile statements section only — framework structure is preserved)*
 - `.opencode/skills/job-application-assistant/07-interview-prep.md` *(STAR examples and STAR candidates sections only — framework structure is preserved)*
 
@@ -52,10 +52,10 @@ Present as:
 ```
 ## Profile reset will clear:
 
-- 01-candidate-profile.md — [has content / already empty]
+- profile/candidate.md — [has content / already empty]
   Full file will be replaced with a blank template.
 
-- 02-behavioral-profile.md — [has content / already empty]
+- profile/behavior.md — [has content / already empty]
   Full file will be replaced with a blank template.
 
 - 05-cv-templates.md — [has profile statements / already blank]
@@ -118,7 +118,7 @@ Wait for the user's response.
 
 ### Profile reset
 
-**For `01-candidate-profile.md`**, replace the file content with:
+**For `profile/candidate.md`**, replace the file content with:
 
 ```markdown
 # Candidate Profile
@@ -142,7 +142,7 @@ Wait for the user's response.
 ## References
 ```
 
-**For `02-behavioral-profile.md`**, replace the file content with:
+**For `profile/behavior.md`**, replace the file content with:
 
 ```markdown
 # Behavioral Profile
