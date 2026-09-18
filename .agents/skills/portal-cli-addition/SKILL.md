@@ -1,18 +1,17 @@
 ---
 name: portal-cli-addition
 description: >
-  Add a job site through a dedicated, tested CLI instead of relying on WebSearch
+  Add a job site through a dedicated, tested CLI instead of relying on web search
   alone. Use when adding a job portal, company career page, ATS board, job source,
   or new scraper. Trigger phrases: add a job site, add a portal, build a job CLI,
   support this careers page, scrape this job board, new job source.
-allowed-tools: Read, Write, Edit, Glob, Grep, Task, Bash(bun *), WebFetch, WebSearch
 ---
 
 # Portal CLI addition
 
 Use this workflow whenever a new job source should become part of the repository.
 The goal is a dedicated search and detail CLI that `/scrape` can discover, not a
-new WebSearch query that quietly remains fallback-only.
+new web search query that quietly remains fallback-only.
 
 ## 1. Classify the source
 
@@ -23,7 +22,7 @@ query. Check whether the source is:
 - A public HTML search page with stable result and detail anchors. Build a
   portal-specific CLI and parse each result independently.
 - Login-gated, API-key-only, blocked by an access challenge, or missing a stable
-  public listing endpoint. Keep it as WebSearch fallback-only and record why.
+  public listing endpoint. Keep it as web search fallback-only and record why.
 
 Read `url-reference.md` files and the existing `linkedin-search` skill before
 choosing a structure. A source that returns HTTP 200 is not ready until its
@@ -35,16 +34,13 @@ low. Never bypass authentication or an access challenge.
 
 ## 2. Investigate before editing
 
-Always delegate the initial investigation to an OpenCode `task` subagent before
-editing source files. Use `subagent_type: "general"` and give it a read-only
-research brief. The brief must name every source being checked, require primary
-official pages or APIs, request exact endpoint and field evidence, and ask for a
-compact matrix that marks unknowns instead of guessing. The subagent must not
-modify the repository.
-
-Do not use `agy` for this portal investigation. The main agent owns the decision,
-so independently verify the subagent's important claims with `WebFetch` or a
-bounded `curl` request before adding a board or enabling a skill.
+Start with a read-only investigation before editing source files. When the harness
+supports isolated workers, delegate this investigation. Otherwise perform it in
+the current session and finish the evidence matrix before writing code. The
+investigation must name every source being checked, use primary official pages
+or APIs, record exact endpoint and field evidence, and mark unknowns instead of
+guessing. Independently verify important claims with a page fetch or bounded
+`curl` request before adding a board or enabling a skill.
 
 The investigation must answer these questions:
 

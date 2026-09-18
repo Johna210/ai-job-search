@@ -40,10 +40,10 @@ State how many jobs will be ranked before proceeding.
 
 ## Step 2: Batch-Fetch and Score
 
-Dispatch parallel `general` agents via the **task tool**, ~5 jobs per agent (a single agent is fine for ≤5 jobs). Token-efficiency rules, consistent with `/apply`:
+Process jobs in batches of about five. Use parallel workers when the harness supports them; otherwise process each batch sequentially in the current session. Follow these token-efficiency rules, consistent with the `apply` workflow:
 
-- Pass each agent everything it needs **inline in the prompt** - the job list (title, company, URL) and a compact scoring rubric extracted from the files you read in Step 1: the strong/moderate/weak skill match areas, direct/adjacent experience domains, behavioral thrive/drain factors, career goals, deal-breakers, and the location constraints. Do **not** make agents re-read the profile files.
-- Agents fetch each posting URL with webfetch and score **only from actually fetched content**. If a URL is dead, redirects to a listing page, or the posting has expired, the agent marks that job `expired` - it never scores from the title alone and never fabricates posting content.
+- Give each worker or sequential batch everything it needs inline: the job list and a compact scoring rubric extracted from the files read in Step 1. Do not re-read the profile files per job.
+- Fetch each posting URL and score **only from actually fetched content**. If a URL is dead, redirects to a listing page, or the posting has expired, mark that job `expired`. Never score from the title alone or fabricate posting content.
 - Scope is triage: posting text vs. rubric. **No company research, no salary lookup, no web searches** - that depth belongs to `/apply`.
 
 Each agent returns a JSON array, one object per job:

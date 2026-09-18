@@ -7,9 +7,7 @@ description: >
   Greenhouse jobs, direct company career listings, or a Greenhouse posting detail.
   Trigger phrases: Greenhouse jobs, company careers, software jobs, backend jobs,
   AI engineer jobs, remote engineering jobs, job openings.
-context: fork
 enabled: true
-allowed-tools: Bash(bun run .agents/skills/greenhouse-search/cli/src/cli.ts *)
 ---
 
 # Greenhouse search

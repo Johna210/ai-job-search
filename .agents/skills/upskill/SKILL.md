@@ -4,7 +4,6 @@ description: >
   Compares tracked job postings against the candidate profile to identify skill gaps and generate
   a prioritized learning plan with study resources. Triggers on: /upskill, upskill, skill gaps,
   what should I learn, learning plan
-allowed-tools: Read, Write, Glob, Grep, WebFetch, WebSearch
 ---
 
 # Upskill
@@ -41,7 +40,7 @@ In targeted mode, derive a slug from the job title and company for the report fi
 4. Check `upskill/` for the most recent aggregate report file (`report-YYYY-MM-DD.md`) — if one exists, note its date and load it for the diff in Step 8.
 
 ### Targeted mode
-1. Use WebFetch to retrieve the job posting from the URL.
+1. Use page fetch to retrieve the job posting from the URL.
 2. Extract: job title, company, required skills, preferred skills, responsibilities, and any domain context.
 3. Read `profile/candidate.md` for the candidate's current skills.
 4. No tracker data is used in targeted mode.
@@ -51,7 +50,7 @@ In targeted mode, derive a slug from the job title and company for the report fi
 Extract required and preferred technical skills from each job source:
 
 ### Aggregate mode
-For each job row in the tracker, you do not have the full posting — use the `role`, `sector`, and `notes` columns to infer likely required skills. If the row has a `source` URL, you may optionally WebFetch it for more detail, but skip if the URL is missing or dead.
+For each job row in the tracker, you do not have the full posting — use the `role`, `sector`, and `notes` columns to infer likely required skills. If the row has a `source` URL, you may optionally page fetch it for more detail, but skip if the URL is missing or dead.
 
 Build a **skill frequency map**: for each extracted skill, count how many jobs mention it. Then apply a **fit weight**: for each job, multiply the skill count contribution by `(100 - fit_rating) / 100` — lower fit jobs contribute more to the gap score.
 
@@ -109,7 +108,7 @@ For every **Critical** and **High** gap (and **Medium** gaps if fewer than 5 tot
 
 ### For each gap:
 
-1. **Run a WebSearch** to find current, highly-rated study resources. Use queries like:
+1. **Run a web search** to find current, highly-rated study resources. Use queries like:
    - `"best Kubernetes course 2025 site:reddit.com OR coursera.org OR fast.ai OR missing.csail.mit.edu"`
    - `"learn [skill] for [domain] 2025 recommendations"`
    Include the current year in the query to avoid stale results.
@@ -222,7 +221,7 @@ Study direction: ...
   - Slugify: lowercase, spaces → hyphens, strip special characters
   - Example: `upskill/report-2026-04-20-guardsix-senior-ai-engineer.md`
 
-Use the Write tool to save the file.
+Save the file.
 
 ### Diff section (aggregate mode only)
 
@@ -239,8 +238,8 @@ After saving, print:
 
 ## Important Rules
 
-1. **Never fabricate resources.** Only cite resources found via actual WebSearch results. Do not invent course names, URLs, or authors.
-2. **Search with the current year.** Include the year in every WebSearch query for resources so results stay fresh.
+1. **Never fabricate resources.** Only cite resources found via actual web search results. Do not invent course names, URLs, or authors.
+2. **Search with the current year.** Include the year in every web search query for resources so results stay fresh.
 3. **Targeted mode ignores the tracker.** In targeted mode, analyse only the fetched posting. Do not load or reference `job_search_tracker.csv`.
 4. **Be generous with profile matching.** If a skill appears in the candidate profile in any form, do not flag it as a gap. Avoid false positives.
 5. **Print the heatmap before the learning plan.** Always show the intermediate heatmap table in the terminal before proceeding to resource search, so the user can see what you are working from.

@@ -6,9 +6,7 @@ description: >
   Use when the user asks for direct company listings, software jobs at these
   companies, or a posting detail. Trigger phrases: company careers, Deliveroo
   jobs, Zalando jobs, OVHcloud jobs, Automattic jobs, direct engineering jobs.
-context: fork
 enabled: true
-allowed-tools: Bash(bun run .agents/skills/company-search/cli/src/cli.ts *)
 ---
 
 # Company career search

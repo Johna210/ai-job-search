@@ -56,7 +56,7 @@ Read all files in `documents/references/`. Extract:
 ### 1e. GitHub Profile
 Look up the GitHub username from `profile/candidate.md`. If a GitHub URL or username is present:
 
-1. Use webfetch or websearch to retrieve the public profile and pinned repositories
+1. Use page fetch or web search to retrieve the public profile and pinned repositories
 2. For each repository found:
    - Fetch the repository README
    - Note: name, description, primary language(s), topics/tags, any frameworks or libraries mentioned in the README
@@ -171,7 +171,7 @@ Wait for the user's response before writing anything.
 
 ## Step 5: Write Confirmed Additions
 
-Apply only the confirmed items. Use the edit tool to add to the relevant sections of each file — do not rewrite entire files.
+Apply only the confirmed items. Make targeted edits to add to the relevant sections of each file — do not rewrite entire files.
 
 ### Additions to `profile/candidate.md`
 - Technical skills (primary and secondary) → append to the Technical Skills section

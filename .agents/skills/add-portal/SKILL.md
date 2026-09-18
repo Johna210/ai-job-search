@@ -7,7 +7,7 @@ description: Generate a job-portal search skill for your local market
 
 You are helping the user build a job-portal search skill for a job board in their market. The repo ships worked examples of the pattern (four Danish portals plus the country-agnostic `linkedin-search` and `freehire-search`), and the README invites users elsewhere to build equivalents — this command turns that invitation into a guided workflow: investigate the portal, scaffold the skill from the canonical structure, and test-run a live query before registering anything.
 
-Before running this workflow, read `.agents/skills/portal-cli-addition/SKILL.md`. It is the canonical rule that every viable new source gets a dedicated tested CLI, while login-gated or unstable sources remain explicit WebSearch fallbacks.
+Before running this workflow, read `.agents/skills/portal-cli-addition/SKILL.md`. It is the canonical rule that every viable new source gets a dedicated tested CLI, while login-gated or unstable sources remain explicit web search fallbacks.
 
 The generator is **country-agnostic**: it works for any portal in any market and language. The skills it produces are typically market-specific and live in the user's fork (per repo policy, country-specific portal skills are not merged upstream — the generator is the upstream feature, its output is yours).
 
@@ -19,7 +19,7 @@ Follow these steps **in order**.
 
 ## Step 0: Parse Arguments
 
-- If the user's request contains `--list`: use Glob with `.agents/skills/*-search/SKILL.md`, print a table of installed portal skills (name, market from the description, data source from `url-reference.md`), and stop.
+- If the user's request contains `--list`: list files matching `.agents/skills/*-search/SKILL.md`, print a table of installed portal skills (name, market from the description, data source from `url-reference.md`), and stop.
 - If the user's request contains a URL: treat it as the portal URL and carry it into Step 1.
 - Otherwise: start the interview at Step 1.
 
@@ -38,7 +38,7 @@ Ask the user (skip anything already answered by the user's request):
 
 ## Step 2: Investigate the Portal
 
-Do reconnaissance before writing any code. Use webfetch (or `curl` via Bash) on the portal:
+Do reconnaissance before writing any code. Use page fetch (or `curl` via Bash) on the portal:
 
 1. **Find the search URL pattern.** Load the portal's search page, run a search in the URL bar mentally or via fetch, and identify: the search endpoint, the query parameter, and any parameters for location, posting age, and pagination. Prefer a JSON API if one backs the site (check for `/api/` XHR endpoints in the page source); otherwise plan to parse the HTML results page.
 2. **Fetch one search-results response** for the test query and identify the per-result fields: **id, title, company, location, posting date, and URL**. For HTML, note the class names / attributes that anchor each field. For JSON, note the field paths.
@@ -127,7 +127,7 @@ Do not proceed to Step 5 until search, detail, and tests all pass.
 
 1. Ask whether the user wants the new portal added to their `/scrape` search strategy. If yes:
    - The portal CLI itself is already picked up automatically by `/scrape` (it discovers `.agents/skills/*-search/SKILL.md`) — no further wiring is needed for CLI search/detail.
-   - Optionally add websearch/`site:` placeholder queries for that board in `profile/search.md` (use the `[YOUR_JOB_BOARD]` style placeholders already there) so the fallback path still covers the board if the CLI is unavailable.
+   - Optionally add web search/`site:` placeholder queries for that board in `profile/search.md` (use the `[YOUR_JOB_BOARD]` style placeholders already there) so the fallback path still covers the board if the CLI is unavailable.
 2. Remind the user to add the install line for their own records if they maintain a fork README:
    ```bash
    cd .agents/skills/<name>/cli && bun install && cd ../../../..

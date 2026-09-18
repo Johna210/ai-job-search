@@ -6,9 +6,7 @@ description: >
   worldwide. Use when the user asks for remote job listings, remote engineering
   jobs, or a posting from a supported remote board. Trigger phrases: remote jobs,
   remote software jobs, work from anywhere, remote backend jobs, remote AI jobs.
-context: fork
 enabled: true
-allowed-tools: Bash(bun run .agents/skills/remote-search/cli/src/cli.ts *)
 ---
 
 # Remote job search

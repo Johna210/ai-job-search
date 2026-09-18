@@ -22,7 +22,7 @@ Follow these steps **in order**.
 
 ### List Mode
 
-use glob with `templates/**/TEMPLATE.md` to find registered templates. For each, read the manifest and print a table:
+list files matching `templates/**/TEMPLATE.md` to find registered templates. For each, read the manifest and print a table:
 
 ```
 ## Registered Templates
@@ -39,7 +39,7 @@ A template is **active** if `05-cv-templates.md` (CV) or `06-cover-letter-templa
 If the user's request contains `--use <name>`:
 
 1. If `<name>` is `default`, skip template resolution and continue to Step 5 with `default` as the activation target.
-2. use glob with `templates/**/TEMPLATE.md` and find manifests whose parent folder name exactly matches `<name>`.
+2. list files matching `templates/**/TEMPLATE.md` and find manifests whose parent folder name exactly matches `<name>`.
 3. If no manifest matches, stop and say the template is not registered. Suggest `/add-template --list` to see available names.
 4. If more than one manifest matches, stop and list the matching manifest paths. Ask the user to rename one of the templates; activation must be unambiguous.
 5. Read the matching `TEMPLATE.md` and extract:

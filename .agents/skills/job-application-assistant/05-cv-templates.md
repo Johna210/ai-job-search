@@ -1,5 +1,5 @@
 ---
-framework_version: 1.3.0
+framework_version: 1.3.1
 ---
 
 # CV Templates and Tailoring Guide
@@ -204,7 +204,7 @@ After writing the CV and before presenting to the user, always compile and visua
 
 1. Run `lualatex -interaction=nonstopmode main_<company>_<role>.tex`
 2. Check the output page count: must be exactly 2
-3. Read the PDF via the Read tool and visually inspect both pages
+3. Read the PDF with the available PDF viewer and visually inspect both pages
 4. Check for **orphaned entries**: a `\cventry` title line must never sit alone at the bottom of page 1 with its bullets on page 2
 
 ### Fixing common page-break problems

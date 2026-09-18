@@ -15,7 +15,7 @@ There are three paths into setup. Step 0 picks the right one; all three converge
 
 If the user's request contains `--section <name>`, skip directly to that section in Path C for an update-only flow. Do not run the path-selection prompt below.
 
-Otherwise, before greeting the user, scan the `documents/` folder. use glob with `documents/**/*` and count files per subfolder (`cv/`, `linkedin/`, `diplomas/`, `references/`, `applications/`).
+Otherwise, before greeting the user, scan the `documents/` folder. list files matching `documents/**/*` and count files per subfolder (`cv/`, `linkedin/`, `diplomas/`, `references/`, `applications/`).
 
 Then welcome the user with a single message that lists three paths. The wording changes based on what was found.
 
@@ -63,7 +63,7 @@ Follow these steps **exactly in order**.
 
 ### Step A1: Inventory
 
-use glob with `documents/**/*` to scan the full tree. Print:
+list files matching `documents/**/*` to scan the full tree. Print:
 
 ```
 ## Documents Found
@@ -216,7 +216,7 @@ Wait for the user's choice on each conflict. If no conflicts, state "No conflict
 
 ### Step A7: Write Confirmed Changes and Fill Gaps
 
-Apply the confirmed changes with the edit tool. Make targeted edits only. Do not rewrite entire files. State which changes were applied per file. If a file has no confirmed changes, state "No changes made to [filename]."
+Apply the confirmed changes with targeted file edits. Make targeted edits only. Do not rewrite entire files. State which changes were applied per file. If a file has no confirmed changes, state "No changes made to [filename]."
 
 Documents cover skills, experience, education, references, and behavioral signal. They do not cover everything `/apply` and `/scrape` need. After the writes, ask follow-up questions for gaps:
 
@@ -318,7 +318,7 @@ Ask about:
 - **Key skills as search terms:** "Which of your skills are most likely to appear in job postings?" Pick 3-5 that are distinctive and searchable.
 - **Target companies (optional):** "Are there specific companies you'd like to monitor for openings?"
 - **Geographic scope:** "Which cities or regions should I search in? How far are you willing to commute?" Use this to define the location filter tiers (ideal, acceptable, borderline, too far).
-- **Job portals:** "The framework ships country-agnostic search CLIs (`linkedin-search`, `freehire-search`) plus Danish portal demos (Jobindex, Jobbank, Jobdanmark, Jobnet). `/scrape` auto-discovers whatever portal skills are installed under `.agents/skills/`. Which of these fit your market, and do you use other job boards?" If the user needs a local board that is not shipped, guide them to `/add-portal` (market-specific skills live in their fork). websearch/`site:` queries remain the fallback for portals without a CLI skill.
+- **Job portals:** "The framework ships country-agnostic search CLIs (`linkedin-search`, `freehire-search`) plus Danish portal demos (Jobindex, Jobbank, Jobdanmark, Jobnet). `/scrape` auto-discovers whatever portal skills are installed under `.agents/skills/`. Which of these fit your market, and do you use other job boards?" If the user needs a local board that is not shipped, guide them to `/add-portal` (market-specific skills live in their fork). web search/`site:` queries remain the fallback for portals without a CLI skill.
 - **CV language:** "Should your CVs be written in English (the default, accepted in most markets), or in your market's language?" Record the answer as a `CV language: <language>` line in `profile/candidate.md`. Cover letters always match each posting's language automatically; this setting governs the CV only. If the user is unsure, keep English and note they can re-run `/setup --section search` to change it.
 
 **Important:** Also suggest role types the user may not have considered, based on their skill profile. For example:

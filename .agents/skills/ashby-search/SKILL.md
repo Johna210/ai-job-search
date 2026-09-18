@@ -7,9 +7,7 @@ description: >
   jobs, direct company career listings, or an Ashby posting detail. Trigger phrases:
   Ashby jobs, company careers, software jobs, backend jobs, AI engineer jobs,
   remote engineering jobs, job openings.
-context: fork
 enabled: true
-allowed-tools: Bash(bun run .agents/skills/ashby-search/cli/src/cli.ts *)
 ---
 
 # Ashby search

@@ -8,9 +8,7 @@ description: >
   SmartRecruiters posting detail. Trigger phrases: SmartRecruiters jobs, company
   careers, software jobs, backend jobs, AI engineer jobs, remote engineering jobs,
   job openings.
-context: fork
 enabled: true
-allowed-tools: Bash(bun run .agents/skills/smartrecruiters-search/cli/src/cli.ts *)
 ---
 
 # SmartRecruiters search

@@ -1,5 +1,5 @@
 ---
-framework_version: 1.0.1
+framework_version: 1.0.2
 ---
 
 # Cover Letter Templates and Tailoring Guide
@@ -26,7 +26,7 @@ After writing the cover letter and before presenting to the user, always compile
 
 1. Run `xelatex -interaction=nonstopmode cover_<company>_<role>.tex`
 2. Confirm page count is exactly 1 and compile succeeded
-3. Read the PDF via the Read tool and visually check: signature fits at the bottom, no text cut off, bullet font matches body
+3. Read the PDF with the available PDF viewer and visually check: signature fits at the bottom, no text cut off, bullet font matches body
 
 ### Known template pitfall: itemize inside `\lettercontent{}`
 

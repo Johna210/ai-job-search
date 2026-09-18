@@ -7,9 +7,7 @@ description: >
   jobs, direct company career listings, or a Lever posting detail. Trigger phrases:
   Lever jobs, company careers, software jobs, backend jobs, AI engineer jobs,
   remote engineering jobs, job openings.
-context: fork
 enabled: true
-allowed-tools: Bash(bun run .agents/skills/lever-search/cli/src/cli.ts *)
 ---
 
 # Lever search
