@@ -1,4 +1,5 @@
 ---
+name: outcome
 description: Record the result of a job application
 ---
 
@@ -19,7 +20,7 @@ Follow these steps **in order**.
 
 ## Step 0: Parse Input
 
-`$ARGUMENTS` may contain:
+the user's request may contain:
 
 - Nothing → list open applications and ask which one to update
 - A company name (optionally with a role), e.g. `/outcome acme` or `/outcome acme ml engineer` → target that application

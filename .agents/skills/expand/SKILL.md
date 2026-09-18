@@ -1,4 +1,5 @@
 ---
+name: expand
 description: Discover competencies from documents and online presence
 ---
 

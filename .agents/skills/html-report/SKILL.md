@@ -1,4 +1,5 @@
 ---
+name: html-report
 description: Generate application tracker dashboard
 ---
 

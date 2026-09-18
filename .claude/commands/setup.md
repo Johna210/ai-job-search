@@ -12,7 +12,7 @@ There are three paths into setup. Step 0 picks the right one; all three converge
 
 ## Step 0: Welcome & Choose Path
 
-If `$ARGUMENTS` contains `--section <name>`, skip directly to that section in Path C for an update-only flow. Do not run the path-selection prompt below.
+If `the user's request` contains `--section <name>`, skip directly to that section in Path C for an update-only flow. Do not run the path-selection prompt below.
 
 Otherwise, before greeting the user, scan the `documents/` folder. use glob with `documents/**/*` and count files per subfolder (`cv/`, `linkedin/`, `diplomas/`, `references/`, `applications/`).
 
@@ -84,11 +84,11 @@ Read these in parallel before extracting anything. You must know what is already
 
 - `profile/candidate.md`
 - `profile/behavior.md`
-- `.opencode/skills/job-application-assistant/03-writing-style.md`
-- `.opencode/skills/job-application-assistant/04-job-evaluation.md`
-- `.opencode/skills/job-application-assistant/05-cv-templates.md`
-- `.opencode/skills/job-application-assistant/06-cover-letter-templates.md`
-- `.opencode/skills/job-application-assistant/07-interview-prep.md`
+- `.agents/skills/job-application-assistant/03-writing-style.md`
+- `.agents/skills/job-application-assistant/04-job-evaluation.md`
+- `.agents/skills/job-application-assistant/05-cv-templates.md`
+- `.agents/skills/job-application-assistant/06-cover-letter-templates.md`
+- `.agents/skills/job-application-assistant/07-interview-prep.md`
 
 Hold this content in context throughout Path A. Do not re-read.
 
@@ -382,9 +382,9 @@ Present a summary:
 > - `CLAUDE.md` - Your full candidate profile
 > - `profile/candidate.md` - Structured profile
 > - `profile/behavior.md` - Behavioral assessment
-> - `.opencode/skills/job-application-assistant/04-job-evaluation.md` - Personalized evaluation framework
-> - `.opencode/skills/job-application-assistant/05-cv-templates.md` - CV templates with your profile statements
-> - `.opencode/skills/job-application-assistant/07-interview-prep.md` - STAR examples from your experience
+> - `.agents/skills/job-application-assistant/04-job-evaluation.md` - Personalized evaluation framework
+> - `.agents/skills/job-application-assistant/05-cv-templates.md` - CV templates with your profile statements
+> - `.agents/skills/job-application-assistant/07-interview-prep.md` - STAR examples from your experience
 > - `cv/main_example.tex` - Your LaTeX CV template
 > - `profile/search.md` - Job search queries for `/scrape`
 >

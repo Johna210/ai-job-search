@@ -1,4 +1,5 @@
 ---
+name: reset
 description: Reset candidate profile data
 ---
 
@@ -12,13 +13,13 @@ You are resetting parts of the job search framework back to a blank state so the
 
 ## Step 0: Parse Scope from Arguments
 
-Check `$ARGUMENTS` for a scope keyword:
+Check the user's request for a scope keyword:
 
 - `profile` — clears candidate profile data from skill files only
 - `documents` — deletes user-provided files from the `documents/` folder only
 - `all` — both of the above
 
-If `$ARGUMENTS` is empty or does not contain a recognized scope keyword, ask:
+If the user's request is empty or does not contain a recognized scope keyword, ask:
 
 > **What would you like to reset?**
 >
@@ -44,8 +45,8 @@ Read the current state of these files and report whether each has content or is 
 
 - `profile/candidate.md`
 - `profile/behavior.md`
-- `.opencode/skills/job-application-assistant/05-cv-templates.md` *(profile statements section only — framework structure is preserved)*
-- `.opencode/skills/job-application-assistant/07-interview-prep.md` *(STAR examples and STAR candidates sections only — framework structure is preserved)*
+- `.agents/skills/job-application-assistant/05-cv-templates.md` *(profile statements section only — framework structure is preserved)*
+- `.agents/skills/job-application-assistant/07-interview-prep.md` *(STAR examples and STAR candidates sections only — framework structure is preserved)*
 
 Present as:
 

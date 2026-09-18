@@ -1,4 +1,5 @@
 ---
+name: interview
 description: Prepare for a scheduled interview
 ---
 
@@ -14,7 +15,7 @@ Follow these steps **in order**.
 
 ## Step 0: Parse Input
 
-`$ARGUMENTS` may contain a company name (optionally with a role), e.g. `/interview acme`.
+the user's request may contain a company name (optionally with a role), e.g. `/interview acme`.
 
 - **With an argument:** match against `job_search_tracker.csv` rows (case-insensitive on company, then role). One match → proceed. Several → list and ask. None → this application isn't tracked; suggest `/outcome <company>` to register it first, or accept the posting and role details directly if the user wants to prep anyway.
 - **Without an argument:** list tracker rows whose status suggests a live process (`interview`, `offer`, or recently `applied`) and ask which one. If the tracker is empty, ask for the company, role, and posting.
@@ -32,10 +33,10 @@ v1 preps for a **specific application**. Generic no-target practice is out of sc
 2. **Fallbacks** (the application may predate `/outcome`): posting via webfetch on the tracker row's `source` URL, or ask the user to paste it; CV via `cv/main_<company>*.tex` and cover letter via `cover_letters/cover_<company>_*.tex`. State plainly which context is missing rather than guessing - and suggest `/outcome <company>` to build the archive for next time.
 3. **Ask the user what this interview is** (skip anything `outcome.md` already records): stage (phone screen / technical / case / final round), date, format (phone, video, onsite), and who is interviewing (names and titles, if known).
 4. **Read the frameworks once** - do not re-read them in later steps:
-   - `.opencode/skills/job-application-assistant/07-interview-prep.md`
+   - `.agents/skills/job-application-assistant/07-interview-prep.md`
    - `profile/candidate.md`
    - `profile/behavior.md`
-   - `.opencode/skills/job-application-assistant/04-job-evaluation.md`
+   - `.agents/skills/job-application-assistant/04-job-evaluation.md`
 
 ---
 

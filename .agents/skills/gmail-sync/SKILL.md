@@ -1,4 +1,5 @@
 ---
+name: gmail-sync
 description: Sync application status from Gmail
 ---
 
@@ -20,7 +21,7 @@ Confirm the Gmail MCP tools (`mcp__claude_ai_Gmail__*`) are available. If not, t
 
 ## Step 1: Parse Input
 
-`$ARGUMENTS` may contain:
+the user's request may contain:
 
 - Nothing → default lookback (see Step 3)
 - A company name, e.g. `/gmail-sync acme` → scope the search to that one tracked application
@@ -33,7 +34,7 @@ Confirm the Gmail MCP tools (`mcp__claude_ai_Gmail__*`) are available. If not, t
 1. Read `job_search_tracker.csv`. If it does not exist, tell the user there is nothing to sync against yet (suggest `/outcome` or `/apply` first) and stop. Do not create it here - `/gmail-sync` never originates new applications, only updates existing ones.
 2. Read `gmail_sync/state.json` (create if missing: `{"last_sync": null, "processed_message_ids": []}`).
 3. Build the set of **open applications**: tracker rows whose `status` is not a final value (`hired`, `rejected`, `no response`, `offer declined`, `withdrawn`). For each, derive its archive folder `documents/applications/<company>_<role>/` (lowercase, underscores - same convention as `/outcome`) and check whether `outcome.md` exists there.
-4. If `$ARGUMENTS` named a company, filter this set to the matching row(s) (case-insensitive). No match → tell the user and stop, do not guess.
+4. If the user's request named a company, filter this set to the matching row(s) (case-insensitive). No match → tell the user and stop, do not guess.
 
 ---
 

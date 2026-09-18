@@ -7,7 +7,7 @@ This script:
 1. Identifies the upstream remote (defaults to 'upstream', falls back to 'origin').
 2. Fetches the latest commits from the upstream remote.
 3. Compares the 'framework_version' in your local files under
-   .opencode/skills/job-application-assistant/ with those in the upstream remote.
+   .agents/skills/job-application-assistant/ with those in the upstream remote.
 4. Alerts you if a file has been updated upstream with a newer version.
 """
 
@@ -23,13 +23,13 @@ ROOT = Path(__file__).resolve().parent.parent
 FRAMEWORK_FILES = [
     "profile/candidate.md",
     "profile/behavior.md",
-    ".opencode/skills/job-application-assistant/03-writing-style.md",
-    ".opencode/skills/job-application-assistant/04-job-evaluation.md",
-    ".opencode/skills/job-application-assistant/05-cv-templates.md",
-    ".opencode/skills/job-application-assistant/06-cover-letter-templates.md",
-    ".opencode/skills/job-application-assistant/07-interview-prep.md",
-    ".opencode/skills/job-application-assistant/08-application-forms.md",
-    ".opencode/skills/job-application-assistant/SKILL.md",
+    ".agents/skills/job-application-assistant/03-writing-style.md",
+    ".agents/skills/job-application-assistant/04-job-evaluation.md",
+    ".agents/skills/job-application-assistant/05-cv-templates.md",
+    ".agents/skills/job-application-assistant/06-cover-letter-templates.md",
+    ".agents/skills/job-application-assistant/07-interview-prep.md",
+    ".agents/skills/job-application-assistant/08-application-forms.md",
+    ".agents/skills/job-application-assistant/SKILL.md",
     "AGENTS.md",
 ]
 

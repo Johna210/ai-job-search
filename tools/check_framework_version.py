@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """CI check: ensure that modified framework files have updated version markers.
 
-Fails if any markdown file under .opencode/skills/job-application-assistant/ is
+Fails if any markdown file under .agents/skills/job-application-assistant/ is
 modified in git without a change/bump to its 'framework_version' frontmatter key.
 Also ensures all framework files have a valid 'framework_version' frontmatter key.
 """

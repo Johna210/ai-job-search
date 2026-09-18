@@ -1,4 +1,5 @@
 ---
+name: add-portal
 description: Generate a job-portal search skill for your local market
 ---
 
@@ -6,11 +7,11 @@ description: Generate a job-portal search skill for your local market
 
 You are helping the user build a job-portal search skill for a job board in their market. The repo ships worked examples of the pattern (four Danish portals plus the country-agnostic `linkedin-search` and `freehire-search`), and the README invites users elsewhere to build equivalents — this command turns that invitation into a guided workflow: investigate the portal, scaffold the skill from the canonical structure, and test-run a live query before registering anything.
 
-Before running this workflow, read `.opencode/skills/portal-cli-addition/SKILL.md`. It is the canonical rule that every viable new source gets a dedicated tested CLI, while login-gated or unstable sources remain explicit WebSearch fallbacks.
+Before running this workflow, read `.agents/skills/portal-cli-addition/SKILL.md`. It is the canonical rule that every viable new source gets a dedicated tested CLI, while login-gated or unstable sources remain explicit WebSearch fallbacks.
 
 The generator is **country-agnostic**: it works for any portal in any market and language. The skills it produces are typically market-specific and live in the user's fork (per repo policy, country-specific portal skills are not merged upstream — the generator is the upstream feature, its output is yours).
 
-`$ARGUMENTS` may contain a subcommand, a portal URL, or nothing.
+the user's request may contain a subcommand, a portal URL, or nothing.
 
 Follow these steps **in order**.
 
@@ -18,15 +19,15 @@ Follow these steps **in order**.
 
 ## Step 0: Parse Arguments
 
-- If `$ARGUMENTS` contains `--list`: use Glob with `.agents/skills/*-search/SKILL.md`, print a table of installed portal skills (name, market from the description, data source from `url-reference.md`), and stop.
-- If `$ARGUMENTS` contains a URL: treat it as the portal URL and carry it into Step 1.
+- If the user's request contains `--list`: use Glob with `.agents/skills/*-search/SKILL.md`, print a table of installed portal skills (name, market from the description, data source from `url-reference.md`), and stop.
+- If the user's request contains a URL: treat it as the portal URL and carry it into Step 1.
 - Otherwise: start the interview at Step 1.
 
 ---
 
 ## Step 1: Interview - Portal Basics
 
-Ask the user (skip anything already answered by `$ARGUMENTS`):
+Ask the user (skip anything already answered by the user's request):
 
 1. **Portal URL** - the job board's public site (e.g. `https://www.seek.com.au`, `https://www.stepstone.de`).
 2. **Skill name** - kebab-case, suffixed `-search` (e.g. `seek-search`, `stepstone-search`). Must not collide with an existing folder in `.agents/skills/`.

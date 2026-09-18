@@ -6,7 +6,7 @@ description: Register a custom CV or cover letter template
 
 You are helping the user register their own CV or cover letter template with the AI Job Search framework — LaTeX, Typst, or any other toolchain that compiles to PDF from the command line. The framework ships with moderncv (banking style) for CVs and a custom `cover.cls` for cover letters. This command lets the user swap in their own template: store the template files, capture usage instructions (source extension, compile command, fonts, style rules, page limits), verify the template compiles, and wire it into the `/apply` workflow so every future application uses it.
 
-`$ARGUMENTS` may contain a subcommand, a file path, or nothing.
+`the user's request` may contain a subcommand, a file path, or nothing.
 
 Follow these steps **in order**.
 
@@ -14,9 +14,9 @@ Follow these steps **in order**.
 
 ## Step 0: Parse Arguments
 
-- If `$ARGUMENTS` contains `--list`: run **List Mode** below and stop.
-- If `$ARGUMENTS` contains `--use <name>`: run **Switch Mode** below, then continue to **Step 5: Activate** with the resolved template metadata. `--use default` deactivates any custom template and restores the stock guidance (see Step 5).
-- If `$ARGUMENTS` contains a file path or @-mentioned file: treat it as the template source and carry it into Step 1.
+- If `the user's request` contains `--list`: run **List Mode** below and stop.
+- If `the user's request` contains `--use <name>`: run **Switch Mode** below, then continue to **Step 5: Activate** with the resolved template metadata. `--use default` deactivates any custom template and restores the stock guidance (see Step 5).
+- If `the user's request` contains a file path or @-mentioned file: treat it as the template source and carry it into Step 1.
 - Otherwise: start the registration flow at Step 1.
 
 ### List Mode
@@ -35,7 +35,7 @@ A template is **active** if `05-cv-templates.md` (CV) or `06-cover-letter-templa
 
 ### Switch Mode
 
-If `$ARGUMENTS` contains `--use <name>`:
+If `the user's request` contains `--use <name>`:
 
 1. If `<name>` is `default`, skip template resolution and continue to Step 5 with `default` as the activation target.
 2. use glob with `templates/**/TEMPLATE.md` and find manifests whose parent folder name exactly matches `<name>`.
@@ -58,7 +58,7 @@ If `$ARGUMENTS` contains `--use <name>`:
 
 ## Step 1: Template Type and Source
 
-Ask the user (skip anything already answered by `$ARGUMENTS`):
+Ask the user (skip anything already answered by `the user's request`):
 
 1. **Type:** Is this a **CV** template or a **cover letter** template?
 2. **Source:** Where is the template? Accept any of:

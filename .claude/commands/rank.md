@@ -14,7 +14,7 @@ Follow these steps **in order**.
 
 ## Step 0: Parse Input
 
-`$ARGUMENTS` may contain:
+`the user's request` may contain:
 
 - Nothing → rank all jobs with status `new` in `job_scraper/seen_jobs.json`
 - A focus area (e.g. `/rank data science`) → rank only jobs whose title or stored fit-notes match the focus
@@ -30,7 +30,7 @@ Follow these steps **in order**.
 3. Select candidates: entries with status `new` (or all non-applied entries with `--all`), minus the exclusion set, filtered by the focus area if one was given.
 4. If no candidates remain, say so ("Nothing new to rank - run /scrape to find fresh postings") and stop.
 5. Read the scoring framework and profile **once**:
-   - `.opencode/skills/job-application-assistant/04-job-evaluation.md`
+   - `.agents/skills/job-application-assistant/04-job-evaluation.md`
    - `profile/candidate.md`
 
 State how many jobs will be ranked before proceeding.

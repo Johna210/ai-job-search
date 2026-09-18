@@ -198,5 +198,5 @@ jobs:
           check cv/main_example.tex '\[YOUR_NAME\]'
           check cover_letters/cover_example.tex '\[YOUR NAME\]'
           check profile/candidate.md '<!-- SETUP'
-          check .opencode/skills/job-application-assistant/04-job-evaluation.md '\[YOUR_PRIMARY_SKILLS\]'
+          check .agents/skills/job-application-assistant/04-job-evaluation.md '\[YOUR_PRIMARY_SKILLS\]'
           exit $fail

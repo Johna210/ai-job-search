@@ -1,4 +1,5 @@
 ---
+name: setup
 description: Profile onboarding for the job search framework
 ---
 
@@ -12,7 +13,7 @@ There are three paths into setup. Step 0 picks the right one; all three converge
 
 ## Step 0: Welcome & Choose Path
 
-If `$ARGUMENTS` contains `--section <name>`, skip directly to that section in Path C for an update-only flow. Do not run the path-selection prompt below.
+If the user's request contains `--section <name>`, skip directly to that section in Path C for an update-only flow. Do not run the path-selection prompt below.
 
 Otherwise, before greeting the user, scan the `documents/` folder. use glob with `documents/**/*` and count files per subfolder (`cv/`, `linkedin/`, `diplomas/`, `references/`, `applications/`).
 
@@ -22,7 +23,7 @@ Then welcome the user with a single message that lists three paths. The wording 
 
 > **Welcome to the AI Job Search setup!**
 >
-> I'll help you build your professional profile so Claude can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
+> I'll help you build your professional profile so your coding agent can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
 >
 > I see files in your `documents/` folder: [list per subfolder, e.g. "2 in cv/, 1 in linkedin/, 3 in references/"]. Three ways to start:
 >
@@ -38,7 +39,7 @@ Then welcome the user with a single message that lists three paths. The wording 
 
 > **Welcome to the AI Job Search setup!**
 >
-> I'll help you build your professional profile so Claude can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
+> I'll help you build your professional profile so your coding agent can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
 >
 > Three ways to start:
 >
@@ -84,11 +85,11 @@ Read these in parallel before extracting anything. You must know what is already
 
 - `profile/candidate.md`
 - `profile/behavior.md`
-- `.opencode/skills/job-application-assistant/03-writing-style.md`
-- `.opencode/skills/job-application-assistant/04-job-evaluation.md`
-- `.opencode/skills/job-application-assistant/05-cv-templates.md`
-- `.opencode/skills/job-application-assistant/06-cover-letter-templates.md`
-- `.opencode/skills/job-application-assistant/07-interview-prep.md`
+- `.agents/skills/job-application-assistant/03-writing-style.md`
+- `.agents/skills/job-application-assistant/04-job-evaluation.md`
+- `.agents/skills/job-application-assistant/05-cv-templates.md`
+- `.agents/skills/job-application-assistant/06-cover-letter-templates.md`
+- `.agents/skills/job-application-assistant/07-interview-prep.md`
 
 Hold this content in context throughout Path A. Do not re-read.
 
@@ -226,7 +227,7 @@ Documents cover skills, experience, education, references, and behavioral signal
 - Commute or location constraints (if not visible from CV)
 - Job search configuration (use the questions from Path C Section 9 below)
 
-Then proceed to Step 3 to populate the non-skill files (`CLAUDE.md`, `cv/main_example.tex`, `profile/search.md`). Step 3 will detect that the seven skill files are already populated and skip those substeps.
+Then proceed to Step 3 to populate `profile/candidate.md`, `profile/behavior.md`, `cv/main_example.tex`, and `profile/search.md`. Step 3 will detect populated files and skip those substeps.
 
 ---
 
@@ -318,7 +319,7 @@ Ask about:
 - **Target companies (optional):** "Are there specific companies you'd like to monitor for openings?"
 - **Geographic scope:** "Which cities or regions should I search in? How far are you willing to commute?" Use this to define the location filter tiers (ideal, acceptable, borderline, too far).
 - **Job portals:** "The framework ships country-agnostic search CLIs (`linkedin-search`, `freehire-search`) plus Danish portal demos (Jobindex, Jobbank, Jobdanmark, Jobnet). `/scrape` auto-discovers whatever portal skills are installed under `.agents/skills/`. Which of these fit your market, and do you use other job boards?" If the user needs a local board that is not shipped, guide them to `/add-portal` (market-specific skills live in their fork). websearch/`site:` queries remain the fallback for portals without a CLI skill.
-- **CV language:** "Should your CVs be written in English (the default, accepted in most markets), or in your market's language?" Record the answer as a `CV language: <language>` line in CLAUDE.md's Identity section. Cover letters always match each posting's language automatically; this setting governs the CV only. If the user is unsure, keep English and note they can re-run `/setup --section search` to change it.
+- **CV language:** "Should your CVs be written in English (the default, accepted in most markets), or in your market's language?" Record the answer as a `CV language: <language>` line in `profile/candidate.md`. Cover letters always match each posting's language automatically; this setting governs the CV only. If the user is unsure, keep English and note they can re-run `/setup --section search` to change it.
 
 **Important:** Also suggest role types the user may not have considered, based on their skill profile. For example:
 - If they have strong Python + domain expertise: "Have you considered roles like 'Technical Consultant' or 'Solutions Engineer' in your domain?"
@@ -333,16 +334,13 @@ This proactive suggestion step helps users discover career paths they might not 
 
 Once data collection is complete, generate or finish populating the following files. **For Path A**, the seven skill files are already populated by Step A7; check each before writing and skip if its content is no longer placeholder text.
 
-### 1. Update `CLAUDE.md`
-Replace all `[PLACEHOLDER]` tokens with the user's actual information. Keep the structure, workflow, and verification checklist intact.
-
-### 2. Populate `profile/candidate.md` *(Path B and C; skip if Path A populated it)*
+### 1. Populate `profile/candidate.md` *(Path B and C; skip if Path A populated it)*
 Write the full candidate profile with structured sections: Identity, Education, Professional Experience, Independent Projects, Technical Skills, Publications, Awards, References.
 
-### 3. Populate `profile/behavior.md` *(Path B and C; skip if Path A populated it)*
+### 2. Populate `profile/behavior.md` *(Path B and C; skip if Path A populated it)*
 Write the behavioral profile based on assessment results or synthesized answers.
 
-### 4. Update `04-job-evaluation.md` *(Path B and C; skip if Path A populated it)*
+### 3. Update `04-job-evaluation.md` *(Path B and C; skip if Path A populated it)*
 Replace skill match areas with the user's actual skills:
 - Strong match areas: [their primary skills]
 - Moderate match areas: [their secondary skills]
@@ -350,16 +348,16 @@ Replace skill match areas with the user's actual skills:
 
 Update career goals and motivation filters with their actual preferences.
 
-### 5. Update `05-cv-templates.md` *(Path B and C; skip if Path A populated it)*
+### 4. Update `05-cv-templates.md` *(Path B and C; skip if Path A populated it)*
 Add role-specific profile statement templates based on their background.
 
-### 6. Update `07-interview-prep.md` *(Path B and C; skip if Path A populated it)*
+### 5. Update `07-interview-prep.md` *(Path B and C; skip if Path A populated it)*
 Create STAR examples from their actual experience (at least 3-4 examples). Path A leaves STAR stubs under "## STAR Candidates (Complete Manually)" rather than full examples; if any stubs are present, mention them in Step 4 so the user knows to flesh them out.
 
-### 7. Update `cv/main_example.tex`
+### 6. Update `cv/main_example.tex`
 Replace placeholder personal data with their actual name, contact info, and add their education and most recent experience entries.
 
-### 8. Generate `profile/search.md`
+### 7. Generate `profile/search.md`
 Replace all placeholder tokens in the search queries file with the user's actual information from Section 9 (or the equivalent follow-up questions in Path A's Step A7):
 - Replace `[YOUR_PRIMARY_ROLE_TYPE]`, `[YOUR_PRIMARY_JOB_TITLE]`, etc. with actual role titles
 - Replace `[YOUR_KEY_SKILL]`, `[YOUR_DOMAIN_KEYWORD_1]`, etc. with actual skills and domain terms
@@ -379,12 +377,11 @@ Present a summary:
 
 > **Setup complete!** Here's what was generated:
 >
-> - `CLAUDE.md` - Your full candidate profile
 > - `profile/candidate.md` - Structured profile
 > - `profile/behavior.md` - Behavioral assessment
-> - `.opencode/skills/job-application-assistant/04-job-evaluation.md` - Personalized evaluation framework
-> - `.opencode/skills/job-application-assistant/05-cv-templates.md` - CV templates with your profile statements
-> - `.opencode/skills/job-application-assistant/07-interview-prep.md` - STAR examples from your experience
+> - `.agents/skills/job-application-assistant/04-job-evaluation.md` - Personalized evaluation framework
+> - `.agents/skills/job-application-assistant/05-cv-templates.md` - CV templates with your profile statements
+> - `.agents/skills/job-application-assistant/07-interview-prep.md` - STAR examples from your experience
 > - `cv/main_example.tex` - Your LaTeX CV template
 > - `profile/search.md` - Job search queries for `/scrape`
 >

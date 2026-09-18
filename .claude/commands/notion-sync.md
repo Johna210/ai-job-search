@@ -18,7 +18,7 @@ Follow these steps **in order**.
 
 ## Step 0: Parse Input
 
-`$ARGUMENTS` may contain:
+`the user's request` may contain:
 
 - Nothing → sync ranked jobs with score ≥ 60 (Good Fit and above) plus every tracked application
 - `--min-score <N>` → override the score threshold
