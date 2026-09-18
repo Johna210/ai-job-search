@@ -13,6 +13,11 @@ per-file diff commands.
 
 ## [Unreleased]
 
+- **Portable agent core** - `AGENTS.md` and `.agents/skills/` are now the only
+  workflow sources. OpenCode, Codex, and Pi load the same skills. Candidate data
+  moved to `profile/`, Claude-specific files were removed, and CI now rejects
+  duplicate runtime workflow trees and vendor-only skill instructions.
+
 - **README: the extension model, documented** - new Customization subsection "Extending the
   framework: portals, templates, criteria - and borrowing from other forks". States plainly
   what was previously folklore: the three extension points (portal skills with their

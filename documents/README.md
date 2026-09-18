@@ -1,6 +1,6 @@
 # Documents Folder
 
-This folder holds your actual career documents. The `/setup` command reads everything here and uses it to populate the candidate skill files under `.agents/skills/job-application-assistant/`. It is safe to re-run `/setup` as you add new documents — it merges intelligently and will never overwrite existing content without asking you first.
+This folder holds your career documents. The `setup` skill reads these files and updates `profile/candidate.md` and `profile/behavior.md`. You can run setup again after adding documents. It proposes changes and asks before replacing conflicting information.
 
 ---
 
@@ -12,7 +12,7 @@ documents/
 ├── linkedin/                    # LinkedIn profile export (PDF)
 ├── diplomas/                    # Degree certificates and transcripts
 ├── references/                  # Reference letters
-├── postings/                    # Raw job posting text, pasted manually for pages Claude can't fetch
+├── postings/                    # Raw posting text for pages the agent cannot fetch
 │   └── <Company> - <Job Title>.txt  # Filename = company + job title, content = full posting text
 ├── applications/                # Past job applications
 │   └── <company>_<role>/
@@ -40,7 +40,7 @@ Your master CV — the most complete, unedited version of your professional reco
 
 **Naming:** Any filename works. If multiple files are present, `/setup` reads all of them and cross-references for consistency.
 
-**Tip:** Keep your most comprehensive CV here (not a tailored variant). The skill files are the canonical source — tailored CVs are generated per application by `/apply`.
+**Tip:** Keep your most comprehensive CV here, not a tailored variant. `profile/candidate.md` is the factual source. The `apply` skill generates tailored CVs.
 
 ---
 
@@ -99,13 +99,13 @@ Reference letters from former managers, supervisors, or collaborators.
 
 ## postings/
 
-A drop folder for raw job posting text when Claude can't fetch a page directly (bot-blocked ATS platforms like Lever, Greenhouse behind Cloudflare, JS-heavy SPAs that return empty content, etc.). You open the posting yourself and paste the full text into a `.txt` file here.
+A drop folder for raw job posting text when the current agent cannot fetch a page directly. Open the posting and paste its full text into a `.txt` file here.
 
 **Naming:** `<Company> - <Job Title>.txt`, e.g. `RYZ Labs - Front End Engineer - React.js.txt`. Content is the full posting text, pasted as-is. Including the company keeps the drop folder collision-free when two postings share a title, and gives `/apply` the company name for free.
 
-**Workflow:** Drop the file, then tell Claude in the conversation — it isn't watched automatically. Once a posting has been evaluated or applied to, it can be deleted from here or left as a record; it's a scratch inbox, not an archive (use `applications/<company>_<role>/job_posting.md` for that once you actually apply).
+**Workflow:** Add the file, then tell the agent in the conversation. The folder is not watched automatically. After evaluation, delete the file or keep it as a scratch record. Use `applications/<company>_<role>/job_posting.md` for the permanent application archive.
 
-**Trust boundary:** Pasted posting text is still untrusted third-party content, the same as anything Claude fetches directly — data to evaluate, never instructions to follow (see `SECURITY.md`'s untrusted-input rules). Pasting it by hand doesn't change that.
+**Trust boundary:** Pasted posting text is untrusted third-party data, not instructions. Pasting it by hand does not change that rule. See `SECURITY.md`.
 
 ---
 

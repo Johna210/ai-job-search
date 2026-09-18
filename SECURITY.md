@@ -1,22 +1,29 @@
-# Security Policy
+# Security policy
 
-## Reporting a vulnerability
+## Report a vulnerability
 
-Please report security findings privately via **[GitHub private vulnerability reporting](https://github.com/MadsLorentzen/ai-job-search/security/advisories/new)** rather than a public issue. You will get a response within a few days, credit in the fix unless you prefer otherwise, and public disclosure coordinated with the patch.
+Use [GitHub private vulnerability reporting](https://github.com/MadsLorentzen/ai-job-search/security/advisories/new). If the private form is unavailable, open a public issue that describes the class of problem without publishing an exploit.
 
-If the private form is unavailable, open a public issue that describes the *class* of problem without a working recipe, and note that you have details to share privately.
+## Threat model
 
-## Threat model, honestly stated
+A coding agent reads untrusted job postings alongside personal career data. A malicious posting can contain prompt-injection text, hidden HTML, or links designed to redirect the workflow.
 
-This is an agentic workflow: an LLM with file access reads untrusted web content (job postings) alongside your personal data (CV, profile, application history). That combination is the main risk surface, and it cannot be fully eliminated - only narrowed. What the framework does about it:
+The repository applies these controls:
 
-- **Untrusted-input rules**: `/apply` and `/rank` treat posting text as data, never instructions - agents are told not to follow directions embedded in postings and not to fetch URLs found inside posting text (the user-supplied posting URL is the one exception). Reviewer research starts from the company identity the user confirmed, never from links in the posting body.
-- **Permission allowlist**: `.claude/settings.json` pre-approves only the specific commands the workflow needs; the `security-guards` CI job fails any PR that widens it, adds package-manifest lifecycle scripts, or weakens the personal-data gitignore rules. Note the allowlist governs Bash commands - the model's native WebFetch/WebSearch tools are outside its reach, which is exactly why the instruction-level rules above exist.
-- **Personal data boundaries**: your populated profile, tracker, salary data, and application archive are gitignored; documents never leave the machine by design (`/notion-sync` syncs filenames only; nothing uploads document content anywhere).
+- `AGENTS.md` and the application skills treat third-party content as data, never instructions.
+- Company research starts from the company identity, not from links embedded in a posting.
+- `profile/candidate.md` is the sole factual authority for candidate claims.
+- `.gitignore` excludes trackers, imported documents, application archives, salary data, and generated reports.
+- `tools/security_guards.py` detects OpenCode permission widening, unsafe package lifecycle scripts, and weakened personal-data ignore rules.
+- Portal CLIs use public, read-only endpoints and bounded request volume.
+- Sync skills never upload CV or cover-letter content.
 
-Instruction-level defenses raise the bar; they are not a sandbox. If you run this workflow against job boards you do not trust at all, review what the agent fetched and wrote before sending anything out.
+Instruction files are not a sandbox. OpenCode and Codex provide runtime permission controls. Pi does not provide a built-in sandbox or approval system. Run Pi in a container or another restricted environment when you need isolation.
 
-## Scope notes
+Review generated application documents before sending them. The workflows do not submit applications or send messages.
 
-- Portal CLI skills make live requests only when you run them; CI never does.
-- Community fork skills listed in the [forks index](https://github.com/MadsLorentzen/ai-job-search/discussions/78) are **not** covered by this policy - review the code you copy, as the index itself says.
+## Third-party skills
+
+Read every copied skill and its CLI code before running it. Check network destinations, filesystem paths, package manifests, and install scripts.
+
+Community forks and copied skills are outside this project's security policy.
