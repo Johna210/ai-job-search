@@ -19,7 +19,7 @@ Run this checklist after revising and compiling the CV and cover letter. Report 
 
 - The CV and cover letter do not contradict each other.
 - The cover letter matches the posting's language.
-- The tone follows `.agents/skills/job-application-assistant/03-writing-style.md` and `profile/behavior.md`.
+- The tone follows `.agents/references/job-application/03-writing-style.md` and `profile/behavior.md`.
 - The cover letter addresses the named contact, or the appropriate generic recipient when none is known.
 - Spelling, grammar, and source syntax are correct.
 

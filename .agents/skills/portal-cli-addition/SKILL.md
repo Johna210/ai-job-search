@@ -10,7 +10,7 @@ description: >
 # Portal CLI addition
 
 Use this workflow whenever a new job source should become part of the repository.
-The goal is a dedicated search and detail CLI that `/scrape` can discover, not a
+The goal is a dedicated search and detail CLI that `scrape` can discover, not a
 new web search query that quietly remains fallback-only.
 
 ## 1. Classify the source
@@ -136,10 +136,10 @@ Create or update these files:
     └── tests/
 ```
 
-The `SKILL.md` frontmatter must include `name`, `version`, `description`,
-`context: fork`, and the exact `allowed-tools` command. Set `enabled: true` only
-after the live gates below pass. Its body documents the source, flags, examples,
-output shape, access limits, and known response quirks.
+The `SKILL.md` frontmatter must include `name`, `version`, `description`, and
+`enabled`. Do not add runtime-specific tool, context, model, or permission fields.
+Set `enabled: true` only after the live gates below pass. Its body documents the
+source, flags, examples, output shape, access limits, and known response quirks.
 
 If the source is intentionally fallback-only, do not create a fake enabled CLI.
 Keep the source query in `profile/search.md` and state
@@ -178,14 +178,14 @@ inconclusive rather than treating the limit as a parser failure.
 
 ## 7. Register and maintain it
 
-The `/scrape` skill discovers every enabled `SKILL.md` directly under
+The `scrape` skill discovers every enabled `SKILL.md` directly under
 `.agents/skills/*-search/`. No central registry is needed. After the live gates pass:
 
 1. Set `enabled: true` in the source skill.
-2. Add a fallback `site:` query to the two mirrored search-query files only when
-   it is useful during CLI outages.
+2. Add a fallback `site:` query to `profile/search.md` only when it is useful
+   during CLI outages.
 3. Keep the source's endpoint and field notes current in `url-reference.md`.
-4. On later `/scrape` health checks, treat empty results, null fields, HTML in
+4. On later `scrape` health checks, treat empty results, null fields, HTML in
    titles, invalid URLs, and detail failures as evidence to investigate.
 
 A new source is complete only when its CLI is discoverable, its output satisfies

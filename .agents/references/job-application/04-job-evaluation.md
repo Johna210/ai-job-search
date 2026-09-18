@@ -1,5 +1,5 @@
 ---
-framework_version: 1.1.0
+framework_version: 2.0.0
 ---
 
 # Job Evaluation Framework
@@ -24,7 +24,7 @@ Read the posting's eligibility / work rights / "who can apply" section **verbati
 
 **Report an eligibility failure to the user with the quoted source** rather than silently dropping the role. They may know something about their own status that the profile does not record.
 
-If the candidate's permit also constrains *hours* or *start date* (a student visa with a term-time cap, a permit that begins on graduation), record that as a second gate under this section during `/setup`, with the specific dates. Do not merge it with the eligibility question above — they fail for different reasons and need different answers.
+If the candidate's permit also constrains *hours* or *start date* (a student visa with a term-time cap, a permit that begins on graduation), record that as a second gate under this section during `setup`, with the specific dates. Do not merge it with the eligibility question above — they fail for different reasons and need different answers.
 
 A role that fails this gate is not scored and not drafted. Everything below applies only to roles that pass it.
 
@@ -42,9 +42,7 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** Python, Go, TypeScript, Backend systems (NestJS, Gin), REST APIs, PostgreSQL, MongoDB, Redis, Docker, Agentic RAG, LLM APIs (Gemini, Cohere), NLP, TensorFlow, scikit-learn
-**Moderate match areas:** Next.js (frontend), Flutter (mobile), AWS, gRPC, ASP.NET Core, C#
-**Weak match areas:** Senior leadership roles, pure data science (statistics-heavy), research-only positions, embedded systems, frontend-only roles
+Derive strong, moderate, and weak match areas from `profile/candidate.md`. Do not maintain a second skill inventory in this file.
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for?
@@ -56,9 +54,7 @@ Does work history align with what they're looking for?
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** Backend development (Go, NestJS, TypeScript), AI/ML integration (RAG, LLM APIs, NLP), API design, microservices
-**Moderate:** Full-stack development (Next.js + NestJS), mobile development (Flutter), DevOps (Docker, basic AWS)
-**Entry-level:** Team leadership, architecture decisions at scale, pure frontend roles, platform engineering
+Classify experience from the roles and projects in `profile/candidate.md`. Treat years, scope, leadership, and production claims literally.
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -73,10 +69,7 @@ Does the role and company culture match the behavioral profile?
 **Red flags to research:** Department disorganization, work dominated by maintenance over development, poor chemistry with leadership, culture mismatches. Check reviews, media coverage, LinkedIn connections, and network contacts for insider perspective.
 
 ### 4. Location & Logistics (Pass/Fail + Notes)
-- Remote: PASS (preferred)
-- Addis Ababa on-site: PASS
-- Requires relocation: FAIL (deal-breaker)
-- Frequent international travel: FLAG (discuss with user)
+Read location preferences and hard constraints from `profile/candidate.md` and `profile/search.md`. A hard constraint vetoes the score. An unclear travel, work-authorization, or relocation requirement is a visible flag.
 
 ### 5. Career Alignment & Motivation (0-100)
 Does this role advance career goals and contain tasks that energize?
@@ -88,20 +81,7 @@ Does this role advance career goals and contain tasks that energize?
 | 40-59 | Decent job but doesn't build toward career goals |
 | 0-39 | Dead end or backwards step |
 
-**Career goals:**
-- Build complex, impactful products with real user impact
-- Grow into a technical leadership role (tech lead / architect)
-- Work with modern AI/ML technologies in production
-
-**Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: Complex problem-solving, building new features end-to-end, integrating AI/ML into production systems, shipping working products
-- Tasks that drain: Maintenance-only work, unnecessary process overhead, large-team bureaucracy, support rotations
-- Non-task factors: small team size, learning culture, direct feedback, creative freedom
-
-**Life situation alignment:** Consider personal constraints:
-- **Security**: Recent graduate, entry-level salary expectations (50,000 ETB / $500 USD baseline)
-- **Flexibility**: Remote preferred, in-person OK in Addis Ababa
-- **Professional development**: Strong desire to learn and grow, values mentorship
+Read career goals and search constraints from `profile/candidate.md` and `profile/search.md`. Read energizing work, draining work, and environment preferences from `profile/behavior.md`. Do not infer a preference from age, location, or career stage.
 
 ### 6. Salary Benchmark (Optional)
 
@@ -151,7 +131,7 @@ Present the evaluation as:
 - [bullet points]
 
 ### Recommendation
-[1-2 sentences: apply/skip/apply with caveats]
+[1-2 sentences: apply, skip, or apply with caveats]
 
 ### Company Research Checklist
 - [ ] Checked company website (mission, values, recent news)

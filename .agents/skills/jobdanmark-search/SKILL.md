@@ -16,7 +16,7 @@ description: >
   ledige job, ansøgningsfrist, søg job, job opslaget, jobopslag, danish vacancies,
   work in denmark, employment denmark, job denmark, jobs near me denmark,
   apprentice denmark, internship denmark, part-time denmark, full-time denmark.
-enabled: true  # set to false to keep this portal installed but have /scrape skip it
+enabled: true  # set to false to keep this portal installed but have scrape skip it
 ---
 
 # Jobdanmark Search Skill

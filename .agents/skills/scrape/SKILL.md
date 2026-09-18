@@ -2,9 +2,9 @@
 name: scrape
 description: >
   Finds new job postings matching your profile via installed portal-search CLIs
-  (LinkedIn, local job boards, and any skills added with /add-portal). Deduplicates
+  (LinkedIn, local job boards, and any skills added with add-portal). Deduplicates
   across runs. Triggers on: job scrape, find jobs, search jobs, new jobs, job search,
-  scrape jobs, /scrape
+  scrape jobs, scrape
 ---
 
 # Job Scraper
@@ -24,12 +24,12 @@ The user triggers this skill by saying things like:
 - "Find new jobs"
 - "Scrape for jobs"
 - "Any new positions?"
-- "/scrape"
+- "scrape"
 
 Optional arguments:
-- A focus area, e.g. "/scrape data science" or "/scrape geophysics"
-- "broad" to run all search categories, e.g. "/scrape broad"
-- "health" to run the portal health check only (Step 4.75), without searching, deduplicating, or presenting jobs - e.g. "/scrape health", or "/scrape health jobnet" to probe one portal even if disabled
+- A focus area, e.g. "scrape data science" or "scrape geophysics"
+- "broad" to run all search categories, e.g. "scrape broad"
+- "health" to run the portal health check only (Step 4.75), without searching, deduplicating, or presenting jobs - e.g. "scrape health", or "scrape health jobnet" to probe one portal even if disabled
 
 ---
 
@@ -57,7 +57,7 @@ If this fails (bun not installed), skip to **1c (web search fallback)** for all 
 
 #### 1b. Run CLI tools (primary — run these in parallel where possible)
 
-Discover all installed portal CLI skills by reading every `SKILL.md` found under `.agents/skills/*-search/SKILL.md`. Each file documents that portal's exact CLI flags and usage examples. **Use each portal's own documented interface — do not guess flags.** This approach automatically includes any new portals added via `/add-portal` without requiring changes to this file.
+Discover all installed portal CLI skills by reading every `SKILL.md` found under `.agents/skills/*-search/SKILL.md`. Each file documents that portal's exact CLI flags and usage examples. **Use each portal's own documented interface — do not guess flags.** This approach automatically includes any new portals added via `add-portal` without requiring changes to this file.
 
 **Honor the `enabled` toggle.** A portal is enabled unless its `SKILL.md` frontmatter sets `enabled: false` (a missing key means enabled — the default). Skip each disabled portal and record it for the Step 5 summary. A fork can thus keep a portal installed but sit out a run without deleting its directory.
 
@@ -133,7 +133,7 @@ For each new job, do a rapid fit check (NOT the full evaluation from `04-job-eva
 
 The `portal` field records which CLI skill produced the job (results are already tagged per portal in Step 1b - persist that tag here). Entries written before this field existed lack it; the health check (Step 4.75) attributes those by matching the URL's domain against each portal's base URL, so do not backfill.
 
-`/rank` extends this schema additively: ranked entries also carry `rank_score` (0–100 overall score), `rank_verdict` (fit band, e.g. "strong fit"), and `rank_date` (ISO date of ranking). The `status` field is set to `"ranked"`. Do not drop any of these fields when re-writing entries.
+`rank` extends this schema additively: ranked entries also carry `rank_score` (0–100 overall score), `rank_verdict` (fit band, e.g. "strong fit"), and `rank_date` (ISO date of ranking). The `status` field is set to `"ranked"`. Do not drop any of these fields when re-writing entries.
 
 2. Only present jobs NOT already in the seen list or tracker.
 
@@ -167,14 +167,14 @@ Scraper-based portal CLIs rot silently: when a portal changes its markup, the pa
 
 **Free pass (no extra requests).** For each enabled portal that ran in Step 1b:
 
-- **Degraded scan:** inspect the results it returned this run. Flags: `company` null or empty on every result, empty titles, undecoded entities (`&amp;`) or HTML fragments in titles, URLs that do not point at the portal. Any of these means the parser is half-working and `/scrape` is silently collecting junk.
+- **Degraded scan:** inspect the results it returned this run. Flags: `company` null or empty on every result, empty titles, undecoded entities (`&amp;`) or HTML fragments in titles, URLs that do not point at the portal. Any of these means the parser is half-working and `scrape` is silently collecting junk.
 - **Yield history:** if the portal returned zero results across all of this run's queries, check whether `seen_jobs.json` holds prior entries from it (via the `portal` field, or by matching URL domains for entries predating the field). A portal that produced jobs on earlier runs and produces nothing now is suspect - the same queries worked before.
 
 **Escalation (bounded, on suspicion only).** A suspect portal gets **one** sentinel probe: run its documented `search` with the example query from its own SKILL.md (that query provably worked when the skill was registered), the portal's limit flag capped at 3, `--format json`. If that returns nothing, retry **once** with a single common word. Only then is the verdict **broken**. A 429 or block page is **never** evidence of breakage - record the portal as **inconclusive (rate-limited)**, back off, and do not retry.
 
 **Verdicts.** Healthy portals get silence - no table, no line. Anything else surfaces in the Step 5 summary as a health line.
 
-**Probe-only mode (`/scrape health`).** Skip Steps 1-4 and this step's free pass (there is no fresh run to scan); instead probe every installed portal directly - enabled ones by default, a disabled one only when named explicitly (e.g. `/scrape health jobnet`). Each portal gets the sentinel probe above, the degraded criteria applied to whatever it returns, and - since the user explicitly asked for diagnosis - one `detail` fetch on the first result of each healthy portal (description must be readable decoded text; a failure downgrades to degraded). Report all statuses in this mode, including healthy. Volume stays bounded: one search, at most one retry, at most one detail per portal.
+**Probe-only mode (`scrape health`).** Skip Steps 1-4 and this step's free pass (there is no fresh run to scan); instead probe every installed portal directly - enabled ones by default, a disabled one only when named explicitly (e.g. `scrape health jobnet`). Each portal gets the sentinel probe above, the degraded criteria applied to whatever it returns, and - since the user explicitly asked for diagnosis - one `detail` fetch on the first result of each healthy portal (description must be readable decoded text; a failure downgrades to degraded). Report all statuses in this mode, including healthy. Volume stays bounded: one search, at most one retry, at most one detail per portal.
 
 ### Step 5: Present Results
 
@@ -183,7 +183,7 @@ portals (`enabled: false`), report them with the `skipped (disabled):` line belo
 so opting one out stays visible rather than silent; omit the line when nothing
 was skipped. When Step 4.75 found a portal degraded, broken, or inconclusive,
 add one `health:` line per suspect portal (healthy portals get no line); after
-the report, offer to set that portal's `enabled: false` so `/scrape` stops
+the report, offer to set that portal's `enabled: false` so `scrape` stops
 running it (and covers it via the Step 1c fallback) until it is fixed - only
 edit the toggle with the user's confirmation, and never edit anything else in
 the skill.
@@ -220,9 +220,9 @@ LinkedIn search links:
 After presenting, ask:
 > "Want me to evaluate any of these in detail? Just give me the number(s)."
 
-If the user picks a number, invoke the **job-application-assistant** skill workflow (fit evaluation first, then CV + cover letter if approved).
+If the user picks a number, invoke the **apply** skill workflow. Evaluate fit first, then draft the CV and cover letter only after approval.
 
-If the run found many new jobs (roughly 8+), also suggest `/rank` - it batch-scores all new postings against the full fit framework and returns a ranked shortlist, which beats eyeballing a long table. (`/rank` sets the `ranked` and `expired` status values in `seen_jobs.json`; treat both as already-seen for dedup purposes.)
+If the run found many new jobs (roughly 8+), also suggest `rank` - it batch-scores all new postings against the full fit framework and returns a ranked shortlist, which beats eyeballing a long table. (`rank` sets the `ranked` and `expired` status values in `seen_jobs.json`; treat both as already-seen for dedup purposes.)
 
 ### Step 6: Update Tracker (Optional)
 

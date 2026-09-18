@@ -3,7 +3,7 @@ name: apply
 description: Draft tailored CV and cover letter for a job posting
 ---
 
-# /apply - Drafter-Reviewer Job Application Workflow
+# apply - Drafter-Reviewer Job Application Workflow
 
 The user provides the job posting as a URL or pasted text.
 
@@ -36,7 +36,7 @@ This rule is the input side of the Step 3 Factual Grounding Audit. The audit rem
 ## Step 1: DRAFTER - Evaluate Fit
 
 Read the evaluation framework:
-- `.agents/skills/job-application-assistant/04-job-evaluation.md`
+- `.agents/references/job-application/04-job-evaluation.md`
 - `profile/candidate.md`
 
 Using the framework from `04-job-evaluation.md`, evaluate the job posting against the candidate's profile. If the salary lookup tool is configured, run:
@@ -67,11 +67,11 @@ After presenting the evaluation, ask the user:
 You already have `profile/candidate.md` and `04-job-evaluation.md` in context from Step 1. **Do not re-read them.**
 
 Read only the reference files you do not yet have:
-- `.agents/skills/job-application-assistant/03-writing-style.md`
-- `.agents/skills/job-application-assistant/05-cv-templates.md`
-- `.agents/skills/job-application-assistant/06-cover-letter-templates.md`
+- `.agents/references/job-application/03-writing-style.md`
+- `.agents/references/job-application/05-cv-templates.md`
+- `.agents/references/job-application/06-cover-letter-templates.md`
 
-**Resolve the active template (do this once, reuse everywhere below):** if `05-cv-templates.md` or `06-cover-letter-templates.md` opens with an `ACTIVE-TEMPLATE` managed block (inserted by `/add-template`), read its declared **source extension** and **compile command** — these override the stock `.tex`/lualatex (CV) and `.tex`/xelatex (cover letter) defaults for the rest of this workflow. Call these `<CV_EXT>`/`<CV_COMPILE>` and `<COVER_EXT>`/`<COVER_COMPILE>`; where no block is present, they default to `.tex`, the stock lualatex command, and the stock xelatex command respectively. Every `.tex` reference below is really `<CV_EXT>` or `<COVER_EXT>` — stock behavior is unchanged, this only matters when a custom template is active.
+**Resolve the active template (do this once, reuse everywhere below):** if `05-cv-templates.md` or `06-cover-letter-templates.md` opens with an `ACTIVE-TEMPLATE` managed block (inserted by `add-template`), read its declared **source extension** and **compile command** — these override the stock `.tex`/lualatex (CV) and `.tex`/xelatex (cover letter) defaults for the rest of this workflow. Call these `<CV_EXT>`/`<CV_COMPILE>` and `<COVER_EXT>`/`<COVER_COMPILE>`; where no block is present, they default to `.tex`, the stock lualatex command, and the stock xelatex command respectively. Every `.tex` reference below is really `<CV_EXT>` or `<COVER_EXT>` — stock behavior is unchanged, this only matters when a custom template is active.
 
 Also read the most recent existing CV and cover letter files for concrete structural reference (one of each is enough):
 - Read any existing `cv/main_*<CV_EXT>` file as a structural reference
@@ -130,8 +130,8 @@ Use web search and page fetch to research, starting **only** from the company id
 Read these reference files — and only these — to ground your critique:
 - `profile/candidate.md`
 - `profile/behavior.md` — use this specifically to check whether the cover letter's voice matches the candidate's natural register. A "Collaborator" PI profile, for example, should not be given a combative, solo-hero tone; a "Persuader" profile should not be given over-hedged, apologetic phrasing.
-- `.agents/skills/job-application-assistant/03-writing-style.md`
-- `.agents/skills/job-application-assistant/04-job-evaluation.md`
+- `.agents/references/job-application/03-writing-style.md`
+- `.agents/references/job-application/04-job-evaluation.md`
 - The master CV baseline template (`cv/main_example.tex`) for structure only
 
 Do NOT read `05-cv-templates.md` or `06-cover-letter-templates.md` — those govern template structure the drafter already applied and are not needed for content critique.
@@ -191,13 +191,13 @@ Return Part A and Part B together as a single structured message.
 
 Once the reviewer agent returns its feedback:
 
-1. **Apply Part A (structured edits) directly with targeted file edits.** Do NOT re-read the draft files — you already have them in context from Step 2, and the reviewer's `old_string` values were quoted from that same text. For each edit in the JSON array, call `Edit` with the given `file`, `old_string`, and `new_string`. Skip any whose rationale would require fabricating content.
+1. **Apply Part A (structured edits) directly with targeted file edits.** Do NOT re-read the draft files — you already have them in context from Step 2, and the reviewer's `old_string` values were quoted from that same text. For each edit in the JSON array, replace the unique `old_string` in `file` with `new_string`. Skip any whose rationale would require fabricating content.
 2. **Apply Part B (narrative suggestions)** using judgment. These need interpretation, not mechanical replacement. Walk through every Part B category the reviewer returned and address it:
    - **Missed keywords/requirements:** add the keyword or capability where it fits naturally in the CV or cover letter. Prefer the experience bullets (concrete evidence) over the profile statement (abstract claim).
    - **Company/department-specific angles:** weave the reviewer's research into the cover letter opening or motivation paragraph. Verify every company claim via page fetch/web search before including it — do not trust reviewer research at face value.
    - **Action-oriented reframing:** rewrite passive or generic phrasing (CV profile statement, cover letter opening, bullet leads). Structural weakness that the reviewer flagged without a clean JSON edit lives here.
    - **Tone and style issues:** apply the writing-style-guide fixes (no em-dashes, no cliches, no apologetic hedging, consistent first-person active voice).
-   Use Edit for targeted changes; only re-read a file if an edit fails because the surrounding text has shifted.
+   Make targeted changes; only re-read a file if an edit fails because the surrounding text has shifted.
 3. Do NOT incorporate any suggestion that would fabricate skills or experience. If a posting requirement is a genuine gap, acknowledge it honestly and frame adjacent experience instead.
 
 After all edits are applied, the two files on disk are the final drafts.
@@ -219,7 +219,7 @@ cd ../cover_letters && xelatex -interaction=nonstopmode cover_<company>_<role>.t
 
 - **Stock CV** uses **lualatex** — pdflatex fails on modern MiKTeX with fontawesome5 font-expansion errors. lualatex handles the same sources cleanly. If `luatexbase.sty` is missing (some TeX Live installs), install the `luatex` package (`tlmgr install luatex` / `apt install texlive-luatex`).
 - **Stock cover letter** uses **xelatex** — cover.cls requires fontspec.
-- **Custom template active:** run its declared `<CV_COMPILE>`/`<COVER_COMPILE>` command instead, substituting the actual filename for `<file>`. Never fall back to lualatex/xelatex when a custom template's compile command is a different toolchain (e.g. `typst compile`) — that command is what the manifest actually verified in `/add-template` Step 4.
+- **Custom template active:** run its declared `<CV_COMPILE>`/`<COVER_COMPILE>` command instead, substituting the actual filename for `<file>`. Never fall back to lualatex/xelatex when a custom template's compile command is a different toolchain (e.g. `typst compile`) — that command is what the manifest actually verified in `add-template` Step 4.
 
 If either compile fails, fix the error and re-compile until clean.
 
@@ -268,7 +268,7 @@ Read the `.txt` file.
 
 - [ ] **Text extracted at all**, with no garbage runs: no `(cid:NNN)` markers, no `�` replacement characters, no stretches of missing text that are visible in the PDF
 - [ ] **Email and phone survive as literal text.** Icon fonts extract as glyph names (the stock template's contact line extracts as `MOBILE-ALT [+XX ...] • Envelope [your.email@...]`) — that noise is harmless, but the actual address and digits must be present. A contact detail carried only by an icon or a hyperlink target (like the `LinkedIn` link text) is invisible to an ATS; the email must be printed as text.
-- [ ] **Reading order matches the visual order** — section headings appear in the same sequence as on the page, and lines from different sections are not interleaved. The stock banking template is single-column and safe; custom templates registered via `/add-template` with sidebars or multi-column layouts are where this breaks.
+- [ ] **Reading order matches the visual order** — section headings appear in the same sequence as on the page, and lines from different sections are not interleaved. The stock banking template is single-column and safe; custom templates registered via `add-template` with sidebars or multi-column layouts are where this breaks.
 - [ ] **Dates recognizable** — each role and degree has its years present in the extraction.
 
 Failures here are template-level problems: fix them in the `<CV_EXT>` source (e.g. print the email as text rather than icon-only), then re-run 5a–5c and re-extract. If a custom template's layout fundamentally scrambles extraction order, tell the user prominently — they may be trading ATS compatibility for looks.
@@ -315,12 +315,12 @@ Tell the user: "Both files are ready for your review. Open them to check the fin
 
 ### Application-Form Fields (Optional Third Artifact)
 
-Check whether the posting or the portal it came from asks for free-text fields the CV and cover letter don't cover — a self-introduction paragraph, structured project entries, a character-limited pitch, or a motivation/competency question under a word cap (see `.agents/skills/job-application-assistant/08-application-forms.md`, "When this applies"). If it does, or the user has already mentioned the portal, offer it in the same turn:
+Check whether the posting or the portal it came from asks for free-text fields the CV and cover letter don't cover — a self-introduction paragraph, structured project entries, a character-limited pitch, or a motivation/competency question under a word cap (see `.agents/references/job-application/08-application-forms.md`, "When this applies"). If it does, or the user has already mentioned the portal, offer it in the same turn:
 
 > "This posting has free-text application fields I can draft too — [name the specific fields, e.g. a self-introduction paragraph and structured project entries]. Want those drafted?"
 
 **Only on yes**, read `08-application-forms.md` and draft the fields per its rules, grounded against `profile/candidate.md`. Save per that file's "Output format" section. **On no, or when the posting has no such fields, say nothing further and move on** — this is an optional addition and never changes the default two-document output.
 
 ### Next Steps
-- **Submitted?** `/outcome <company>` logs it in the tracker and starts the per-application record that `/setup` later uses to calibrate the fit framework.
-- **Interview scheduled?** `/interview` builds a stage-specific prep pack from this posting and the documents you just created.
+- **Submitted?** Ask to record the outcome for the company. This updates the tracker and starts the per-application history.
+- **Interview scheduled?** `interview` builds a stage-specific prep pack from this posting and the documents you just created.

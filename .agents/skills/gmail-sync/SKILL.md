@@ -3,11 +3,11 @@ name: gmail-sync
 description: Sync application status from Gmail
 ---
 
-# /gmail-sync - Sync Application Status from Gmail
+# gmail-sync - Sync Application Status from Gmail
 
-You are scanning the user's Gmail for status signals on tracked job applications (interview invites, assessment links, offers, rejections) and, once approved, writing the detected changes into `job_search_tracker.csv` and `documents/applications/<company>_<role>/outcome.md` - the same two places `/outcome` writes to, in the same schema.
+You are scanning the user's Gmail for status signals on tracked job applications (interview invites, assessment links, offers, rejections) and, once approved, writing the detected changes into `job_search_tracker.csv` and `documents/applications/<company>_<role>/outcome.md` - the same two places `outcome` writes to, in the same schema.
 
-Unlike `/outcome` (which asks the user what happened), `/gmail-sync` classifies real emails on its own - but it never writes on its own. Every classified change is presented as a batch **before** anything touches the tracker or `outcome.md`, and only proceeds once the user approves it (approving the whole batch at once is fine; writing first and flagging it after is not). Because a wrong write silently corrupts application history that `/setup` later calibrates from, every proposed change must cite its source email and every uncertain case must be surfaced instead of guessed. Never treat this command's job as "notice something in an inbox" - it is "propose a correct, sourced line for a permanent record, and write it only once the user says yes."
+Unlike `outcome`, which asks the user what happened, `gmail-sync` classifies real emails. It never writes without approval. Present every classified change as a batch before touching the tracker or `outcome.md`. Cite the source email for each proposed change and show uncertain cases instead of guessing.
 
 Follow these steps **in order**.
 
@@ -24,16 +24,16 @@ Confirm that the current session exposes authenticated Gmail integration tools. 
 the user's request may contain:
 
 - Nothing → default lookback (see Step 3)
-- A company name, e.g. `/gmail-sync acme` → scope the search to that one tracked application
+- A company name, e.g. `gmail-sync acme` → scope the search to that one tracked application
 - `since <YYYY-MM-DD>` → override the lookback start date for this run only (does not change the persisted state file)
 
 ---
 
 ## Step 2: Load State
 
-1. Read `job_search_tracker.csv`. If it does not exist, tell the user there is nothing to sync against yet (suggest `/outcome` or `/apply` first) and stop. Do not create it here - `/gmail-sync` never originates new applications, only updates existing ones.
+1. Read `job_search_tracker.csv`. If it does not exist, tell the user there is nothing to sync against yet (suggest `outcome` or `apply` first) and stop. Do not create it here - `gmail-sync` never originates new applications, only updates existing ones.
 2. Read `gmail_sync/state.json` (create if missing: `{"last_sync": null, "processed_message_ids": []}`).
-3. Build the set of **open applications**: tracker rows whose `status` is not a final value (`hired`, `rejected`, `no response`, `offer declined`, `withdrawn`). For each, derive its archive folder `documents/applications/<company>_<role>/` (lowercase, underscores - same convention as `/outcome`) and check whether `outcome.md` exists there.
+3. Build the set of **open applications**: tracker rows whose `status` is not a final value (`hired`, `rejected`, `no response`, `offer declined`, `withdrawn`). For each, derive its archive folder `documents/applications/<company>_<role>/` (lowercase, underscores - same convention as `outcome`) and check whether `outcome.md` exists there.
 4. If the user's request named a company, filter this set to the matching row(s) (case-insensitive). No match → tell the user and stop, do not guess.
 
 ---
@@ -77,7 +77,7 @@ For a matched message, classify by content (require the signal phrase in the sub
 | Offer extended | "pleased to offer", "extend an offer", "offer letter" | `offer` | Tick "Offer received" checkbox. **Never propose `hired` or `offer_declined` from an email** - accepting or declining is the user's decision, not something to infer. Flag prominently in the Step 6 summary as needing the user's decision, separate from the plain approve/skip table. |
 | Rejection | "moving forward with other candidates", "not selected", "unable to proceed", "decided not to continue" | `rejected` | Set `Status: rejected`, `Date resolved:` to the email's date |
 
-**Conflict rule:** if the classified signal contradicts the application's current final-ness (e.g. a "moving forward" email arrives for a company whose tracker row briefly shows a `rejected`-adjacent recent write already, or a rejection arrives after an offer was already proposed this run) - do not propose overwriting it. Record it as a conflict in Step 6 for manual `/outcome` resolution instead.
+**Conflict rule:** if the classified signal contradicts the application's current final-ness (e.g. a "moving forward" email arrives for a company whose tracker row briefly shows a `rejected`-adjacent recent write already, or a rejection arrives after an offer was already proposed this run) - do not propose overwriting it. Record it as a conflict in Step 6 for manual `outcome` resolution instead.
 
 ---
 
@@ -96,7 +96,7 @@ Scanned N threads (M new messages) since <lookback date>.
 | 1 | ... | ... | Interview invite | applied -> interview | "Subject line" (2026-07-10) |
 | 2 | ... | ... | Offer extended | interview -> offer | "Subject line" (2026-07-12) |
 
-### Needs Manual Review (conflicting signal - not proposed, use /outcome)
+### Needs Manual Review (conflicting signal - not proposed, use outcome)
 - **<Company>** - <what conflicted and why it wasn't proposed>
 
 ### Unmatched Emails (no change proposed)
@@ -124,12 +124,12 @@ Approving the whole batch in one reply is expected UX - the requirement is that 
 
 For every row the user approved:
 
-1. **Tracker (`job_search_tracker.csv`):** update the matched row's `status` column per the Step 5 table, and append to `notes`: `<date> gmail-sync: <signal> ("<email subject>")`. Never restructure the CSV, reorder rows, or touch unrelated rows - same rule `/outcome` follows.
+1. **Tracker (`job_search_tracker.csv`):** update the matched row's `status` column per the Step 5 table, and append to `notes`: `<date> gmail-sync: <signal> ("<email subject>")`. Never restructure the CSV, reorder rows, or touch unrelated rows - same rule `outcome` follows.
 2. **`outcome.md`:** tick the relevant stage checkbox (adding the date in parentheses) or update `Status`/`Date resolved` per the table. Append a dated entry to `## Notes`, never overwrite existing Notes history:
    ```
-   YYYY-MM-DD (via /gmail-sync): <one-line summary of what the email said>. Source: "<subject>" from <sender>, <email date>.
+   YYYY-MM-DD (via gmail-sync): <one-line summary of what the email said>. Source: "<subject>" from <sender>, <email date>.
    ```
-3. If no archive folder/`outcome.md` exists yet for a matched application (it was added to the tracker outside `/apply`/`/outcome`), create the folder and a minimal `outcome.md` following the exact format in `documents/README.md`, same as `/outcome` would.
+3. If no archive folder/`outcome.md` exists yet for a matched application (it was added to the tracker outside `apply`/`outcome`), create the folder and a minimal `outcome.md` following the exact format in `documents/README.md`, same as `outcome` would.
 
 Rows the user skipped are left untouched - no tracker write, no `outcome.md` write - but their message IDs are still marked processed in Step 8, so the same email isn't re-proposed every run.
 
@@ -163,7 +163,7 @@ Confirm what actually happened, distinct from the Step 6 proposal:
 - **<Company>** - <signal> declined by user.
 
 ### Offers Requiring Your Decision
-- **<Company>** - offer written 2026-07-12 ("<subject>"). Tracker set to `offer`; run `/outcome <company>` to record accept/decline once you decide.
+- **<Company>** - offer written 2026-07-12 ("<subject>"). Tracker set to `offer`; run `outcome <company>` to record accept/decline once you decide.
 
 ### Stale Applications (30+ days, no activity)
 - **<Company>** - last activity YYYY-MM-DD, still `<status>`.
@@ -171,7 +171,7 @@ Confirm what actually happened, distinct from the Step 6 proposal:
 
 If nothing was proposed this run, a brief note is enough instead of an empty summary.
 
-If this run pushed the count of applications with a **final** `outcome.md` status to 3+ (or resolved a second application sharing a pattern), suggest the same `/setup` Path A calibration handoff `/outcome` suggests - do not duplicate that logic, just point the user there.
+If several outcomes show the same pattern, mention the pattern in the summary without changing profile or evaluation files.
 
 ---
 
@@ -179,9 +179,9 @@ If this run pushed the count of applications with a **final** `outcome.md` statu
 
 1. **Classify from full email bodies, never snippets.** A status-changing proposal requires having actually fetched and read the message via `get_thread`/`get_message`.
 2. **Nothing is written before the user approves the Step 6 batch.** Approving everything in one reply is fine UX; writing first and flagging it after is not.
-3. **Never propose `hired` or `offer_declined`.** Those require the user's real-world decision; `/gmail-sync` stops at proposing `offer` and flags it.
+3. **Never propose `hired` or `offer_declined`.** Those require the user's real-world decision; `gmail-sync` stops at proposing `offer` and flags it.
 4. **A conflicting signal against an already-final or already-written status is a manual-review flag, not a proposed overwrite.** When in doubt, don't propose it - surface it.
-5. **Append-only to `outcome.md` Notes**, same as `/outcome`. Never rewrite or delete existing history.
+5. **Append-only to `outcome.md` Notes**, same as `outcome`. Never rewrite or delete existing history.
 6. **Idempotent by message ID.** Re-running must never re-propose, or duplicate a tracker note or Notes entry for, the same email.
 7. **Never fabricate a match.** If the company can't be confidently identified from the email, it goes in "Unmatched," not a guess.
 8. **Read-only against Gmail itself.** This command reads and classifies; it does not label, archive, or delete anything in the user's mailbox.

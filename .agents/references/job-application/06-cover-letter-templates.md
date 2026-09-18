@@ -1,5 +1,5 @@
 ---
-framework_version: 1.0.2
+framework_version: 2.0.0
 ---
 
 # Cover Letter Templates and Tailoring Guide

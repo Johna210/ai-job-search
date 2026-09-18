@@ -3,14 +3,14 @@ name: html-report
 description: Generate application tracker dashboard
 ---
 
-# /html-report - Generate Application Tracker Dashboard
+# html-report - Generate Application Tracker Dashboard
 
 Generate a self-contained HTML dashboard from `job_search_tracker.csv` and the application archives under `documents/applications/`. The output is a single `.html` file — no server, no dependencies — that can be opened directly in a browser.
 
 ## Step 0: Parse Arguments
 
 - No argument → output to `reports/application-dashboard.html`
-- A path argument (e.g. `/html-report ~/Desktop/report.html`) → use that path
+- A path argument (e.g. `html-report ~/Desktop/report.html`) → use that path
 - `--open` flag → after writing, tell the user to open the file (cannot open a browser directly)
 
 Create `reports/` if it does not exist.
@@ -53,7 +53,7 @@ From the normalised data compute:
 
 Write a single self-contained HTML file. All CSS is inline in a `<style>` block. All JS is inline in a `<script>` block. Draw the doughnut and bar charts as hand-generated inline SVG — no Chart.js, no CDN, no external dependencies of any kind. The report must render fully offline on every open.
 
-**Escaping (required):** HTML-escape every CSV/outcome-file value (`&` `<` `>` `"` `'`) before interpolating it into the page — this includes table cells, `title` attributes on truncated notes, and any text placed inside SVG (`<text>` labels, chart tooltips). Notes and company names copied from job postings routinely contain these characters; unescaped, they break the layout or inject markup into a page the user opens routinely.
+**Escaping (required):** HTML-escape every CSVoutcome-file value (`&` `<` `>` `"` `'`) before interpolating it into the page — this includes table cells, `title` attributes on truncated notes, and any text placed inside SVG (`<text>` labels, chart tooltips). Notes and company names copied from job postings routinely contain these characters; unescaped, they break the layout or inject markup into a page the user opens routinely.
 
 ### Layout
 
@@ -127,7 +127,7 @@ Then present:
 > - Active: N · Interview: N · Hired: N · Rejected/Closed: N
 > - Funnel: N% progressed past resume screen
 >
-> Re-run `/html-report` any time after adding new entries via `/outcome` to refresh the dashboard.
+> Re-run `html-report` any time after adding new entries via `outcome` to refresh the dashboard.
 
 ---
 

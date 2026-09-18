@@ -3,7 +3,7 @@ name: add-portal
 description: Generate a job-portal search skill for your local market
 ---
 
-# /add-portal - Generate a Job-Portal Search Skill for Your Local Market
+# add-portal - Generate a Job-Portal Search Skill for Your Local Market
 
 You are helping the user build a job-portal search skill for a job board in their market. The repo ships worked examples of the pattern (four Danish portals plus the country-agnostic `linkedin-search` and `freehire-search`), and the README invites users elsewhere to build equivalents — this command turns that invitation into a guided workflow: investigate the portal, scaffold the skill from the canonical structure, and test-run a live query before registering anything.
 
@@ -78,7 +78,7 @@ Create `.agents/skills/<name>/` with:
 
 ### The portal-skill contract (every generated skill MUST honor this)
 
-These conventions are what make portal skills interchangeable for `/scrape` and for users reading any skill's docs:
+These conventions are what make portal skills interchangeable for `scrape` and for users reading any skill's docs:
 
 - **Commands:** `search` and `detail <id|url>`.
 - **Search flags:** `--query`/`-q`, `--jobage <days>` (posting age; map to the portal's parameter, note in SKILL.md if unsupported), `--page <n>` (1-indexed), `--limit <n>` (client-side cap), `--format json|table|plain` (default `json`). Add `--location`/`-l` if the portal supports location as a parameter; if it only supports location inside the keyword query, document that in SKILL.md the way `jobindex-search` does ("include the city in `--query`").
@@ -90,7 +90,7 @@ These conventions are what make portal skills interchangeable for `/scrape` and 
 
 ### File specifics
 
-- **`SKILL.md` frontmatter:** `name`, `version: 1.0.0`, a `description` written for skill triggering - it must name the portal, the market, and include trigger phrases in English **and** the market's language; `context: fork`; `allowed-tools: Bash(bun run skills/<name>/cli/src/cli.ts *)`.
+- **`SKILL.md` frontmatter:** `name`, `version: 1.0.0`, `enabled: true`, and a `description` written for skill triggering. The description must name the portal and market and include trigger phrases in English and the market's language. Keep the frontmatter portable; do not add runtime tool or context fields.
 - **`SKILL.md` body:** what the skill searches, the personal-use warning if Step 2 found terms restrictions, command reference with flags, 4-6 usage examples using the user's market (real cities, realistic roles), output-format table, and a Notes section recording portal quirks found in Step 2.
 - **`url-reference.md`:** the endpoints, parameters table, and response-structure notes from Step 2 - this is the file a future maintainer needs when the portal changes its markup.
 - **`package.json`:** name `<portal>-cli`, `"type": "module"`, scripts `start`, `test` (`bun test --timeout 30000`), and `typecheck` (`tsc --noEmit`); dev-only dependencies in the zero-dependency default.
@@ -125,8 +125,8 @@ Do not proceed to Step 5 until search, detail, and tests all pass.
 
 ## Step 5: Register
 
-1. Ask whether the user wants the new portal added to their `/scrape` search strategy. If yes:
-   - The portal CLI itself is already picked up automatically by `/scrape` (it discovers `.agents/skills/*-search/SKILL.md`) — no further wiring is needed for CLI search/detail.
+1. Ask whether the user wants the new portal added to their `scrape` search strategy. If yes:
+   - The portal CLI itself is already picked up automatically by `scrape` (it discovers `.agents/skills/*-search/SKILL.md`) — no further wiring is needed for CLI search/detail.
    - Optionally add web search/`site:` placeholder queries for that board in `profile/search.md` (use the `[YOUR_JOB_BOARD]` style placeholders already there) so the fallback path still covers the board if the CLI is unavailable.
 2. Remind the user to add the install line for their own records if they maintain a fork README:
    ```bash

@@ -4,7 +4,7 @@
   "permission": {
     "skill": {
       "*": "ask",
-      "job-application-assistant": "allow",
+      "apply": "allow",
       "scrape": "allow",
       "upskill": "allow"
     },

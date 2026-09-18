@@ -181,7 +181,7 @@ jobs:
         working-directory: .agents/skills/${{ matrix.tool }}/cli
 
   placeholder-integrity:
-    name: Placeholder integrity (upstream template only)
+    name: Document template integrity (upstream template only)
     if: github.repository == 'MadsLorentzen/ai-job-search'
     runs-on: ubuntu-latest
     steps:
@@ -195,8 +195,6 @@ jobs:
               fail=1
             fi
           }
-          check profile/candidate.md '\[YOUR_NAME\]'
           check cv/main_example.tex '\[YOUR_NAME\]'
           check cover_letters/cover_example.tex '\[YOUR NAME\]'
-          check .agents/skills/job-application-assistant/04-job-evaluation.md '\[YOUR_PRIMARY_SKILLS\]'
           exit $fail

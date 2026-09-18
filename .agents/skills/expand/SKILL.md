@@ -3,7 +3,7 @@ name: expand
 description: Discover competencies from documents and online presence
 ---
 
-# /expand - Competency Expansion from Documents and Online Presence
+# expand - Competency Expansion from Documents and Online Presence
 
 You are enriching the candidate profile by discovering competencies hidden in documents and public online presence. This command is additive only — it never modifies existing profile content, only extends it.
 
@@ -128,7 +128,7 @@ Remove anything already present in `profile/candidate.md` or `profile/behavior.m
 Present all new competencies for the user's review before writing anything. Format:
 
 ```
-## /expand found [N] new competency signals across [M] sources
+## expand found [N] new competency signals across [M] sources
 
 **COURSES & CERTIFICATIONS**
 Source: [Course/cert name — Provider]
@@ -178,7 +178,7 @@ Apply only the confirmed items. Make targeted edits to add to the relevant secti
 - Domain knowledge → append to the Domain Knowledge or Technical Skills section (match the existing structure)
 - Methods and practices → append appropriately
 
-For each addition, add a brief source annotation in a comment or parenthetical: *(Coursera — Deep Learning Specialisation)*, *(GitHub — project-name)*, etc. This makes future `/expand` runs idempotent.
+For each addition, add a brief source annotation in a comment or parenthetical: *(Coursera — Deep Learning Specialisation)*, *(GitHub — project-name)*, etc. This makes future `expand` runs idempotent.
 
 ### Additions to `profile/behavior.md`
 - Soft/behavioral signals → append to the "Strongest Behavioral Traits" or "How I Work Best" section (match existing structure)
@@ -191,7 +191,7 @@ For each addition, add a brief source annotation in a comment or parenthetical: 
 After writing, present:
 
 ```
-## /expand Complete
+## expand Complete
 
 ### Added to profile/candidate.md
 [List each competency added, with source]

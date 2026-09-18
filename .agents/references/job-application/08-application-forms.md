@@ -1,10 +1,10 @@
 ---
-framework_version: 1.0.0
+framework_version: 2.0.0
 ---
 
 # Application Form Fields
 
-`/apply` produces two artifacts: a CV and a cover letter. Many applications need a **third** — free-text fields typed directly into an application portal. Graduate programs, large-employer ATS systems and startup forms routinely ask for things neither document covers, under a character or word limit, in a box with no formatting.
+`apply` produces two artifacts: a CV and a cover letter. Many applications need a **third** — free-text fields typed directly into an application portal. Graduate programs, large-employer ATS systems and startup forms routinely ask for things neither document covers, under a character or word limit, in a box with no formatting.
 
 This file governs that third artifact. It is not a document you compile; it is text the candidate pastes.
 

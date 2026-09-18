@@ -1,5 +1,5 @@
 ---
-framework_version: 1.1.1
+framework_version: 2.0.0
 ---
 
 # Writing Style Guide

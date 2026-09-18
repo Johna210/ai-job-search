@@ -1,229 +1,89 @@
 ---
 name: reset
-description: Reset candidate profile data
+description: Reset candidate profile data or imported career documents after explicit confirmation
 ---
 
-# /reset - Reset Candidate Profile Data
+# Reset profile data
 
-You are resetting parts of the job search framework back to a blank state so the user can start fresh with `/setup`.
+This workflow removes personal data while preserving all framework skills and templates.
 
-**This command is destructive.** Nothing is deleted until the user explicitly confirms. Follow these steps exactly in order.
+## Step 1: Choose the scope
 
----
+Accept one of these scopes from the user's request:
 
-## Step 0: Parse Scope from Arguments
+- `profile`: clear `profile/candidate.md`, `profile/behavior.md`, and `profile/search.md`.
+- `documents`: clear personal files under `documents/` while preserving `documents/README.md` and `.gitkeep` files.
+- `all`: clear both groups.
 
-Check the user's request for a scope keyword:
+If the scope is missing or unclear, ask the user to choose. Do not infer a destructive scope.
 
-- `profile` — clears candidate profile data from skill files only
-- `documents` — deletes user-provided files from the `documents/` folder only
-- `all` — both of the above
+## Step 2: Show exactly what will change
 
-If the user's request is empty or does not contain a recognized scope keyword, ask:
+For `profile`, list the three profile files and whether each contains non-placeholder content.
 
-> **What would you like to reset?**
->
-> - **`profile`** — Clears candidate data from the skill files (profile, behavioral, STAR examples, profile statements). The framework structure and writing rules are preserved. Use this to re-run `/setup` from scratch.
->
-> - **`documents`** — Deletes all files you've placed in the `documents/` folder (CV PDFs, LinkedIn export, diplomas, references, past applications). The folder structure and `README.md` are preserved.
->
-> - **`all`** — Both of the above.
->
-> Reply with `profile`, `documents`, or `all`.
+For `documents`, recursively list personal files under these directories when they exist:
 
-Wait for the user's response before continuing.
+- `documents/cv/`
+- `documents/linkedin/`
+- `documents/diplomas/`
+- `documents/references/`
+- `documents/postings/`
+- `documents/applications/`
+- `documentsinterview/`
 
----
+Do not include `documents/README.md` or `.gitkeep` files in the deletion list.
 
-## Step 1: Show Exactly What Will Be Cleared
+Ask for this exact confirmation:
 
-Before doing anything, show the user precisely what will be wiped.
+> Type `RESET <scope>` to delete the files listed above.
 
-### If scope includes `profile`:
+Stop unless the user enters the matching scope exactly.
 
-Read the current state of these files and report whether each has content or is already empty:
+## Step 3: Reset the selected data
 
-- `profile/candidate.md`
-- `profile/behavior.md`
-- `.agents/skills/job-application-assistant/05-cv-templates.md` *(profile statements section only — framework structure is preserved)*
-- `.agents/skills/job-application-assistant/07-interview-prep.md` *(STAR examples and STAR candidates sections only — framework structure is preserved)*
+For `profile`, replace the files with short setup placeholders.
 
-Present as:
-
-```
-## Profile reset will clear:
-
-- profile/candidate.md — [has content / already empty]
-  Full file will be replaced with a blank template.
-
-- profile/behavior.md — [has content / already empty]
-  Full file will be replaced with a blank template.
-
-- 05-cv-templates.md — [has profile statements / already blank]
-  Profile statement templates will be cleared. LaTeX structure and tailoring guidelines are preserved.
-
-- 07-interview-prep.md — [has STAR examples / already blank]
-  STAR examples and any STAR candidate stubs will be cleared. Framework, tough questions, and roleplay guidelines are preserved.
-
-The following files are NOT touched (they contain framework rules, not candidate data):
-  - 03-writing-style.md
-  - 04-job-evaluation.md
-  - 06-cover-letter-templates.md
-```
-
-### If scope includes `documents`:
-
-List all files present in `documents/cv/`, `documents/linkedin/`, `documents/diplomas/`, `documents/references/`, and `documents/applications/`. Present them as:
-
-```
-## Documents reset will delete:
-
-documents/cv/
-  - [filename] or "(empty)"
-
-documents/linkedin/
-  - [filename] or "(empty)"
-
-documents/diplomas/
-  - [filename] or "(empty)"
-
-documents/references/
-  - [filename] or "(empty)"
-
-documents/applications/
-  - [subfolder/filename] or "(empty)"
-
-documents/README.md — NOT deleted (instructions file)
-```
-
-If all document subfolders are already empty, state "All document subfolders are already empty — nothing to delete." and skip the confirmation step for this scope.
-
----
-
-## Step 2: Require Explicit Confirmation
-
-Present the confirmation prompt:
-
-> **This cannot be undone.**
->
-> Type **`RESET`** (all caps) to confirm, or anything else to cancel.
-
-Wait for the user's response.
-
-- If the user types exactly `RESET`: proceed to Step 3.
-- If the user types anything else: abort and tell them "Reset cancelled. Nothing was changed."
-
----
-
-## Step 3: Execute the Reset
-
-### Profile reset
-
-**For `profile/candidate.md`**, replace the file content with:
+`profile/candidate.md`:
 
 ```markdown
 # Candidate Profile
 
-<!-- Run /setup to populate this file -->
-
-## Identity
-
-## Education
-
-## Professional Experience
-
-## Independent Projects
-
-## Technical Skills
-
-## Publications
-
-## Awards
-
-## References
+<!-- SETUP: Ask your coding agent to set up your job-search profile. -->
 ```
 
-**For `profile/behavior.md`**, replace the file content with:
+`profile/behavior.md`:
 
 ```markdown
 # Behavioral Profile
 
-<!-- Run /setup to populate this file -->
-
-## Overview
-
-## Strongest Behavioral Traits
-
-## How I Work Best
-
-## Growth Areas
-
-## Mapping to Job Posting Language
-
-## Management Style Preferences
-
-## Using This in Applications
+<!-- SETUP: Add an assessment or answer the setup interview questions. -->
 ```
 
-**For `05-cv-templates.md`**, locate the section that begins with `**Profile statement templates` and extends through the role-specific template blocks. Replace only that section with:
+`profile/search.md`:
 
 ```markdown
-**Profile statement templates:**
+# Search Strategy
 
-<!-- Run /setup to populate role-specific profile statements -->
+<!-- SETUP: Add target roles, locations, portals, and search queries. -->
 ```
 
-Leave all other content in `05-cv-templates.md` intact.
+Do not edit files under `.agents/skills/` during a reset.
 
-**For `07-interview-prep.md`**, locate and remove:
-- The entire `## Ready-Made STAR Examples` section and all numbered STAR examples under it
-- Any `## STAR Candidates (Complete Manually)` section added by `/setup` Path A
-
-Replace with:
-
-```markdown
-## Ready-Made STAR Examples
-
-<!-- Run /setup to populate STAR examples from your actual experience -->
-```
-
-Leave all other content in `07-interview-prep.md` intact (STAR format explanation, tough questions, questions to ask interviewers, phone/video tips, follow-up etiquette, roleplay guidelines).
-
-### Documents reset
-
-For each non-empty document subfolder, delete all files within it using Bash `rm`. Do not delete the folder itself, and do not delete `documents/README.md`.
+For `documents`, delete every listed personal file and nested directory. Preserve each `.gitkeep` file and `documents/README.md`. Use a bounded command for each existing directory rather than a repository-wide delete. For example:
 
 ```bash
-rm -f documents/cv/*
-rm -f documents/linkedin/*
-rm -f documents/diplomas/*
-rm -f documents/references/*
-rm -rf documents/applications/*/
+find documents/cv -mindepth 1 ! -name .gitkeep -delete
 ```
 
----
+Apply the same bounded command to every existing document directory in the confirmed list.
 
-## Step 4: Confirm What Was Done and Next Steps
+## Step 4: Verify and report
 
-After the reset is complete, report:
+List the affected paths again after the reset. Confirm that:
 
-```
-## Reset complete
+- Each selected profile file contains only its placeholder.
+- Each selected document directory contains no personal file.
+- `documents/README.md` and all `.gitkeep` files remain.
+- No framework skill changed.
 
-### Cleared
-[List each file/folder that was actually modified or cleared]
-
-### Unchanged
-[List anything that was already empty or was intentionally preserved]
-```
-
-Then tell the user what to do next based on what was reset:
-
-**If profile was reset:**
-> Your candidate profile is now blank. Run `/setup` to repopulate it. The command auto-detects any files in your `documents/` folder and offers to read from there; otherwise it walks you through a CV import or interactive interview.
-
-**If documents were reset:**
-> The `documents/` folder is now empty. Add your career documents and run `/setup` to populate your profile. See `documents/README.md` for instructions on what to put where.
-
-**If both were reset:**
-> Both your profile files and documents folder are now empty. Add documents to `documents/` (or skip and use the CV import / interview path), then run `/setup`.
+Tell the user to ask the agent to set up the profile again when ready.

@@ -33,8 +33,8 @@ class HtmlReportSkillFileTests(unittest.TestCase):
         text = COMMAND_FILE.read_text(encoding="utf-8")
         first_line = command_title(text)
         self.assertTrue(
-            first_line.startswith("# /html-report"),
-            f"Skill file must contain a '# /html-report' title, got: {first_line!r}",
+            first_line.startswith("# html-report"),
+            f"Skill file must contain a '# html-report' title, got: {first_line!r}",
         )
 
     def test_skill_file_is_non_empty(self):

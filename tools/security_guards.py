@@ -35,7 +35,7 @@ errors: list[str] = []
 # changes one must update this set too, making the widening visible in review.
 ALLOWED_PERMISSIONS = {
     "skill.*=ask",
-    "skill.job-application-assistant=allow",
+    "skill.apply=allow",
     "skill.scrape=allow",
     "skill.upskill=allow",
     "bash.*=ask",

@@ -1,5 +1,5 @@
 ---
-framework_version: 1.3.1
+framework_version: 2.0.0
 ---
 
 # CV Templates and Tailoring Guide
@@ -111,19 +111,7 @@ Write 5-7 lines that function as an "elevator pitch": a concise, compelling intr
 
 When the role sits outside your home domain, **lead with the domain-transfer argument** - the one or two sentences connecting your background to their problem (e.g. wave physics to radar signal processing) belong in the profile statement's opening, not buried in the cover letter. It is the strongest card a domain-changer holds; play it first.
 
-**Create 2-3 profile statement templates for your main role types:**
-
-<!-- SETUP: These are populated based on your background -->
-**For AI/ML Engineer roles:**
-> Software Engineer specializing in applied AI with production experience building agentic RAG systems, LLM integrations, and ML pipelines. Built Adisu Serategna, a bilingual agentic RAG platform spanning Go, Python, Next.js, and Flutter, with multi-LLM orchestration (Gemini + Cohere) and bilingual embeddings in pgVector. A2SV alumnus with 900+ algorithmic problems solved. Brings hands-on experience from AI/ML internships and production backend development to deliver AI-powered applications end-to-end.
-
-**For Backend Engineer roles:**
-> Backend Engineer with production experience building scalable systems in Go and TypeScript. Built and maintained microservices for a multi-tenant enterprise eProcurement platform deployed across 3 countries (Ethiopia, Malawi, Sierra Leone) with database-per-tenant isolation. Integrated Google Gemini API for AI-powered features in production. Experienced with NestJS, Gin, PostgreSQL, MongoDB, Redis, and Docker. Comfortable owning features end-to-end in small, fast-moving teams.
-
-**For Full-Stack Developer roles:**
-> Full-Stack Developer with production experience across the entire stack: Go (Gin), TypeScript (NestJS, Next.js), Python (FastAPI), and Flutter. Built complete products from database to UI, including a bilingual agentic RAG platform (capstone), e-commerce platforms, and enterprise eProcurement systems. Strong backend foundation with AI/ML integration experience. Thrives in small teams shipping complex features with real user impact.
-
-Statements labeled *[Used for: <company>_<role>]* were extracted from archived application drafts by `/setup` Path A. They are **phrasing references, never fact sources**: when drafting from one, every factual claim still comes from `profile/candidate.md` - a past tailored draft does not vouch for its own accuracy.
+Write the statement from `profile/candidate.md` for the current posting. Do not store candidate-specific statement templates in this framework file. Existing tailored drafts are phrasing references only and never factual sources.
 
 ### Core Competencies / Skills Section (Best Practice)
 Reorder and emphasize based on the role. Use bold category labels.
@@ -242,7 +230,7 @@ What to check in the extraction:
 
 - **Contact details as literal text.** The stock template's fontawesome contact icons extract as glyph names (`MOBILE-ALT`, `Envelope`) - harmless noise, because the actual address and number are printed beside them. The failure mode is a contact detail carried *only* by an icon or a hyperlink (like the `LinkedIn` link text, whose URL is not in the text layer): invisible to an ATS. The email address must always appear as printed text.
 - **No garbled output.** `(cid:NNN)` markers or `�` characters mean a font is embedded without a Unicode mapping - an ATS sees the same garbage. This shows up with unusual fonts in custom templates, not with the stock moderncv setup under lualatex.
-- **Reading order.** The stock banking style is single-column, so extraction order matches visual order. Custom templates (via `/add-template`) with sidebars or multi-column layouts can interleave unrelated lines; if extraction order is scrambled, the user is trading ATS compatibility for looks and should be told.
+- **Reading order.** The stock banking style is single-column, so extraction order matches visual order. Custom templates (via `add-template`) with sidebars or multi-column layouts can interleave unrelated lines; if extraction order is scrambled, the user is trading ATS compatibility for looks and should be told.
 - **Keyword coverage.** Match the posting's required/preferred terms against the extracted text, in the posting's language. Prefer the posting's exact term over a synonym when it is truthfully applicable - ATS matching is often literal. Never add a keyword the profile does not support.
 
 ## Page Budget - Hard 2-Page Limit

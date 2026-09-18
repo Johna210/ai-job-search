@@ -37,6 +37,8 @@ FORBIDDEN_SKILL_PATTERNS = {
     r"\bCLAUDE\.md\b": "Claude instruction file",
     r"\$ARGUMENTS\b": "vendor command substitution",
     r"\b(?:task|Agent|Read|Write|Edit|WebFetch|WebSearch|AskUserQuestion) tool\b": "vendor tool name",
+    r"\b(?:call|use) (?:the )?(?:Task|Agent|Read|Write|Edit|WebFetch|WebSearch|AskUserQuestion)\b": "vendor tool call",
+    r"(?:^|[\s`\"'])/(?:add-portal|add-template|apply|expand|gmail-sync|html-report|interview|notion-sync|outcome|rank|reset|scrape|setup|upskill)(?=[\s`\"'<]|$)": "removed slash command",
 }
 
 
@@ -53,10 +55,14 @@ def main() -> int:
 
     skills = sorted((ROOT / ".agents" / "skills").glob("*/SKILL.md"))
     names = {path.parent.name for path in skills}
+    skill_directories = {path.name for path in (ROOT / ".agents" / "skills").iterdir() if path.is_dir()}
     for name in sorted(REQUIRED_SKILLS - names):
         errors.append(f"missing canonical workflow skill: {name}")
+    for name in sorted(skill_directories - names):
+        errors.append(f"skill directory has no SKILL.md: {name}")
 
-    for path in skills:
+    agent_docs = skills + sorted((ROOT / ".agents" / "references").glob("**/*.md"))
+    for path in agent_docs:
         text = path.read_text(encoding="utf-8")
         for pattern, label in FORBIDDEN_SKILL_PATTERNS.items():
             if re.search(pattern, text):

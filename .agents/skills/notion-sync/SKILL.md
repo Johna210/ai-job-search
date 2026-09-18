@@ -3,15 +3,15 @@ name: notion-sync
 description: Push ranked jobs and applications to a Notion database
 ---
 
-# /notion-sync - Push Ranked Jobs and Applications to a Notion Database
+# notion-sync - Push Ranked Jobs and Applications to a Notion Database
 
 You are publishing a **read-only view** of the job search into the user's Notion workspace: one database row per job, with a detailed page per shortlisted match. The repo files stay the system of record - `job_scraper/seen_jobs.json` owns scraped/ranked jobs and `job_search_tracker.csv` owns applications. Notion is a disposable presentation layer on top of them; nothing ever syncs back.
 
 This command requires the **Notion MCP server** (OAuth). It reads state, upserts pages, and stops - it never ranks, applies, or edits repo files. Notion is the in-tree reference binding; the sync contract itself is tool-agnostic (see "Adapting to Another Tool" at the end - only the two sections marked *(Notion binding)* are tool-specific).
 
-## Lane: `/html-report` vs `/notion-sync`
+## Lane: `html-report` vs `notion-sync`
 
-Both present the same tracker data; they own different moments. `/html-report` is the **deep-review lane**: a self-contained offline dashboard with charts and a filterable table, regenerated at your desk. `/notion-sync` is the **glanceable lane**: the current state of the pipeline, reachable anywhere Notion runs (desktop, web, phone). They compose rather than compete - after `/outcome` records a result, re-run either or both to refresh the views.
+Both present the same tracker data; they own different moments. `html-report` is the **deep-review lane**: a self-contained offline dashboard with charts and a filterable table, regenerated at your desk. `notion-sync` is the **glanceable lane**: the current state of the pipeline, reachable anywhere Notion runs (desktop, web, phone). They compose rather than compete - after `outcome` records a result, re-run either or both to refresh the views.
 
 Follow these steps **in order**.
 
@@ -46,7 +46,7 @@ Validate the cheap, local precondition before creating anything external. A run 
 2. Select `seen_jobs.json` entries with status `ranked` whose `rank_score` meets the threshold from Step 0. `--all` lifts the threshold entirely.
 3. Every tracker row joins the sync set (an applied-to job always syncs, ranked or not), matched to `seen_jobs.json` entries case-insensitively on company + role where possible. Tracker rows with no `seen_jobs.json` entry sync too - build their Key as `<company>_<role>` lowercased with underscores.
 4. **Status precedence:** the tracker wins. A job that is `ranked` in `seen_jobs.json` but `interview` in the tracker syncs as `interview`. Jobs only in `seen_jobs.json` keep their stored status.
-5. **If the sync set is empty** (no ranked entries meet the threshold and there are no tracker rows), say "Nothing to sync - run `/scrape` and `/rank` first" (or, when jobs exist but all score below the threshold, say so and suggest `--min-score`/`--all`) and **stop**.
+5. **If the sync set is empty** (no ranked entries meet the threshold and there are no tracker rows), say "Nothing to sync - run `scrape` and `rank` first" (or, when jobs exist but all score below the threshold, say so and suggest `--min-score`/`--all`) and **stop**.
 6. State the counts before touching the destination: how many rows will be created or checked, and the threshold in effect.
 
 ---
@@ -78,7 +78,7 @@ Validate the cheap, local precondition before creating anything external. A run 
    | URL | url | posting URL |
    | Key | rich text | the job's key in `seen_jobs.json` - dedup anchor, never edited by hand |
 
-   The tracker-sourced properties (Applied on, Channel, CV file, Cover letter) stay empty for jobs that have no tracker row - they fill in once `/outcome` records the application. Only filenames ever sync; document contents stay local.
+   The tracker-sourced properties (Applied on, Channel, CV file, Cover letter) stay empty for jobs that have no tracker row - they fill in once `outcome` records the application. Only filenames ever sync; document contents stay local.
 
 4. **Existing database with missing properties:** if the located database predates a schema addition (a property from the table above does not exist), add the missing properties to the database before upserting. Never remove or retype existing properties.
 5. Write `job_scraper/notion_sync.json` with the database id and URL. This file is personal state and is gitignored - never commit it.
@@ -91,7 +91,7 @@ For each job in the sync set:
 
 1. Query the database for a page whose `Key` equals the job's key.
 2. **No match** → create the page with all properties from the Step 3 table, then write its body (Step 5).
-3. **Match** → update **properties only**: Status, Score, Verdict, Deadline, Ranked, Applied on, Channel, CV file, Cover letter. Properties are the always-current surface (bodies are write-once), so tracker updates recorded by `/outcome` reach the destination exclusively through them. Do not touch the page body - the user may have added their own notes there, and clobbering them breaks trust in the whole view. (`--rebuild` is the sole exception.)
+3. **Match** → update **properties only**: Status, Score, Verdict, Deadline, Ranked, Applied on, Channel, CV file, Cover letter. Properties are the always-current surface (bodies are write-once), so tracker updates recorded by `outcome` reach the destination exclusively through them. Do not touch the page body - the user may have added their own notes there, and clobbering them breaks trust in the whole view. (`--rebuild` is the sole exception.)
 4. Never delete or archive pages, even for jobs that turned `expired` - set Status to `expired` instead. Rows the user added to the database by hand (no `Key` value) are invisible to this command.
 
 Batch politely: if the MCP server rate-limits, back off and continue; report any page that failed rather than retrying indefinitely.
@@ -126,7 +126,7 @@ Synced <N> jobs (threshold: score ≥ <T>): <C> created, <U> updated, <S> unchan
 
 List failures with their error and the suggestion to re-run - the upsert is idempotent, so a re-run only touches what failed. Update `last_sync` in the sync-state file.
 
-Remind the user once (first run only): the repo files remain the source of truth - edits made in the destination never flow back, and `/outcome` is still how application results get recorded.
+Remind the user once (first run only): the repo files remain the source of truth - edits made in the destination never flow back, and `outcome` is still how application results get recorded.
 
 ---
 

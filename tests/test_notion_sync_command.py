@@ -27,8 +27,8 @@ class NotionSyncSkillSpec(unittest.TestCase):
         self.assertTrue(COMMAND.is_file(), "skill spec missing")
         first_line = command_title(COMMAND.read_text(encoding="utf-8"))
         self.assertTrue(
-            first_line.startswith("# /notion-sync"),
-            f"skill must contain a '# /notion-sync' title, got: {first_line!r}",
+            first_line.startswith("# notion-sync"),
+            f"skill must contain a '# notion-sync' title, got: {first_line!r}",
         )
 
     def test_command_file_is_substantive(self):
