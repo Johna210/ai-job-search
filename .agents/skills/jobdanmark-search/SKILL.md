@@ -1,6 +1,5 @@
 ---
 name: jobdanmark-search
-version: 1.0.0
 description: >
   Make sure to use this skill whenever the user mentions anything related to Danish
   job listings, job search in Denmark, finding work in Denmark, or job vacancies on
@@ -16,7 +15,9 @@ description: >
   ledige job, ansøgningsfrist, søg job, job opslaget, jobopslag, danish vacancies,
   work in denmark, employment denmark, job denmark, jobs near me denmark,
   apprentice denmark, internship denmark, part-time denmark, full-time denmark.
-enabled: true  # set to false to keep this portal installed but have scrape skip it
+metadata:
+  version: "1.0.0"
+  enabled: "true"
 ---
 
 # Jobdanmark Search Skill

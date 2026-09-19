@@ -1,13 +1,14 @@
 ---
 name: greenhouse-search
-version: 1.0.0
 description: >
   Search public Greenhouse career boards for software, data, AI, and engineering
   jobs at configured companies worldwide or remotely. Use when the user asks for
   Greenhouse jobs, direct company career listings, or a Greenhouse posting detail.
   Trigger phrases: Greenhouse jobs, company careers, software jobs, backend jobs,
   AI engineer jobs, remote engineering jobs, job openings.
-enabled: true
+metadata:
+  version: "1.0.0"
+  enabled: "true"
 ---
 
 # Greenhouse search

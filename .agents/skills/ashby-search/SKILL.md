@@ -1,13 +1,14 @@
 ---
 name: ashby-search
-version: 1.0.0
 description: >
   Search public Ashby career boards for software, data, AI, and engineering jobs
   at configured companies worldwide or remotely. Use when the user asks for Ashby
   jobs, direct company career listings, or an Ashby posting detail. Trigger phrases:
   Ashby jobs, company careers, software jobs, backend jobs, AI engineer jobs,
   remote engineering jobs, job openings.
-enabled: true
+metadata:
+  version: "1.0.0"
+  enabled: "true"
 ---
 
 # Ashby search

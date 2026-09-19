@@ -1,6 +1,5 @@
 ---
 name: jobbank-search
-version: 1.0.0
 description: >
   Make sure to use this skill whenever the user mentions anything related to job
   searching on Akademikernes Jobbank, jobbank.dk, or looking for academic or
@@ -18,7 +17,9 @@ description: >
   nyuddannede job, job til nyuddannede, international job denmark,
   jobbank søgning, find stilling, data scientist job, software developer job,
   projektleder stilling, konsulent job, data analyse job.
-enabled: true  # set to false to keep this portal installed but have scrape skip it
+metadata:
+  version: "1.0.0"
+  enabled: "true"
 ---
 
 # Jobbank Search Skill

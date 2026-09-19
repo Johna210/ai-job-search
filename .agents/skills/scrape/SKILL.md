@@ -59,7 +59,7 @@ If this fails (bun not installed), skip to **1c (web search fallback)** for all 
 
 Discover all installed portal CLI skills by reading every `SKILL.md` found under `.agents/skills/*-search/SKILL.md`. Each file documents that portal's exact CLI flags and usage examples. **Use each portal's own documented interface — do not guess flags.** This approach automatically includes any new portals added via `add-portal` without requiring changes to this file.
 
-**Honor the `enabled` toggle.** A portal is enabled unless its `SKILL.md` frontmatter sets `enabled: false` (a missing key means enabled — the default). Skip each disabled portal and record it for the Step 5 summary. A fork can thus keep a portal installed but sit out a run without deleting its directory.
+**Honor the `enabled` toggle.** A portal is enabled unless its `SKILL.md` frontmatter sets `metadata.enabled: "false"`. A missing value means enabled. Skip each disabled portal and record it for the Step 5 summary. A fork can keep a portal installed but exclude it from a run without deleting its directory.
 
 For each **enabled** portal skill:
 
@@ -179,11 +179,11 @@ Scraper-based portal CLIs rot silently: when a portal changes its markup, the pa
 ### Step 5: Present Results
 
 Present new jobs in a table sorted by fit (high first). When Step 1b skipped
-portals (`enabled: false`), report them with the `skipped (disabled):` line below
+portals (`metadata.enabled: "false"`), report them with the `skipped (disabled):` line below
 so opting one out stays visible rather than silent; omit the line when nothing
 was skipped. When Step 4.75 found a portal degraded, broken, or inconclusive,
 add one `health:` line per suspect portal (healthy portals get no line); after
-the report, offer to set that portal's `enabled: false` so `scrape` stops
+the report, offer to set that portal's `metadata.enabled` to `"false"` so `scrape` stops
 running it (and covers it via the Step 1c fallback) until it is fixed - only
 edit the toggle with the user's confirmation, and never edit anything else in
 the skill.

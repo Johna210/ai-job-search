@@ -1,12 +1,13 @@
 ---
 name: company-search
-version: 1.0.0
 description: >
   Search public career pages for Deliveroo, Zalando, OVHcloud, and Automattic.
   Use when the user asks for direct company listings, software jobs at these
   companies, or a posting detail. Trigger phrases: company careers, Deliveroo
   jobs, Zalando jobs, OVHcloud jobs, Automattic jobs, direct engineering jobs.
-enabled: true
+metadata:
+  version: "1.0.0"
+  enabled: "true"
 ---
 
 # Company career search

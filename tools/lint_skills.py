@@ -6,14 +6,12 @@ Run from anywhere: python tools/lint_skills.py
 Checks:
 - Every .agents/skills/*/SKILL.md has YAML frontmatter that
   parses, with non-empty `name` and `description` keys
-- `allowed-tools` entries of the form `Bash(bun run <path> *)` point at files
-  that exist (skill paths resolve relative to the repo root and to .agents/)
+- Frontmatter uses only fields from the Agent Skills specification
 - Skill names match their directory names and are unique
 
 Exit code 0 on success, 1 with a failure list otherwise.
 """
 
-import re
 import sys
 from pathlib import Path
 
@@ -24,6 +22,7 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parent.parent
 errors: list[str] = []
+ALLOWED_FIELDS = {"name", "description", "license", "compatibility", "metadata"}
 
 
 def rel(path: Path) -> str:
@@ -51,25 +50,19 @@ def check_skill(path: Path) -> str | None:
         if not data.get(key):
             errors.append(f"{rel(path)}: frontmatter missing required key '{key}'")
 
+    for key in sorted(set(data) - ALLOWED_FIELDS):
+        errors.append(f"{rel(path)}: unsupported top-level frontmatter key '{key}'")
+
     name = data.get("name")
     if isinstance(name, str) and name != path.parent.name:
         errors.append(f"{rel(path)}: skill name {name!r} must match directory {path.parent.name!r}")
 
-    allowed = data.get("allowed-tools", "")
-    if isinstance(allowed, str):
-        for match in re.finditer(r"bun run ([^\s)]+)", allowed):
-            target = match.group(1).rstrip("*")
-            if not target or target.endswith("/"):
-                continue
-            # Targets may contain globs (e.g. .agents/skills/*/cli/src/cli.ts);
-            # require at least one existing file to match.
-            if "*" in target:
-                if not list(ROOT.glob(target)) and not list((ROOT / ".agents").glob(target)):
-                    errors.append(f"{rel(path)}: allowed-tools glob matches no files: {target}")
-            else:
-                candidates = [ROOT / target, ROOT / ".agents" / target]
-                if not any(c.is_file() for c in candidates):
-                    errors.append(f"{rel(path)}: allowed-tools references a missing file: {target}")
+    metadata = data.get("metadata")
+    if metadata is not None and (
+        not isinstance(metadata, dict)
+        or not all(isinstance(key, str) and isinstance(value, str) for key, value in metadata.items())
+    ):
+        errors.append(f"{rel(path)}: metadata must map strings to strings")
     return name if isinstance(name, str) else None
 
 

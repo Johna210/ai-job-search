@@ -70,6 +70,15 @@ class PortableSkillTests(LinterRepoFixture):
         self.assertEqual(result.returncode, 1)
         self.assertIn("missing required key 'description'", result.stdout)
 
+    def test_nonstandard_top_level_field_is_rejected(self):
+        self.skill.write_text(
+            "---\nname: example\ndescription: Example skill\nenabled: true\n---\n",
+            encoding="utf-8",
+        )
+        result = run_linter(self.root)
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("unsupported top-level frontmatter key 'enabled'", result.stdout)
+
     def test_missing_skill_tree_fails_cleanly(self):
         shutil.rmtree(self.root / ".agents")
         result = run_linter(self.root)

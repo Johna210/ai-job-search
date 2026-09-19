@@ -137,10 +137,12 @@ Create or update these files:
     └── tests/
 ```
 
-The `SKILL.md` frontmatter must include `name`, `version`, `description`, and
-`enabled`. Do not add runtime-specific tool, context, model, or permission fields.
-Set `enabled: true` only after the live gates below pass. Its body documents the
-source, flags, examples, output shape, access limits, and known response quirks.
+The `SKILL.md` frontmatter must include `name` and `description`. Put `version`
+and `enabled` string values under the standard `metadata` map. Do not add
+runtime-specific tool, context, model, or permission fields. Set
+`metadata.enabled: "true"` only after the live gates below pass. Its body
+documents the source, flags, examples, output shape, access limits, and known
+response quirks.
 
 If the source is intentionally fallback-only, do not create a fake enabled CLI.
 Keep the source query in `profile/search.md` and state
@@ -182,7 +184,7 @@ inconclusive rather than treating the limit as a parser failure.
 The `scrape` skill discovers every enabled `SKILL.md` directly under
 `.agents/skills/*-search/`. No central registry is needed. After the live gates pass:
 
-1. Set `enabled: true` in the source skill.
+1. Set `metadata.enabled: "true"` in the source skill.
 2. Add a fallback `site:` query to `profile/search.md` only when it is useful
    during CLI outages.
 3. Keep the source's endpoint and field notes current in `url-reference.md`.

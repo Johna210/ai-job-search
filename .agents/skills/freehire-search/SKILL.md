@@ -1,6 +1,5 @@
 ---
 name: freehire-search
-version: 1.0.0
 description: >
   Use this skill to search live software / tech / data / engineering job listings
   across many countries and markets (and remote) via the freehire.me aggregator's
@@ -10,7 +9,9 @@ description: >
   technical roles. Trigger phrases: find a tech job, software job search, developer
   jobs, engineering vacancies, data/ML jobs, DevOps roles, remote developer jobs,
   "are there any <tech role> jobs in <place>", look up this freehire job posting.
-enabled: true  # set to false to keep this portal installed but have scrape skip it
+metadata:
+  version: "1.0.0"
+  enabled: "true"
 ---
 
 # freehire Search Skill

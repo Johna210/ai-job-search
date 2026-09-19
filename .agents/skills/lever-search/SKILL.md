@@ -1,13 +1,14 @@
 ---
 name: lever-search
-version: 1.0.0
 description: >
   Search public Lever career boards for software, data, AI, and engineering jobs
   at configured companies worldwide or remotely. Use when the user asks for Lever
   jobs, direct company career listings, or a Lever posting detail. Trigger phrases:
   Lever jobs, company careers, software jobs, backend jobs, AI engineer jobs,
   remote engineering jobs, job openings.
-enabled: true
+metadata:
+  version: "1.0.0"
+  enabled: "true"
 ---
 
 # Lever search

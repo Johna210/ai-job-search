@@ -1,6 +1,5 @@
 ---
 name: smartrecruiters-search
-version: 1.0.0
 description: >
   Search public SmartRecruiters career boards for software, data, AI, and
   engineering jobs at configured companies worldwide or remotely. Use when the
@@ -8,7 +7,9 @@ description: >
   SmartRecruiters posting detail. Trigger phrases: SmartRecruiters jobs, company
   careers, software jobs, backend jobs, AI engineer jobs, remote engineering jobs,
   job openings.
-enabled: true
+metadata:
+  version: "1.0.0"
+  enabled: "true"
 ---
 
 # SmartRecruiters search

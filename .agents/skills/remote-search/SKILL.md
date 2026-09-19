@@ -1,12 +1,13 @@
 ---
 name: remote-search
-version: 1.0.0
 description: >
   Search public remote job boards for software, data, AI, and engineering jobs
   worldwide. Use when the user asks for remote job listings, remote engineering
   jobs, or a posting from a supported remote board. Trigger phrases: remote jobs,
   remote software jobs, work from anywhere, remote backend jobs, remote AI jobs.
-enabled: true
+metadata:
+  version: "1.0.0"
+  enabled: "true"
 ---
 
 # Remote job search
