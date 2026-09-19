@@ -1,20 +1,12 @@
 ---
 name: jobdanmark-search
 description: >
-  Make sure to use this skill whenever the user mentions anything related to Danish
-  job listings, job search in Denmark, finding work in Denmark, or job vacancies on
-  Jobdanmark — even if they don't explicitly mention jobdanmark.dk. Also invoke this
-  skill for questions about specific Danish job categories, municipalities, job types,
-  or salaries in a job-search context. Trigger phrases include:
-  danish jobs, jobs in denmark, find job denmark, job search denmark, danish job listings,
-  jobdanmark, job opslag, find job, jobsøgning, ledige stillinger, stillingsopslag,
-  job i Danmark, fuldtidsjob, deltidsjob, studiejob, praktikplads, elev, fleksjob,
-  IT job denmark, sygeplejersker job, håndværker job, ingeniør job, pædagog job,
-  kontor job, leder job, salg job, hotel job, kirke job, job aarhus, job københavn,
-  job odense, job aalborg, job sjælland, job jylland, job fyn, jobkategorier denmark,
-  ledige job, ansøgningsfrist, søg job, job opslaget, jobopslag, danish vacancies,
-  work in denmark, employment denmark, job denmark, jobs near me denmark,
-  apprentice denmark, internship denmark, part-time denmark, full-time denmark.
+  Search Jobdanmark for live job listings across Danish industries and
+  municipalities. Use for Jobdanmark postings or broad searches for work in
+  Denmark by category, city, region, job type, or salary. Trigger phrases include
+  jobsøgning, ledige stillinger, jobopslag, fuldtidsjob, deltidsjob, studiejob,
+  praktikplads, elev, fleksjob, job København, job Aarhus, job Odense, job Aalborg,
+  Danish jobs, and work in Denmark.
 metadata:
   version: "1.0.0"
   enabled: "true"

@@ -1,20 +1,12 @@
 ---
 name: jobindex-search
 description: >
-  Make sure to use this skill whenever the user wants to search for jobs in Denmark,
-  find Danish job listings, look up a specific job posting, or asks anything about
-  the Danish job market — even if they don't mention jobindex.dk explicitly. Invoke
-  this skill for questions about open positions, job vacancies, hiring in Denmark,
-  job opportunities in Danish cities or sectors, or when the user wants to find work
-  in Denmark. Also trigger for phrases like "find me a job", "are there any jobs for
-  X in Copenhagen", or "what jobs are available in Aarhus" when the context is Denmark.
-  Trigger phrases include: jobindex, jobsøgning, job i Danmark, ledige stillinger,
-  job opslag, find job, stillingopslag, jobannonce, job vacancy denmark, danish jobs,
-  jobs in denmark, job search denmark, work in denmark, find work denmark, IT jobs
-  denmark, engineer jobs denmark, developer jobs copenhagen, marketing jobs aarhus,
-  jobs aarhus, jobs copenhagen, jobs odense, jobs aalborg, job openings denmark,
-  hiring denmark, job listings denmark, python jobs denmark, grafisk designer job,
-  data engineer job, softwareudvikler job, full stack developer job danmark.
+  Search Jobindex for live Danish job listings or retrieve a specific posting.
+  Use when the user mentions Jobindex, asks what jobs are open in Denmark, or
+  searches by role, technology, sector, or Danish city. Trigger phrases include
+  jobsøgning, ledige stillinger, stillingsopslag, jobannonce, job i Danmark,
+  jobs Copenhagen, jobs Aarhus, Danish jobs, developer jobs Denmark, and hiring
+  in Denmark.
 metadata:
   version: "1.0.0"
   enabled: "true"

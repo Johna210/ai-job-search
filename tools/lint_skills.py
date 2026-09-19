@@ -50,6 +50,12 @@ def check_skill(path: Path) -> str | None:
         if not data.get(key):
             errors.append(f"{rel(path)}: frontmatter missing required key '{key}'")
 
+    description = data.get("description")
+    if isinstance(description, str) and len(description) > 1024:
+        errors.append(
+            f"{rel(path)}: description exceeds 1024 characters ({len(description)})"
+        )
+
     for key in sorted(set(data) - ALLOWED_FIELDS):
         errors.append(f"{rel(path)}: unsupported top-level frontmatter key '{key}'")
 
