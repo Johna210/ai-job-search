@@ -29,7 +29,7 @@ For `documents`, recursively list personal files under these directories when th
 - `documents/references/`
 - `documents/postings/`
 - `documents/applications/`
-- `documentsinterview/`
+- `documents/interview/`
 
 Do not include `documents/README.md` or `.gitkeep` files in the deletion list.
 

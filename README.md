@@ -86,6 +86,7 @@ Commit profile changes only to a private fork. The generated tracker, applicatio
 ├── profile/                     # Candidate, behavior, and search data
 ├── .agents/
 │   ├── skills/                  # Canonical workflows and portal skills
+│   ├── references/              # Shared application guidance
 │   └── lib/                     # Shared portal CLI code
 ├── cv/                          # CV template and tailored output
 ├── cover_letters/               # Cover-letter template and output

@@ -294,10 +294,10 @@ After the final clean compile, delete intermediate build files the compile comma
 
 ## Step 6: Present Final Output
 
-Run the full checklist in `verification.md` now. This is the **only** verification pass in the workflow. Re-read both files once here to verify final state on disk matches your mental model after the Step 4 and Step 5 edits.
+Run the full checklist in `.agents/skills/apply/verification.md` now. This is the **only** verification pass in the workflow. Re-read both files once here to verify final state on disk matches your mental model after the Step 4 and Step 5 edits.
 
 ### Verification Checklist
-Report pass/fail for each item in `verification.md`.
+Report pass/fail for each item in `.agents/skills/apply/verification.md`.
 
 ### Key Tailoring Decisions
 Summarize 3-5 key decisions made to tailor the application:
@@ -311,7 +311,7 @@ List the files written:
 - `cv/main_<company>_<role><CV_EXT>`
 - `cover_letters/cover_<company>_<role><COVER_EXT>`
 
-Tell the user: "Both files are ready for your review. Open them to check the final output before compiling."
+Tell the user: "Both compiled documents are ready for your review. Open them and check the final output before sending anything."
 
 ### Application-Form Fields (Optional Third Artifact)
 

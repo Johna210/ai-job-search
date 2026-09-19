@@ -55,7 +55,8 @@ The investigation must answer these questions:
 6. What happens for 404, 429, 5xx, and a missing or expired posting?
 
 Save the endpoint paths, field paths, pagination rules, and quirks in the source's
-`.agents/skills/<name>/url-reference.md`. Run one real search and one real detail
+`.agents/skills/<skill-name>/url-reference.md`. The skill name must use kebab-case
+and end in `-search`, such as `seek-search`. Run one real search and one real detail
 request before registering the source.
 
 ## 3. Reuse the direct adapter when it fits
@@ -71,7 +72,7 @@ The repository has a shared zero-runtime-dependency adapter in
 For a board on one of these APIs, add an explicit board entry to
 `.agents/lib/direct-careers/config.ts`, extend the corresponding source reference,
 and add a parser test or fixture for any new response shape. Keep the source's
-discoverable skill under `.agents/skills/<name>-search/`.
+discoverable skill under `.agents/skills/<skill-name>/`.
 
 For a different API or HTML site, create a source-owned CLI. Keep endpoint and
 markup parsing in that CLI, not in `.agents/skills/scrape/`. Shared code is
@@ -83,8 +84,8 @@ are not.
 Every registered source must expose:
 
 ```bash
-bun run .agents/skills/<name>-search/cli/src/cli.ts search [flags]
-bun run .agents/skills/<name>-search/cli/src/cli.ts detail <id|url> [flags]
+bun run .agents/skills/<skill-name>/cli/src/cli.ts search [flags]
+bun run .agents/skills/<skill-name>/cli/src/cli.ts detail <id|url> [flags]
 ```
 
 Search supports these flags unless the source cannot support one of them, in
@@ -125,7 +126,7 @@ only when the real response requires it, and explain that choice in the CLI READ
 Create or update these files:
 
 ```text
-.agents/skills/<name>-search/
+.agents/skills/<skill-name>/
 ├── SKILL.md
 ├── url-reference.md
 └── cli/
