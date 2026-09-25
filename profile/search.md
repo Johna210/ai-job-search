@@ -26,6 +26,14 @@ Primary:
 Secondary (company career pages via Google):
 - Direct Google searches with `site:` filters for known target companies
 
+#### Afriwork web-search fallback
+
+The `afriwork-search` CLI is the primary source. Use this query only as a web-search fallback. Search-engine coverage is unverified. Public posts may contain excerpts, and Afriwork's collection terms remain unclear. The CLI marks excerpts and links to the official Telegram app.
+
+```
+site:t.me/s/freelance_ethio ("Backend Developer" OR "Software Engineer" OR "Full Stack Developer" OR "AI Engineer") Ethiopia
+```
+
 #### Europe — visa sponsors (fresher-friendly, backend/AI stack)
 
 Sourced from the "100 European Tech Companies — Visa Sponsorship" sheet. Sponsorship claims must be re-verified per posting before applying (EU Blue Card / Irish Critical Skills / UK Skilled Worker paths).
